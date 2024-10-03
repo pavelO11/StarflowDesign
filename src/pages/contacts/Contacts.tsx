@@ -27,7 +27,7 @@ function Contacts() {
         const subsequentDelay = 100; // delay beetween strings
 
         const lines = document.querySelectorAll('.contactButtons p');
-        lines.forEach((line, index) => {
+        lines.forEach((_line, index) => {
             const delay = initialDelay + subsequentDelay * index;
             setTimeout(() => {
                 setVisibleLines(prev => [...prev, index]);
