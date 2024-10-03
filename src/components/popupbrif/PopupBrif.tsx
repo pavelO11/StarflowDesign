@@ -27,7 +27,7 @@ function PopupBrif(props: Props) {
     const [showDefaultContent, setShowDefaultContent] = useState(true);
     const [showSuccessContent, setShowSuccessContent] = useState(false);
     const [showThirdContent, setShowThirdContent] = useState(false);
-    const { startTimer, stopTimer, timerActive } = useTimer(0);
+    const { startTimer, stopTimer } = useTimer(0);
 
     useEffect(() => {
       setDrawerIsOpen(true);
