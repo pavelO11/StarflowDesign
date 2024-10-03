@@ -21,7 +21,7 @@ interface Props {
 
 function PopupBrif(props: Props) {
     const { ref } = useOutsideClick(props.onClose);
-    const [drawerIsOpen, setDrawerIsOpen] = useState(false);
+    const [, setDrawerIsOpen] = useState(false);
     const [selectedProjectType, setSelectedProjectType] = useState<string | null>(null);
     const [selectedProjectBudget, setSelectedProjectBudget] = useState<string | null>(null);
     const [showDefaultContent, setShowDefaultContent] = useState(true);
