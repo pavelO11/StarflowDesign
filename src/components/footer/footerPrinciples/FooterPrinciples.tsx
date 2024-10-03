@@ -20,7 +20,7 @@ const FooterPrinciples: React.FC<PrinciplesProps> = ({ handlePrinciplesShow }) =
         const subsequentDelay = 100; // delay beetween strings
 
         const lines = document.querySelectorAll('.navbarText p');
-        lines.forEach((line, index) => {
+        lines.forEach((_line, index) => {
             const delay = initialDelay + subsequentDelay * index;
             setTimeout(() => {
                 setVisibleLines(prev => [...prev, index]);
@@ -40,13 +40,13 @@ const FooterPrinciples: React.FC<PrinciplesProps> = ({ handlePrinciplesShow }) =
                 </Link>
                 <section className='navbarText'>
                     <section>
-						<p className={visibleLines.includes(0) ? 'visible' : ''} data-splitting>
-							<span className='char'>Эмпатичный дизайнер, стремлюсь</span>
-						</p>
-						<p className={visibleLines.includes(1) ? 'visible' : ''} data-splitting>
-							<span className='char'>сделать ваш бренд понятным</span>
-						</p>
-					</section>
+			<p className={visibleLines.includes(0) ? 'visible' : ''} data-splitting>
+				<span className='char'>Эмпатичный дизайнер, стремлюсь</span>
+			</p>
+			<p className={visibleLines.includes(1) ? 'visible' : ''} data-splitting>
+				<span className='char'>сделать ваш бренд понятным</span>
+			</p>
+		    </section>
                 </section>
                 <a
                 className='closeLink'
@@ -75,7 +75,3 @@ const FooterPrinciples: React.FC<PrinciplesProps> = ({ handlePrinciplesShow }) =
 }
 
 export default FooterPrinciples;
-
-function seSplittingHover() {
-    throw new Error('Function not implemented.')
-}
