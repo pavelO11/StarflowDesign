@@ -75,7 +75,7 @@ function Contacts() {
 							<p className={visibleLines.includes(1) ? 'visible' : ''} data-splitting>
 								<span className='char'>БРИФ</span>
 							</p>
-							<span className='discription'>(небольшой )</span>
+							<span className='discription'>( небольшой )</span>
 							<img className='contactLight' alt='light' src='/contactLight.svg' />
 						</a>
 					</section>
