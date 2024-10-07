@@ -71,7 +71,7 @@ function NavigationButtons() {
 
     useSplittingHover();
 
-    const handleLinkClick = (link: string) => { // If the current path matches the selected path, do nothing
+    const handleLinkClick = (link: string) => { // If the current path matches the selected path, just do nothing
         if (location.pathname === link) {
             return;
         }
@@ -84,7 +84,7 @@ function NavigationButtons() {
                 <Link
                     data-splitting
                     to={link.link}
-                    onClick={() => handleLinkClick(link.link)} // cheking links
+                    onClick={() => handleLinkClick(link.link)} // cheking links before going
                     key={link.id}
                 >
                     <p className='upperText'>{link.number}</p>
