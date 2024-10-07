@@ -9,7 +9,7 @@ function NavigationButtons() {
     const [isVisible, setIsVisible] = useState(false); // fade first loading
     const [isTransitioning, setIsTransitioning] = useState(false); // fades in and out when pressed
 
-    const location = useLocation(); // Получаем текущий путь
+    const location = useLocation();
 
     useEffect(() => {
         const handleScroll = () => {
