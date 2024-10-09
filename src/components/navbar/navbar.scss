@@ -15,8 +15,9 @@
 	width: 100%;
 	.welcome{
 		display: flex;
-		flex-direction: row;
-		align-items: center;
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
 		.bracket1, .bracket2{
 			font-family: 'Playfair Display' , sans-serif;
 			font-weight: 400;
@@ -26,10 +27,10 @@
 			opacity: 0.4;
 		}
 		.bracket1{
-			margin: 0 20px 0 0;
+			padding: 0 20px 0 0;
 		}
 		.bracket2{
-			margin: 0 0 0 12px;
+			padding: 0 0 0 12px;
 		}
 	}
 	a{
