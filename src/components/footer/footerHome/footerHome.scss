@@ -66,7 +66,6 @@
         }
         .underLinkSecond{
             text-align: end;
-            width: 177px;
             line-height: 10px;
             .word{
                 line-height: 12px;
@@ -111,6 +110,9 @@
         -webkit-justify-content: center;
         -ms-flex-pack: center;
         justify-content: center;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
         .ul_link {
             position: relative;
             font-weight: 300;
