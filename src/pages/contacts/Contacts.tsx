@@ -20,69 +20,67 @@ function Contacts() {
 	useSplittingOnLoad('.slide-vertical');
 	useSplittingHover();
 
-	useEffect(() => {
-        Splitting({ target: '.contactButtons p' });
-        
-        const initialDelay = 3800; // delay for first string
-        const subsequentDelay = 100; // delay beetween strings
+	  useEffect(() => {
+    Splitting({ target: '.contactButtons' });
+    
+    const descriptions = document.querySelectorAll('.discription');
+    descriptions.forEach(description => {
+      description.outerHTML = `<span class="discription">${description.textContent}</span>`;
+    });
 
-        const lines = document.querySelectorAll('.contactButtons p');
-        lines.forEach((_line, index) => {
-            const delay = initialDelay + subsequentDelay * index;
-            setTimeout(() => {
-                setVisibleLines(prev => [...prev, index]);
-            }, delay);
-        });
-    }, []);
-
+    const initialDelay = 3800; // delay
+    setTimeout(() => {
+      setVisibleLines([0, 1]);
+    }, initialDelay);
+  }, []);
+	
 	return (
 		<Curve>
-			<section className='contactSection'>
-				<AnimatePresence mode='wait'>
-					{brifOpened && <PopupBrif onClose={() => setBrifOpened(false)} selectedService={null} /> }
-				</AnimatePresence>
-				<h1 data-splitting className='slide-vertical'><span className='firText'>Давайте</span><span className='secText'> Сотрудничать</span></h1>
-				<h1 className='second'><span className='firText'>Давайте</span><br></br><span className='secText'>Сотрудничать</span></h1>
-				<NavigationButtons />
-				<article className='contactText'>
-					<section>
-						<Link data-splitting to='https://t.me/StarflowDesign' target='_blank' rel='noopener noreferrer' className='contactButtons'>
-							<p className={visibleLines.includes(0) ? 'visible' : ''} data-splitting>
-								<span className='char'>СВЯЗАТЬСЯ</span>
-							</p>
-							<p className={visibleLines.includes(1) ? 'visible' : ''} data-splitting>
-								<span className='char'>СО МНОЙ</span>
-							</p>
-							<span className='discription'>( телеграм )</span>
-							<img className='contactLight' alt='light' src='/contactLight.svg' />
-						</Link>
-					</section>
-					{/* <Link data-splitting to='https://t.me/StarflowDesign' target='_blank' rel='noopener noreferrer' className='contactButtons'>
-						<p>СВЯЗАТЬСЯ<br></br>СО МНОЙ</p>
-						<span className='discription'>( телеграм )</span>
-						<img className='contactLight' alt='light' src='/contactLight.svg' />
-					</Link> */}
-					{/* <a data-splitting onClick={handleOpenPopup} className='contactButtons'>
-						<p>ЗАПОЛНИТЬ<br></br>БРИФ</p>
-						<span className='discription'>( небольшой )</span>
-						<img className='contactLight' alt='light' src='/contactLight.svg' />
-					</a> */}
-					<section>
-						<a data-splitting onClick={handleOpenPopup} className='contactButtons'>
-							<p className={visibleLines.includes(0) ? 'visible' : ''} data-splitting>
-								<span className='char'>ЗАПОЛНИТЬ</span>
-							</p>
-							<p className={visibleLines.includes(1) ? 'visible' : ''} data-splitting>
-								<span className='char'>БРИФ</span>
-							</p>
-							<span className='discription'>( небольшой )</span>
-							<img className='contactLight' alt='light' src='/contactLight.svg' />
-						</a>
-					</section>
-				</article>
-			</section>
+		  <section className='contactSection'>
+			<AnimatePresence mode='wait'>
+			  {brifOpened && <PopupBrif onClose={() => setBrifOpened(false)} selectedService={null} />}
+			</AnimatePresence>
+			<h1 data-splitting className='slide-vertical'>
+			  <span className='firText'>Давайте</span>
+			  <span className='secText'> Сотрудничать</span>
+			</h1>
+			<h1 className='second'>
+			  <span className='firText'>Давайте</span>
+			  <br />
+			  <span className='secText'>Сотрудничать</span>
+			</h1>
+			<NavigationButtons />
+			<article className='contactText'>
+				<Link
+				  data-splitting
+				  to='https://t.me/StarflowDesign'
+				  target='_blank'
+				  rel='noopener noreferrer'
+				  className='contactButtons'
+				>
+				  <p className={visibleLines.includes(0) ? 'visible' : ''} >
+					<span className='char'>СВЯЗАТЬСЯ</span>
+					<span className='char'>СО МНОЙ</span>
+					<span className='discription'>( телеграм )</span>
+				  </p>
+				  {/* <img className='contactLight' alt='light' src='/contactLight.svg' /> */}
+				</Link>
+				<a
+				  data-splitting
+				  onClick={handleOpenPopup}
+				  className='contactButtons'
+				>
+				  <p className={visibleLines.includes(0) ? 'visible' : ''} >
+					<span className='char'>ЗАПОЛНИТЬ</span>
+					<span className='char'>БРИФ</span>
+					<span className='discription'>( небольшой )</span>
+				  </p>
+				  {/* <img className='contactLight' alt='light' src='/contactLight.svg' /> */}
+				</a>
+			</article>
+		  </section>
 		</Curve>
-	);
+	  );	
 }
 
 export default Contacts;
