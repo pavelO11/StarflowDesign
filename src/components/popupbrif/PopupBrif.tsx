@@ -164,7 +164,7 @@ function PopupBrif(props: Props) {
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
     exit={{ opacity: 0 }}
-    transition={{ duration: 0.5 }}
+    transition={{ duration: 0.3 }}
     >
       {showDefaultContent ? (
         <>
@@ -173,7 +173,8 @@ function PopupBrif(props: Props) {
            animate='enter'
            exit='exit'
            initial='initial'
-           className='drawer' ref={ref}>
+           className='drawer' ref={ref}
+           >
             <header>
               <hgroup>
                 <h5 className='startText'>Начнём<br />Сотрудничество!</h5>
