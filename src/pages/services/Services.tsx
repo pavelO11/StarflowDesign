@@ -6,6 +6,7 @@ import arrowRight from '/arrowRight.svg'
 import './services.scss'
 
 import { AnimatePresence } from 'framer-motion'
+import Splitting from 'splitting'
 import AboutMe from '../../components/aboutMe/AboutMe'
 import useSplittingHover from '../../components/hooks/useSplittingHover'
 import useSplittingOnLoad from '../../components/hooks/useSplittingOnLoad'
@@ -72,6 +73,22 @@ const Services = () => {
 	useSplittingOnLoad('.slide-vertical');
 
 	useSplittingHover();
+
+	const [visibleLines, setVisibleLines] = useState<number[]>([]);
+	useEffect(() => {
+        Splitting({ target: '.homeText p' });
+        
+        const initialDelay = 3800; // delay for first string
+        const subsequentDelay = 100; // delay beetween strings
+
+        const lines = document.querySelectorAll('.servicesText p');
+        lines.forEach((_line, index) => {
+            const delay = initialDelay + subsequentDelay * index;
+            setTimeout(() => {
+                setVisibleLines(prev => [...prev, index]);
+            }, delay);
+        });
+    }, []);
 	  
 	return(
 		<Curve>
@@ -80,9 +97,31 @@ const Services = () => {
 		</AnimatePresence>
 		<section className='servicesSection'>
 			<section className='servicesText'>
-				<p>создаю продуманный дизайн,<br></br>сочетающий в себе эмоцию,<br></br>эстетику и удобство</p>
+				<section>
+					<p className={visibleLines.includes(0) ? 'visible' : ''} data-splitting>
+						<span className='char'>создаю продуманный дизайн,</span>
+					</p>
+					<p className={visibleLines.includes(1) ? 'visible' : ''} data-splitting>
+						<span className='char'>сочетающий в себе эмоцию,</span>
+					</p>
+					<p className={visibleLines.includes(2) ? 'visible' : ''} data-splitting>
+						<span className='char'>эстетику и удобство</span>
+					</p>
+				</section>
+				{/* <p>создаю продуманный дизайн,<br></br>сочетающий в себе эмоцию,<br></br>эстетику и удобство</p> */}
 				<h1 data-splitting className='slide-vertical'><span className='firText'>Мои</span><span className='secText'> Услуги</span></h1>
-				<p>К каждому проекту подхожу<br></br>как к собственному, всегда<br></br>выкладываюсь на  максимум</p>
+				{/* <p>К каждому проекту подхожу<br></br>как к собственному, всегда<br></br>выкладываюсь на  максимум</p> */}
+				<section>
+					<p className={visibleLines.includes(0) ? 'visible' : ''} data-splitting>
+						<span className='char'>к каждому проекту подхожу</span>
+					</p>
+					<p className={visibleLines.includes(1) ? 'visible' : ''} data-splitting>
+						<span className='char'>как к собственному, всегда</span>
+					</p>
+					<p className={visibleLines.includes(2) ? 'visible' : ''} data-splitting>
+						<span className='char'>выкладываюсь на  максимум</span>
+					</p>
+				</section>
 			</section>
 			<section className='servicesTextMobile'>
 				<h1><span className='firText'>Мои</span><span className='secText'> Услуги</span></h1>

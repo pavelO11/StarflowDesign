@@ -21,6 +21,23 @@
 			line-height: 19.2px;
 			font-weight: 400;
 			// margin-bottom: 36px;
+			overflow: hidden;
+            margin: 0;
+            opacity: 0;
+            transition: opacity 1s ease;
+            &.visible {
+                opacity: 1;
+            }
+            .char {
+                display: inline-block;
+                transform: translateY(100%);
+                opacity: 0;
+                transition: transform 1s ease, opacity 1s ease;
+            }
+            &.visible .char {
+                transform: translateY(0);
+                opacity: 1;
+            }
 		}
 		h1{
 			font-size: 160px;
