@@ -59,6 +59,9 @@
 			.char[data-char="У"] {
 				width: 70px;
 			}
+			.char[data-char="и"] {
+				width: 83px;
+			}
 			&.animate-on-load .char {
 				transform: translateY(0%);
 			}
