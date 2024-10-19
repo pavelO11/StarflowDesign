@@ -68,21 +68,6 @@ input[type="number"] {
         margin: 0;
     }
 }
-// Wrapper section styling
-// .wrapper {
-//     display: flex;
-//     flex-direction: column;
-//     z-index: 3;
-//     height: 100vh;
-//     background-color: #070707;
-//     background-image: url(/3dstar.svg);
-// 	-webkit-background-size: cover;
-// 	-moz-background-size: cover;
-// 	-o-background-size: cover;
-//     background-repeat: no-repeat;
-//     background-size: cover;
-//     background-position: center;
-// }
 .wrapper {
     position: relative;
     display: flex;
@@ -94,31 +79,16 @@ input[type="number"] {
     background-repeat: no-repeat;
     background-position: center;
 }
-// /* Background Video Styling */
-// #background-video {
-//     position: absolute; /* Position video within the wrapper */
-//     top: 0;
-//     left: 0;
-//     width: 100%;
-//     height: 100%;
-//     background-color: #070707;
-//     object-fit: cover; /* Cover the entire wrapper */
-//     // z-index: -1; /* Behind all other content */
-//     overflow: hidden;
-// }
-
-// /* Ensure wrapper is relative to position the video absolutely */
-// .wrapper {
-//     position: relative;
-//     display: flex;
-//     flex-direction: column;
-//     height: 100vh;
-//     background-color: #070707;
-//     // background-image: url(/3dstar.svg);
-//     background-size: cover;
-//     background-repeat: no-repeat;
-//     background-position: center;
-// }
+.video-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #070707;
+    object-fit: cover; /* Cover the entire wrapper */
+    overflow: hidden;
+  }
 // Navbar styling
 .navbar {
     flex: 0 0 auto;

@@ -8,9 +8,7 @@ import Projects from './pages/projects/Projects'
 import Services from './pages/services/Services'
 import './styles/default.scss'
 import './styles/variables.scss'
-
 // import Lenis from 'lenis'
-
 import { AnimatePresence } from 'framer-motion'
 
 import { Footer, Navbar } from './components'
@@ -25,7 +23,6 @@ const App: FC = () => {
 
 const AppContent: FC = () => {
     const location = useLocation();
-
     // useEffect( () => { // lenis smooth scrolling
     //     const lenis = new Lenis()
 
@@ -35,17 +32,19 @@ const AppContent: FC = () => {
     //     }
     //     requestAnimationFrame(raf)
     // }, [])
+    const isVideoPage = location.pathname === '/' || location.pathname === '/contacts' || location.pathname === '/404';
 
   return (
     <>
-        <section className='wrapper'>
-                {/* <video autoPlay muted loop id='background-video'>
-                    <source src='back.mp4' type='video/mp4' />
-                    Your browser does not support the video tag.
-                </video> */}
-            <section className="navbar">
-                <Navbar />
-            </section>
+    <section className='wrapper'>
+        {isVideoPage && (
+            <video autoPlay muted loop playsInline className="video-bg">
+                <source src='back.mp4' type='video/mp4' />
+            </video>
+        )}
+        <section className="navbar">
+          <Navbar />
+        </section>
             <section className="content">
                 <AnimatePresence mode='wait'>
                     <Routes location={location} key={location.pathname}>
