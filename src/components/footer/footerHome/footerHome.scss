@@ -1,9 +1,9 @@
-@import "../../../styles/variables.scss";
+@use "../../../styles/variables.scss" as vars;
 
   // footer /Home
   .underFooter{
     display: flex;
-    color: $main-color-text;
+    color: vars.$main-color-text;
     flex-direction: column;
     text-align: center;
     box-sizing: border-box;
@@ -21,7 +21,7 @@
     }
     .mainFooterP{
         line-height: 16px;
-        color: $main-color-text;
+        color: vars.$main-color-text;
         text-transform: uppercase;
         text-decoration: none;
         display: flex;
@@ -56,7 +56,7 @@
             text-align: start;
         }
         a{
-            color: $main-color-text;
+            color: vars.$main-color-text;
             text-decoration: none;
             text-align: end;
         }
@@ -78,7 +78,7 @@
                 &:after {
                     visibility: visible;
                     height: 22px;
-                    color: $main-color-text;
+                    color: vars.$main-color-text;
                     transition: transform 0.5s cubic-bezier(0.9,0,.2,1);
                     transition-delay: calc( 0.2s + ( 0.02s * ( var(--char-index)) ) );
                 }
@@ -123,7 +123,7 @@
                 &:before,
                 &:after {
                     visibility: visible;
-                    color: $main-color-text;
+                    color: vars.$main-color-text;
                     transition: transform 0.5s cubic-bezier(0.9,0,.2,1);
                     transition-delay: calc( 0.2s + ( 0.02s * ( var(--char-index)) ) );
                 }

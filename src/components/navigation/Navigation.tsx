@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import useSplittingHover from '../hooks/useSplittingHover'
-import './navigationbuttons.scss'
+import './navigation.scss'
 
-function NavigationButtons() {
+function Navigation() {
     const [isHidden, setIsHidden] = useState(false);
     const [prevScrollY, setPrevScrollY] = useState(0);
     const [isVisible, setIsVisible] = useState(false); // fade first loading
@@ -96,4 +96,4 @@ function NavigationButtons() {
     );
 }
 
-export default NavigationButtons;
+export default Navigation;

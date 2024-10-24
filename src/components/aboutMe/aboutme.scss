@@ -1,11 +1,11 @@
-@import "../../styles/variables.scss";
+@use "../../styles/variables" as vars;
 
 .aboutMeSection{
     display: flex;
     flex-direction: column;
     padding: 112px 32px 112px 32px;
-    background-color: $main-color-text;
-    color: $black-text;
+    background-color: vars.$main-color-text;
+    color: vars.$black-text;
     height: 100vh;
     justify-content: space-between;
     .textTop, .textBottom{
@@ -21,7 +21,7 @@
         margin: auto;
         p{
             font-weight: 450;
-			color: #686868;
+			opacity: 0.6;
             padding-bottom: 24px;
         }
         h3 , h4{

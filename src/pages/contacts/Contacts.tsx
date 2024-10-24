@@ -5,7 +5,7 @@ import Splitting from 'splitting'
 import useSplittingHover from '../../components/hooks/useSplittingHover.tsx'
 import useSplittingOnLoad from '../../components/hooks/useSplittingOnLoad.tsx'
 import Curve from '../../components/layoutTransition/index.tsx'
-import NavigationButtons from '../../components/navigationButtons/NavigationButtons.tsx'
+import NavigationButtons from '../../components/navigation/Navigation.tsx'
 import PopupBrif from '../../components/popupbrif/PopupBrif.tsx'
 import './contacts.scss'
 

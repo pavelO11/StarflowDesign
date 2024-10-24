@@ -1,4 +1,4 @@
-@import "../../../styles/variables.scss";
+@use "../../../styles/variables.scss" as vars;
 
 .openBurger {
     display: flex;
@@ -8,7 +8,7 @@
     top: 0;
     left: 0;
     position: absolute;
-    background-color: $background-main;
+    background-color: vars.$background-main;
     flex-direction: column;
     text-decoration: none;
     padding: 0 32px 32px 32px;
@@ -117,7 +117,7 @@
                     font-weight: 400;
                     z-index: 1000;
                     cursor: pointer;
-                    color: $main-color-text;
+                    color: vars.$main-color-text;
                 }
                 .discription{
                     font-family: 'Playfair Display', sans-serif;
@@ -126,7 +126,7 @@
                     font-size: 16px;
                     z-index: 1000;
                     cursor: pointer;
-                    color: $main-color-text;
+                    color: vars.$main-color-text;
                 }
             }
         }

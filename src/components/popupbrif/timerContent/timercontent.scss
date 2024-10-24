@@ -1,4 +1,4 @@
-@import "../../../styles/variables.scss";
+@use "../../../styles/variables.scss" as vars;
 
 .drawerThird{
     display: flex;
@@ -7,13 +7,13 @@
     width: 795px;
     height: 100%;
     right: 0;
-    background: $main-color-text;
+    background: vars.$main-color-text;
     z-index: 2000;
     padding: 32px;
     justify-content: space-between;
     header{
         .popupTextThird{
-            color: $black-text;
+            color: vars.$black-text;
             line-height: 100%;
             font-weight: 400;
             text-align: center;
@@ -27,7 +27,7 @@
             font-size: 64px;
             line-height: 80%;
             letter-spacing: -5px;
-            color: $black-text;
+            color: vars.$black-text;
             text-align: center;
         }
     }
@@ -36,7 +36,7 @@
         flex-direction: row;
         justify-content: space-between;
     .footerFormText{
-        color: $black-text;
+        color: vars.$black-text;
         line-height: 100%;
         font-weight: 400;
         text-align: start;
@@ -46,7 +46,7 @@
         border: none;
         cursor: pointer;
         text-transform: uppercase;
-        color: $black-text;
+        color: vars.$black-text;
         line-height: 16px;
         text-decoration: none;
         display: flex;

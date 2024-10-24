@@ -1,4 +1,4 @@
-@import "../../styles/variables";
+@use "../../styles/variables" as vars;
 
 .SectionPage {
 	z-index: 10000;
@@ -29,9 +29,9 @@
 			position: absolute;
 			left: 0;
 			top: 0;
-			color: $main-color-text; 
+			color: vars.$main-color-text; 
 			clip-path: inset(100% 0 0 0);
-			-webkit-text-stroke: 0.1px $main-color-text;
+			-webkit-text-stroke: 0.1px vars.$main-color-text;
 			animation: fillAnimation 3s ease forwards;
 		}
 	}
@@ -46,9 +46,9 @@
 			position: absolute;
 			left: 0;
 			top: 0;
-			color: $main-color-text; 
+			color: vars.$main-color-text; 
 			clip-path: inset(100% 0 0 0);
-			-webkit-text-stroke: 0.1px $main-color-text;
+			-webkit-text-stroke: 0.1px vars.$main-color-text;
 			animation: labelAnimation 3s ease forwards;
 		}
 	}

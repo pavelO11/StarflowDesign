@@ -1,10 +1,10 @@
-@import "../../styles/variables";
+@use "../../styles/variables" as vars;
 
 .aboutSection{
     display: flex;
 	flex-direction: column;
 	text-align: center;
-	color: $main-color-text;
+	color: vars.$main-color-text;
 	box-sizing: border-box;
     .aboutIntro{
         display: flex;
@@ -12,7 +12,7 @@
         text-align: center;
         justify-content: end;
         align-items: center;
-        color: $main-color-text;
+        color: vars.$main-color-text;
         box-sizing: border-box;
         padding: 0 32px 32px 32px;
         height: 100vh;
@@ -124,7 +124,7 @@
             z-index: 1;
             // align-items: center;
             a{
-                color: $main-color-text;
+                color: vars.$main-color-text;
                 text-decoration: none;
                 cursor: pointer;
                 line-height: 10px;
@@ -139,7 +139,7 @@
                 &:after {
                     visibility: visible;
                     height: 22px;
-                    color: $main-color-text;
+                    color: vars.$main-color-text;
                     transition: transform 0.5s cubic-bezier(0.9,0,.2,1);
                     transition-delay: calc( 0.2s + ( 0.02s * ( var(--char-index)) ) );
                 }

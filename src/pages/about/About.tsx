@@ -8,7 +8,7 @@ import Splitting from 'splitting'
 import useSplittingHover from '../../components/hooks/useSplittingHover'
 import useSplittingOnLoad from '../../components/hooks/useSplittingOnLoad'
 import Curve from '../../components/layoutTransition'
-import NavigationButtons from '../../components/navigationButtons/NavigationButtons'
+import NavigationButtons from '../../components/navigation/Navigation'
 
 const About = () => {
 	const [visibleLines, setVisibleLines] = useState<number[]>([]);

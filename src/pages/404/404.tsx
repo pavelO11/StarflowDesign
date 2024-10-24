@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import NavigationButtons from '../../components/navigationButtons/NavigationButtons.tsx'
+import NavigationButtons from '../../components/navigation/Navigation.tsx'
 //import star404 from '/star404.svg';
 import useSplittingOnLoad from '../../components/hooks/useSplittingOnLoad.tsx'
 import Curve from '../../components/layoutTransition/index.tsx'

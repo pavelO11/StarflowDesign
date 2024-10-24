@@ -1,4 +1,4 @@
-@import "../../styles/variables";
+@use "../../styles/variables" as vars;
 
 .principlesSection {
     position: absolute;
@@ -56,7 +56,7 @@
     letter-spacing: -4px;
     font-style: italic;
     font-size: 80px;
-    color: $main-color-text;
+    color: vars.$main-color-text;
     display: flex;
     white-space: nowrap;
     opacity: 0;

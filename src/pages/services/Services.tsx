@@ -11,7 +11,7 @@ import AboutMe from '../../components/aboutMe/AboutMe'
 import useSplittingHover from '../../components/hooks/useSplittingHover'
 import useSplittingOnLoad from '../../components/hooks/useSplittingOnLoad'
 import Curve from '../../components/layoutTransition'
-import NavigationButtons from '../../components/navigationButtons/NavigationButtons'
+import NavigationButtons from '../../components/navigation/Navigation'
 import PopupBrif from '../../components/popupbrif/PopupBrif'
 
 const Services = () => {
@@ -108,9 +108,7 @@ const Services = () => {
 						<span className='char'>эстетику и удобство</span>
 					</p>
 				</section>
-				{/* <p>создаю продуманный дизайн,<br></br>сочетающий в себе эмоцию,<br></br>эстетику и удобство</p> */}
 				<h1 data-splitting className='slide-vertical'><span className='firText'>Мои</span><span className='secText'> Услуги</span></h1>
-				{/* <p>К каждому проекту подхожу<br></br>как к собственному, всегда<br></br>выкладываюсь на  максимум</p> */}
 				<section>
 					<p className={visibleLines.includes(0) ? 'visible' : ''} data-splitting>
 						<span className='char'>к каждому проекту подхожу</span>
@@ -163,7 +161,7 @@ const Services = () => {
 				<p>( Этапы сотрудничества )</p>
 				<ul className='accordion'>
 					{stages.map((stage, index) => (
-						<li key={stage.id} className={accordionStates[index] ? 'open' : ''} style={{ borderBottom: accordionStates[index] ? '' : '1px solid #1F1F1F' }}>
+						<li key={stage.id} className={accordionStates[index] ? 'open' : ''} style={{ borderBottom: accordionStates[index] ? '' : '1px solid #FFFFFF99' }}>
 							<input type='checkbox' name='accordion' id={stage.id} checked={accordionStates[index]} onChange={() => handleToggleAccordion(index)} />
 							<label htmlFor={stage.id}>
 								<p>({stage.number})</p>
