@@ -161,7 +161,7 @@ const Services = () => {
 				<p>( Этапы сотрудничества )</p>
 				<ul className='accordion'>
 					{stages.map((stage, index) => (
-						<li key={stage.id} className={accordionStates[index] ? 'open' : ''} style={{ borderBottom: accordionStates[index] ? '' : '1px solid #FFFFFF99' }}>
+						<li key={stage.id} className={accordionStates[index] ? 'open' : ''} style={{ borderBottom: accordionStates[index] ? '' : '1px solid #FFFFFF4D' }}>
 							<input type='checkbox' name='accordion' id={stage.id} checked={accordionStates[index]} onChange={() => handleToggleAccordion(index)} />
 							<label htmlFor={stage.id}>
 								<p>({stage.number})</p>

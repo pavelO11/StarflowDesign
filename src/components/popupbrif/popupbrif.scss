@@ -36,17 +36,18 @@
 				}
 				.ownInput, .ownInputSpecial, .ownTextarea {
 					&:hover, &:focus, &:active {
-						border: #07070766 1px solid !important;
+						border: vars.$black-text 1px solid !important;
 						transition: ease-in-out 0.5s !important;
 					}
+				}
+				.ownInput, .ownInputSpecial, .ownTextarea, .mainButtonB, .mainButtonT{
+					border: #07070766 1px solid !important;
 				}
 				.ownInput{
 					font-family: 'Inter', sans-serif;
 					background: transparent;
 					outline: none;
 					padding: 16px;
-					color: vars.$black-text;
-					border: vars.$pop-text 1px solid;
 					border-radius: 8px;
 					line-height: 100%;
 					width: 100%;
@@ -57,8 +58,6 @@
 					background: transparent;
 					outline: none;
 					padding: 16px;
-					color: vars.$black-text;
-					border: vars.$pop-text 1px solid;
 					border-radius: 8px;
 					line-height: 100%;
 					width: 100%;
@@ -72,8 +71,6 @@
 					font-family: 'Inter', sans-serif;
 					background: transparent;
 					padding: 16px;
-					color: vars.$black-text;
-					border: vars.$pop-text 1px solid;
 					border-radius: 8px;
 					line-height: 100%;
 					cursor: pointer;
