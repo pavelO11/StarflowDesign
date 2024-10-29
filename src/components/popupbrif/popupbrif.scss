@@ -35,13 +35,13 @@
 					font-weight: 450;
 				}
 				.ownInput, .ownInputSpecial, .ownTextarea {
-					&:hover, &:focus, &:active {
+					border: #07070766 1px solid !important;
+				}
+				.ownInput, .ownInputSpecial, .ownTextarea {
+					&:hover, &:focus, &:active, &:not(:placeholder-shown) {
 						border: vars.$black-text 1px solid !important;
 						transition: ease-in-out 0.5s !important;
 					}
-				}
-				.ownInput, .ownInputSpecial, .ownTextarea, .mainButtonB, .mainButtonT{
-					border: #07070766 1px solid !important;
 				}
 				.ownInput{
 					font-family: 'Inter', sans-serif;
@@ -73,16 +73,13 @@
 					padding: 16px;
 					border-radius: 8px;
 					line-height: 100%;
+					border: #07070766 1px solid;
 					cursor: pointer;
 					transition: 0.5s;
-				}
-				.mainButtonB:hover , .mainButtonB:focus{
-					border: vars.$black-text 1px solid;
-					transition: ease-in-out 0.5s;
-				}
-				.mainButtonT:hover , .mainButtonT:focus{
-					border: vars.$black-text 1px solid;
-					transition: ease-in-out 0.5s;
+					&:hover, &:focus, &:active {
+						border: vars.$black-text 1px solid;
+						transition: ease-in-out 0.5s;
+					}
 				}
 				.mainButtonB.selected, .mainButtonT.selected {
 					border: 1px solid vars.$black-text;
