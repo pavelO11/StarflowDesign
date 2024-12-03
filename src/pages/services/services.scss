@@ -19,7 +19,7 @@
 		p{
 			text-transform: uppercase;
 			line-height: 19.2px;
-			font-weight: 400;
+			// font-weight: 400;
 			// margin-bottom: 36px;
 			overflow: hidden;
             margin: 0;
@@ -42,7 +42,7 @@
 		h1{
 			font-size: 160px;
 			line-height: 100%;
-			font-weight: 300;
+			font-weight: 350;
 			overflow: hidden;
 			.char {
 				display: inline-block;
@@ -68,7 +68,7 @@
 		}
 		.firText{
 			font-family: 'Playfair Display', sans-serif;
-			font-weight: 400;
+			// font-weight: 350;
 			font-style: italic;
 			letter-spacing: -14px;
 		}
@@ -93,7 +93,7 @@
 		}
 		.firText{
 			font-family: 'Playfair Display', sans-serif;
-			font-weight: 400;
+			font-weight: 350;
 			font-style: italic;
 			letter-spacing: -8px;
 		}
@@ -108,7 +108,7 @@
 			p{
 				text-transform: uppercase;
 				line-height: 19.2px;
-				font-weight: 400;
+				font-weight: 350;
 			}
 		}
 	}
@@ -168,7 +168,7 @@
 				}
 				.number {
 					line-height: 19.2px;
-					font-weight: 400;
+					font-weight: 350;
 					transition: 0.3s ease-in-out;
 					opacity: 0;
 					animation: fadeIn 1.5s ease-in-out forwards;
@@ -185,7 +185,7 @@
 				.title {
 					font-size: 48px;
 					line-height: 100%;
-					font-weight: 300;
+					font-weight: 350;
 					letter-spacing: -1.5px;
 					overflow: hidden;
 					line-height: 10px;

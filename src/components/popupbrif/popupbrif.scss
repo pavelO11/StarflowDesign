@@ -32,7 +32,7 @@
 				.popupText{
 					color: vars.$black-text;
 					line-height: 100%;
-					font-weight: 450;
+					// font-weight: 350;
 				}
 				.ownInput, .ownInputSpecial, .ownTextarea {
 					border: #07070766 1px solid !important;
@@ -90,7 +90,7 @@
 					flex-direction: column;
 					.startText , .startTextSecond {
 						font-family: 'Playfair Display', sans-serif;
-						font-weight: 300;
+						font-weight: 350;
 						font-style: italic;
 						letter-spacing: -6px;
 						line-height: 52px;
@@ -137,7 +137,7 @@
 						color: #C94747;
 						font-size: 14px;
 						height: 0px;
-						font-weight: 400;
+						// font-weight: 400;
 					}
 					.errorText2{
 						margin: -16px 0 0 0;
@@ -300,8 +300,8 @@
     			flex-wrap: wrap;
 	
 				}
-				.drawer .ownInputSpecial{
-					font-weight: 400;
-				}
+				// .drawer .ownInputSpecial{
+				// 	font-weight: 400;
+				// }
 			}
 }

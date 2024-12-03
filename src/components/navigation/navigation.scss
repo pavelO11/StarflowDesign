@@ -35,7 +35,7 @@
 		&:hover .char:after { transform: translateY(-100%); }
 	}
 	.upperText {
-	  	font-weight: 300;
+	  	font-weight: 350;
 	  	font-size: 12px;
 	  	line-height: 100%;
 	  	opacity: 0.6;
@@ -45,7 +45,7 @@
 		background: transparent;
 		color: vars.$main-color-text;
 	  	border: none;
-	  	font-weight: 300;
+	  	font-weight: 350;
 	  	line-height: 120%;
 	  	position: relative;
 	  	text-decoration: none;
@@ -69,7 +69,7 @@
 	  	}
 	}
 	.navigationText {
-		font-weight: 300;
+		font-weight: 350;
 		line-height: 120%;
 		letter-spacing: 0px;
 		position: relative;

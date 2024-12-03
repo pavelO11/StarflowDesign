@@ -212,7 +212,7 @@
 		a {
 			color: vars.$main-color-text;
 			text-decoration: none;
-			font-weight: 300;
+			// font-weight: 300;
 		}
 		  .showLink {
 			  	display: flex;
@@ -230,7 +230,7 @@
 				transform: translateX(-50%);
 				.ul_link {
 					position: relative;
-					font-weight: 300;
+					// font-weight: 300;
 					line-height: 16px;
 					.char {
 						overflow: hidden;
@@ -358,7 +358,7 @@
 			a{
 				color: vars.$main-color-text;
 				text-decoration: none;
-				font-weight: 300;
+				// font-weight: 300;
 			}
 			.direct{
 				display: flex;
@@ -385,7 +385,7 @@
 				-ms-flex-pack: center;
 				.ul_link {
 					position: relative;
-					font-weight: 300;
+					// font-weight: 300;
 					line-height: 16px;
 				}
 				.ul_link:hover:before {
