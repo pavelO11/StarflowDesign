@@ -7,7 +7,7 @@
     flex-direction: column;
     text-align: center;
     box-sizing: border-box;
-    padding: 0 32px;
+    padding: 0 24px 24px 24px;
     line-height: 1;
     .contactMeMain{
         display: flex;
@@ -51,7 +51,6 @@
         flex-direction: row;
         justify-content: space-between;
         align-items: end;
-        padding: 0 0 32px 0;
         p{
             text-align: start;
         }
@@ -101,7 +100,7 @@
     }
     .showLink{
         display: flex;
-        gap: 32px;
+        gap: 24px;
         display: -webkit-box;
         display: -webkit-flex;
         display: -ms-flexbox;
@@ -115,7 +114,6 @@
         transform: translateX(-50%);
         .ul_link {
             position: relative;
-            // font-weight: 300;
             line-height: 16px;
             .char {
                 overflow: hidden;

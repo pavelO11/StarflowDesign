@@ -3,7 +3,7 @@
 .aboutMeSection{
     display: flex;
     flex-direction: column;
-    padding: 112px 32px 112px 32px;
+    padding: 112px 24px 112px 24px;
     background-color: vars.$main-color-text;
     color: vars.$black-text;
     height: 100vh;
@@ -39,7 +39,7 @@
 }
 @media screen and (max-width: 1440px) {
     .aboutMeSection{
-        padding: 88px 32px 88px 32px;
+        padding: 88px 24px 88px 24px;
     }
     .aboutMeSection .textMain h3, .aboutMeSection .textMain h4{
         font-size: 64px;
@@ -68,9 +68,6 @@
     }
   }
 @media screen and (max-width: 390px), (max-width: 375px), (max-width: 428px) {
-	.aboutMeSection{
-        padding: 88px 24px 88px 24px;
-    }
     .aboutMeSection .textMain h3 , .aboutMeSection .textMain h4{
         font-size: 32px;
     }

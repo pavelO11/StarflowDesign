@@ -11,9 +11,9 @@
     background-color: vars.$background-main;
     flex-direction: column;
     text-decoration: none;
-    padding: 0 32px 32px 32px;
+    padding: 0 24px 24px 24px;
     .headerMenu{
-        padding: 32px 0px 0 0px;
+        padding: 24px 0px 0 0px;
     }
     .headerBtn{
         display: flex;
@@ -36,7 +36,6 @@
             position: relative;
             .navLink{
                 font-size: 88px;
-                font-weight: 350;
                 letter-spacing: -8px;
                 line-height: -40px;
             }
@@ -114,7 +113,7 @@
                     font-family: 'Inter', sans-serif;
                     font-size: 32px;
                     letter-spacing: -2px;
-                    font-weight: 400;
+                    // font-weight: 400;
                     z-index: 1000;
                     cursor: pointer;
                     color: vars.$main-color-text;
@@ -234,15 +233,5 @@
                 padding: 36px 0 0 0;
             }
         }
-    }
-    @media screen and  (max-width: 390px), (max-width: 375px), (max-width: 428px) {
-        .headerMenu{
-            padding: 24px 0px 0 0;
-        }
-    }
-}
-@media screen and  (max-width: 390px), (max-width: 375px), (max-width: 428px) {
-    .openBurger {
-        padding: 0 24px 32px 24px;
     }
 }

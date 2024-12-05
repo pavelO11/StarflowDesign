@@ -4,12 +4,12 @@
     display: flex;
     flex-direction: column;
     position: fixed;
-    width: 795px;
+    width: 780px;
     height: 100%;
     right: 0;
     background: vars.$main-color-text;
     z-index: 2000;
-    padding: 32px;
+    padding: 24px;
     justify-content: space-between;
     header{
         .popupTextSecond{
@@ -76,7 +76,7 @@
 }
 @media screen and (max-width: 1366px) {
     .drawerSecond{
-        width: 782px;
+        width: 708px;
     }
     .drawerSecond main .successMessage{
         font-size: 56px;

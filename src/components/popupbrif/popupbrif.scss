@@ -23,11 +23,11 @@
 				display: flex;
 				flex-direction: column;
 				position: fixed;
-				width: 795px;
+				width: 780px;
 				height: 100vh;
 				background: vars.$main-color-text !important;
 				z-index: 1000;
-				padding: 64px 32px 32px 32px;
+				padding: 64px 24px 24px 24px;
 				gap: 40px;
 				.popupText{
 					color: vars.$black-text;
@@ -76,6 +76,8 @@
 					border: #07070766 1px solid;
 					cursor: pointer;
 					transition: 0.5s;
+					align-items: center;
+  					display: flex;
 					&:hover, &:focus, &:active {
 						border: vars.$black-text 1px solid;
 						transition: ease-in-out 0.5s;
@@ -232,7 +234,7 @@
 			}
 			@media screen and (max-width: 1366px) {
 				.drawer{
-					width: 782px;
+					width: 708px;
 				}
 				.drawer header .startText{
 					display: none;

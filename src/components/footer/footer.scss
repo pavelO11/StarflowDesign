@@ -12,7 +12,7 @@
 	text-align: center;
 	background-color: vars.$main-footer-background;
 	box-sizing: border-box;
-	padding: 0 32px 32px;
+	padding: 0 24px 24px;
 	line-height: 1;
 	height: 100vh;
 	.goConversation, .nextPage {
@@ -31,7 +31,7 @@
 			color: vars.$main-color-text;
 			text-transform: uppercase;
 			display: flex;
-			align-items: end;
+			align-items: baseline; // centered arrows
 			justify-content: center;
 			.whitespace{
 				width: 4px;
@@ -85,7 +85,7 @@
 		color: vars.$main-color-text;
 		text-transform: uppercase;
 		display: flex;
-		align-items: end;
+		align-items: baseline; // centered arrows
 		justify-content: center;
 		.whitespace{
 			width: 4px;
@@ -141,10 +141,10 @@
 		align-items: center;
 		text-decoration: none;
 		align-items: end;
-		bottom: 32px;
+		bottom: 24px;
 		position: absolute;
-		left: 32px;
-		right: 32px;
+		left: 24px;
+		right: 24px;
 		.footerLinkFirst {
 			text-align: start;
 			line-height: 10px;
@@ -216,7 +216,7 @@
 		}
 		  .showLink {
 			  	display: flex;
-				gap: 32px;
+				gap: 24px;
 				display: -webkit-box;
 				display: -webkit-flex;
 				display: -ms-flexbox;
@@ -328,7 +328,7 @@
 		}
 	}
 	  @media screen and (max-width: 768px) {
-		.mainFooterTop , .mainFooterBottom{
+		.mainFooterBottom{
 			display: none;
 		}
 		.mainFooterTopSecond{
@@ -346,6 +346,12 @@
 		}
 		.nextPage{
 			margin: auto 0 0 0;
+		}
+		.goConversation {
+			margin: 240px 0 auto 0;
+			align-items: center;
+			word-break: break-all;
+			width: 50%;
 		}
 		.mainFooterBottomSecond{
 			display: flex;
@@ -442,6 +448,9 @@
 		.mainFooterBottomSecond{
 			margin: 144px 0 0 0;
 		}
+		.mainFooterTop{
+			line-height: 42px;
+		}
 		.nextPage p {
 			font-size: 40px !important;
 		}
@@ -450,11 +459,7 @@
 		}
 		.goConversation {
 			margin: 200px 0 auto 0;
+			width: 70%;
 		}
-	}
-}
-@media screen and (max-width: 390px), (max-width: 375px), (max-width: 428px) {
-	.mainFooter{
-		padding: 0 24px 24px;
 	}
 }

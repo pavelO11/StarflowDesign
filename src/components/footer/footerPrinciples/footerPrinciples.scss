@@ -5,9 +5,9 @@
 	color: vars.$main-color-text;
 	text-align: center;
 	box-sizing: border-box;
-	padding: 0 32px;
+	padding: 0 24px;
 	position: fixed;
-  	bottom: 32px;
+  	bottom: 24px;
 	.principlesDesktop{
 		display: flex;
 		line-height: 1;
@@ -140,16 +140,10 @@
 					border: none;
 					color: vars.$main-color-text;
 					cursor: pointer;
-					// font-weight: 300;
 					align-self: end;
 					font-size: 14px;
 				}
 			}
 		}
-	}
-}
-@media screen and (max-width: 390px), (max-width: 375px), (max-width: 428px) {
-	.principlesFooter{
-		padding: 0 24px;
 	}
 }

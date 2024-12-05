@@ -8,7 +8,7 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 0 32px;
+	padding: 0 24px;
 	color: vars.$main-color-text;
 	mix-blend-mode: difference;
 	opacity: 0;
@@ -21,7 +21,6 @@
         opacity: 0;
 		z-index: 0;
 		pointer-events: none;
-		// transition: opacity 0.2s ease-in-out;
     }
 	a {
 	  	display: flex;
