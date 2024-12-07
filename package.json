@@ -10,29 +10,29 @@
         "preview": "vite preview"
     },
     "dependencies": {
-        "@mantine/core": "^7.13.4",
-        "@mantine/form": "^7.13.4",
+        "@mantine/core": "^7.14.3",
+        "@mantine/form": "^7.14.3",
         "@mantine/hooks": "^7.13.4",
         "@motionone/utils": "^10.18.0",
-        "lenis": "^1.1.14",
+        "lenis": "^1.1.18",
         "react": "^18.3.1",
         "react-dom": "^18.3.1",
-        "react-router-dom": "^6.27.0",
+        "react-router-dom": "^6.28.0",
         "react-transition-group": "^4.4.5",
         "splitting": "^1.1.0"
     },
     "devDependencies": {
-        "@types/react": "^18.3.12",
-        "@types/react-dom": "^18.3.1",
+        "@types/react": "^18.3.14",
+        "@types/react-dom": "^18.3.2",
         "@types/react-transition-group": "^4.4.11",
         "@types/splitting": "^1.0.6",
-        "@vitejs/plugin-react": "^4.3.3",
+        "@vitejs/plugin-react": "^4.3.4",
         "clsx": "^2.1.1",
-        "framer-motion": "^11.11.9",
-        "sass": "^1.80.4",
-        "tailwind-merge": "^2.5.4",
-        "tailwindcss": "^3.4.14",
-        "typescript": "^5.6.3",
-        "vite": "^5.4.10"
+        "framer-motion": "^11.13.1",
+        "sass": "^1.82.0",
+        "tailwind-merge": "^2.5.5",
+        "tailwindcss": "^3.4.16",
+        "typescript": "^5.7.2",
+        "vite": "^5.4.11"
     }
 }
