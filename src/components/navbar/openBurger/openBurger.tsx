@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import Splitting from 'splitting'
 import './openBurger.scss'
 
 import { useContext } from 'react'
@@ -32,12 +31,12 @@ const OpenBurger = () => {
         '/contacts': 'Контакты',
     };
 
-    useEffect(() => {
-        Splitting();
-        setTimeout(() => {
-            setIsVisible(true);
-        }, 700); // delay
-    }, []);
+    // useEffect(() => {
+    //     Splitting();
+    //     setTimeout(() => {
+    //         setIsVisible(true);
+    //     }, 0);
+    // }, []);
 
     return (
         <>
@@ -53,12 +52,12 @@ const OpenBurger = () => {
                             className={`navLink ${location.pathname === path ? 'italicText' : ''}`}
                             to={path}
                         >
-                            <section className={`linkContent ${isVisible ? 'visible' : ''}`} data-splitting>
+                            <section className='linkContent'>
                                 {location.pathname === path && (
                                     <img
                                         src='/arrowLeft.svg'
                                         alt='Left Image'
-                                        className={isVisible ? 'visible' : ''}
+                                        // className={isVisible ? 'visible' : ''}
                                     />
                                 )}
                                 {text}
@@ -66,7 +65,7 @@ const OpenBurger = () => {
                                     <img
                                         src='/arrowRight.svg'
                                         alt='Right Image'
-                                        className={isVisible ? 'visible' : ''}
+                                        // className={isVisible ? 'visible' : ''}
                                     />
                                 )}
                             </section>
@@ -78,22 +77,20 @@ const OpenBurger = () => {
                         <Link to='https://t.me/StarflowDesign' target='_blank' rel='noopener noreferrer' className='contactButtons'>
                             <p>СВЯЗАТЬСЯ<br />СО МНОЙ</p>
                             <span className='discription'>( телеграм )</span>
-                            <img className='contactLight' alt='light' src='/burgerLight.svg' />
                         </Link>
                         <a onClick={handleOpenPopup} className='contactButtons'>
                             <p>ЗАПОЛНИТЬ<br />БРИФ</p>
                             <span className='discription'>( небольшой )</span>
-                            <img className='contactLight' alt='light' src='/burgerLight.svg' />
                         </a>
                     </article>
-                    <ul className={`ulPortfolio ${isVisible ? 'visible' : ''}`}>
+                    <ul className='ulPortfolio'>
                         <Link className='portfolioLink' to='https://www.behance.net/StarflowDesign' target="_blank" rel="noopener noreferrer">BEHANCE</Link>
                         <Link className='portfolioLink' to='https://dprofile.ru/starflowdesign' target="_blank" rel="noopener noreferrer">DPROFILE</Link>
                         <Link className='portfolioLink' to='https://dribbble.com/StarflowDesign' target="_blank" rel="noopener noreferrer">DRIBBLE</Link>
                     </ul>
                     <footer>
                         <Link className='footerLinkFirst' to='mailto:starflowdesign@gmail.com' target="_blank" rel="noopener noreferrer">Рабочая почта<br />starflowdesign@gmail.com</Link>
-                        <ul className={`links ${isVisible ? 'visible' : ''}`}>
+                        <ul className='links'>
                             <Link className='portfolioLink' to='https://www.behance.net/StarflowDesign' target="_blank" rel="noopener noreferrer">BEHANCE</Link>
                             <Link className='portfolioLink' to='https://dprofile.ru/starflowdesign' target="_blank" rel="noopener noreferrer">DPROFILE</Link>
                             <Link className='portfolioLink' to='https://dribbble.com/StarflowDesign' target="_blank" rel="noopener noreferrer">DRIBBLE</Link>

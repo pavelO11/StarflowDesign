@@ -36,14 +36,14 @@
             position: relative;
             .navLink{
                 font-size: 88px;
-                letter-spacing: -8px;
+                letter-spacing: -1px;
                 line-height: -40px;
             }
             .italicText{
                 font-family: 'Playfair Display', sans-serif;
                 line-height: 90%;
                 font-size: 88px;
-                letter-spacing: -3px;
+                letter-spacing: -4px;
                 font-style: italic;
             }
             .linkContent {
@@ -68,27 +68,16 @@
                 .whitespace{
                     width: 8px;
                 }
-                &.visible .char {
-                    transform: translateY(0);
-                }
                 // img {
                 //     transition: opacity 0 0.3s ease-in-out, opacity 1 0.3s ease-in-out;
                 // }
                 img {
-                    opacity: 0;
-                    transform: translateX(-20px);
-                    transition: opacity .3s ease, transform .3s ease;
-
-                    &.visible {
-                        opacity: 1;
-                        transform: translateX(0);
-                    }
+                    // transform: translateX(-20px);
+                    opacity: 1;
                 }
                 img:last-child {
-                    transform: translateX(20px);
-                    &.visible {
-                        transform: translateX(0);
-                    }
+                    // transform: translateX(20px);
+                    opacity: 1;
                 }
             }
         }
@@ -103,12 +92,6 @@
                 text-decoration: none;
                 text-align: center;
                 height: 86px;
-                .contactLight{
-                    z-index: 0;
-                    position: relative;
-                    top: -200%;
-                    filter: blur(40px);
-                }
                 p{
                     font-family: 'Inter', sans-serif;
                     font-size: 32px;
@@ -141,13 +124,13 @@
                 .footerLinkFirst{
                     text-align: start;
                 }
-                .links{
-                    opacity: 0;
-                    transition: opacity 0.5s ease-in-out;
-                }
-                .links.visible {
-                    opacity: 1;
-                }
+                // .links{
+                //     opacity: 1;
+                //     transition: opacity 0.5s ease-in-out;
+                // }
+                // // .links.visible {
+                // //     opacity: 1;
+                // // }
                 ul{
                     display: flex;
                     flex-direction: row;
