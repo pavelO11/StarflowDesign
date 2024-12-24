@@ -47,12 +47,12 @@
 				  transition-delay: calc(0.01s + (0.01s * (var(--char-index))));
 				}
 		  }
-			&:hover .char:before {
+			& , .goConversation:hover .char:before {
 				transition-delay: 0;
-			  }
-			  &:hover .char:after {
+			}
+			&, .goConversation:hover .char:after {
 				transition-delay: 0;
-			  }
+			}
 		}
 		.mainFooterTop, .mainFooterTopSecond {
 			color: vars.$main-color-text;
@@ -102,10 +102,10 @@
 			  transition-delay: calc(0.005s + (0.01s * (var(--char-index))));
 			}
 	  }
-		&:hover .char:before { 
+		& , .nextPage:hover .char:before { 
 			transition-delay: calc( 0.2s + ( 0.02s * ( var(--char-index)) ) );
 		}
-		&:hover .char:after {
+		& , .nextPage:hover .char:after {
 			transition-delay: calc( 0.02s * ( var(--char-index)) );
 		}
 	}
