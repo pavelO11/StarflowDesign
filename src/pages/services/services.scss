@@ -251,7 +251,7 @@
 					color: vars.$main-color-text;
 					text-transform: uppercase;
 					display: flex;
-					align-items: baseline; // centered arrows
+					align-items: end; // centered arrows
 				}
 			}
 			.serviceButton {
@@ -260,7 +260,7 @@
 				&:hover .char:after { transform: translateY(-100%); }
 			}
 			img.leftArrow, img.rightArrow {
-				margin: 0 8px;
+				margin: 2px 8px;
 				transition: transform 0.3s ease;
 			}
 			.serviceButton:hover img.leftArrow {
@@ -508,7 +508,7 @@
 			height: auto;
 		}
 		img.leftArrow, img.rightArrow {
-			margin: 0 4px !important;
+			margin: 2px 4px 3.5px !important;
 		}
 		.mainServices{
 			flex-wrap: wrap;
