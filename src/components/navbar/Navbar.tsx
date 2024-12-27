@@ -90,12 +90,13 @@ const Navbar = () => {
                         Starflow<br />Design
                     </section>
                 </Link>
-            <section 
-                className={`burger ${isBurgerOpen ? 'burgerActive' : ''}`} 
-                onClick={() => setIsBurgerOpen(!isBurgerOpen)}>
-                <span></span>
-                <span></span>
-            </section>
+                <section
+                className={`burger ${isBurgerOpen ? 'burgerActive' : ''}`}
+                onClick={() => setIsBurgerOpen(!isBurgerOpen)}
+                >
+                    <span></span>
+                {!isBurgerOpen && <span></span>}
+                </section>
             <AnimatePresence mode="wait">
                 {isBurgerOpen && (
                 <motion.section 
