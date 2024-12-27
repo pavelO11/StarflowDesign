@@ -251,7 +251,7 @@
 					color: vars.$main-color-text;
 					text-transform: uppercase;
 					display: flex;
-					align-items: end; // centered arrows
+					align-items: baseline; // centered arrows
 				}
 			}
 			.serviceButton {
@@ -260,7 +260,7 @@
 				&:hover .char:after { transform: translateY(-100%); }
 			}
 			img.leftArrow, img.rightArrow {
-				margin: 2px 8px 2px;
+				margin: 0 8px;
 				transition: transform 0.3s ease;
 			}
 			.serviceButton:hover img.leftArrow {
@@ -322,32 +322,34 @@
 			flex-direction: column;
 			align-items: center;
 			position: relative;
-			&::after{
+			&::after {
 				content: '';
 				position: absolute;
 				bottom: 0;
 				left: 0;
 				width: 100%;
 				height: 1px;
-				background: vars.$main-color-text;
+				background-color: vars.$main-color-text;
 				transform: scaleX(0);
 				transform-origin: right;
-				transition: transform 0.6s ease-in-out;
+				transition: transform 2s cubic-bezier(0.25, 1, 0.5, 1);
 			}
-			&:hover::after{
+			&:hover::after {
 				transform-origin: left;
-  				transform: scaleX(1);
-  				transition-timing-function: transform 2s cubic-bezier(0.4, 0, 0.2, 0.1);
-				// animation: o-upfade-top 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards;
+				transform: scaleX(1);
 			}
 			&:hover {
 				p{
-					opacity: 1;
+					color: vars.$main-color-text;
+				}
+				&::after {
+					transition: transform 2s cubic-bezier(0.25, 1, 0.75, 1);
 				}
 			}
-			// &.open::after {
-			// 	border-bottom: #FAFAFA;
-			// }
+			&.open::after {
+				transform: scaleX(1);
+				transition: transform 2s cubic-bezier(0.25, 1, 0.75, 1);
+			}
 		}		
 		.accordion li label {
 			display: flex;
@@ -372,7 +374,7 @@
 			overflow: hidden;
 			transition: max-height 0.6s ease-in-out, padding 0.6s ease-in-out, opacity 0.6s ease-in-out;
 			p {
-				opacity: 1;
+				color: vars.$main-color-text;
 			}
 			.time {
 				padding-top: 16px;
@@ -387,8 +389,9 @@
 	
 		.accordion input[type='checkbox']:checked + label {
 			p {
-				opacity: 1;
+				color: vars.$main-color-text;
 			}
+	
 			& + .content {
 				li {
 					&::after {
