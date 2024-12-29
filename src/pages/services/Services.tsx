@@ -81,7 +81,7 @@ const Services = () => {
   }, []);
 
   return (
-    <Curve animationKey={''}>
+    <Curve>
       <AnimatePresence mode='wait'>
         {brifOpened && <PopupBrif selectedService={selectedService} onClose={() => setBrifOpened(false)} />}
       </AnimatePresence>

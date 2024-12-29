@@ -12,7 +12,7 @@ function Undefpage() {
 	useSplittingOnLoad('.slide-vertical');
 	
 	return (
-        <Curve animationKey={''}>
+        <Curve>
         <section className='undefSection'>
 					<h1 data-splitting className='slide-vertical'>
 						<span className='firText'>Страница</span>
