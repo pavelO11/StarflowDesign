@@ -29,7 +29,7 @@ const AppContent: FC = () => {
     const lenis = new Lenis({
       duration: 0.5,
       easing: (t) => Math.min(1, 1.001 - Math.pow(3, -10 * t)), // smooth settings
-      // smoothWheel: true,
+      smoothWheel: true,
       // smoothTouch: true,
     });
   
