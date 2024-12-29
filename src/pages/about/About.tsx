@@ -77,7 +77,7 @@ const About = () => {
     }, []);
 	
     return(
-        <Curve>
+        <Curve animationKey={''}>
         {principlesShow && <Principles handlePrinciplesShow={handlePrinciplesShow}/> }
 		<section className='aboutSection'>
 			<section className='aboutIntro' ref={imageRef}>

@@ -35,7 +35,7 @@ function Contacts() {
   }, []);
 	
 	return (
-		<Curve>
+		<Curve animationKey={''}>
 		  <section className='contactSection'>
 			<AnimatePresence mode='wait'>
 				{brifOpened && <PopupBrif onClose={() => setBrifOpened(false)} selectedService={null} />}

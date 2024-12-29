@@ -26,7 +26,7 @@ function Home() {
     }, []);
 
     return (
-        <Curve>
+        <Curve animationKey={''}>
             <section className='homeSection'>
                 <h1 data-splitting className='slide-vertical'>
                     <span className='firText'>Star<span className='ligatures'>fl</span><span className='owFollowing'>ow</span></span>

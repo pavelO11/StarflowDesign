@@ -92,8 +92,11 @@ input[type="number"] {
 // Navbar styling
 .navbar {
     flex: 0 0 auto;
-    z-index: 50 !important;
-    mix-blend-mode: difference !important;
+    z-index: 50;
+    // mix-blend-mode: difference; // when use important so many troubles
+    mix-blend-mode: difference;
+    // position: fixed; /* или fixed */
+    // will-change: mix-blend-mode;
 }
 // Content section styling
 .content {
