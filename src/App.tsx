@@ -12,7 +12,6 @@ import './styles/default.scss'
 import './styles/variables.scss'
 
 import { Footer, Navbar } from './components'
-// import Curve from './components/layoutTransition'
 
 const App: FC = () => {
   return (
@@ -30,7 +29,7 @@ const AppContent: FC = () => {
     const lenis = new Lenis({
       duration: 0.5,
       easing: (t) => Math.min(1, 1.001 - Math.pow(3, -10 * t)), // smooth settings
-      // smoothWheel: true,
+      smoothWheel: true,
       // smoothTouch: true,
     });
   
@@ -49,6 +48,7 @@ const AppContent: FC = () => {
   const isVideoPage = ['/', '/contacts', '/404'].includes(location.pathname);
 
   return (
+    <>
       <section className="wrapper">
         {isVideoPage && (
           <video autoPlay muted loop playsInline className="video-bg">
@@ -74,6 +74,7 @@ const AppContent: FC = () => {
           <Footer />
         </section>
       </section>
+    </>
   );
 };
 

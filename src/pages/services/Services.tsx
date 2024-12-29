@@ -81,8 +81,7 @@ const Services = () => {
   }, []);
 
   return (
-    <Curve animationKey={''}>
-    <>
+    <Curve>
       <AnimatePresence mode='wait'>
         {brifOpened && <PopupBrif selectedService={selectedService} onClose={() => setBrifOpened(false)} />}
       </AnimatePresence>
@@ -158,7 +157,8 @@ const Services = () => {
                   name='accordion'
                   id={stage.id}
                   checked={accordionStates[index]}
-                  onClick={() => handleToggleAccordion(index)}
+                //   onChange={() => handleToggleAccordion(index)}
+				  onClick={() => handleToggleAccordion(index)}
                 />
                 <label htmlFor={stage.id}>
                   <p>({stage.number})</p>
@@ -176,7 +176,6 @@ const Services = () => {
           </ul>
         </section>
       </section>
-      </>
     </Curve>
   )
 }
