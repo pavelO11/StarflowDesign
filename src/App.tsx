@@ -1,6 +1,6 @@
 import { AnimatePresence } from 'framer-motion'
-import Lenis from 'lenis'
-import { FC, useEffect } from 'react'
+// import Lenis from 'lenis'
+import { FC } from 'react'
 import { Route, BrowserRouter as Router, Routes, useLocation } from 'react-router-dom'
 import Page404 from './pages/404/404'
 import About from './pages/about/About'
@@ -24,26 +24,26 @@ const App: FC = () => {
 const AppContent: FC = () => {
   const location = useLocation();
 
-  useEffect(() => {
-    // Lenis Animation onScroll
-    const lenis = new Lenis({
-      duration: 0.5,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(3, -10 * t)), // smooth settings
-      // smoothWheel: true,
-      // smoothTouch: true,
-    });
+  // useEffect(() => {
+  //   // Lenis Animation onScroll
+  //   const lenis = new Lenis({
+  //     duration: 0.5,
+  //     easing: (t) => Math.min(1, 1.001 - Math.pow(3, -10 * t)), // smooth settings
+  //     // smoothWheel: true,
+  //     // smoothTouch: true,
+  //   });
   
-    const handleScroll = (time: number) => {
-      lenis.raf(time); // Вызов анимации прокрутки Lenis
-      requestAnimationFrame(handleScroll);
-    };
+  //   const handleScroll = (time: number) => {
+  //     lenis.raf(time); // Вызов анимации прокрутки Lenis
+  //     requestAnimationFrame(handleScroll);
+  //   };
   
-    requestAnimationFrame(handleScroll);
+  //   requestAnimationFrame(handleScroll);
   
-    return () => {
-      lenis.destroy(); // clear Lenis
-    };
-  }, []);
+  //   return () => {
+  //     lenis.destroy(); // clear Lenis
+  //   };
+  // }, []);
 
   const isVideoPage = ['/', '/contacts', '/404'].includes(location.pathname);
 
