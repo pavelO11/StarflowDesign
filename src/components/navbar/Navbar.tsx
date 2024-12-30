@@ -54,24 +54,50 @@ const Navbar = () => {
         };
     }, []);
 
-    useEffect(() => { // Hook to run the effect when the component mounts
-        const checkOpenBurger = () => { // Function to check if the navbar has the 'openBurger' class
-            const navbar = document.querySelector('.navbar') as HTMLElement; // Select the navbar element
-            if (navbar) { // If the navbar element exists
-                if (navbar.classList.contains('openBurger')) { // If the navbar has the 'openBurger' class
-                    navbar.style.mixBlendMode = 'normal'; // Set the mix-blend-mode to 'difference'
-                } else { // If the navbar does not have the 'openBurger' class
-                    navbar.style.mixBlendMode = 'normal'; // Set the mix-blend-mode to 'normal'
+    // useEffect(() => { // Hook to run the effect when the component mounts
+    //     const checkOpenBurger = () => { // Function to check if the navbar has the 'openBurger' class
+    //         const navbar = document.querySelector('.navbar') as HTMLElement; // Select the navbar element
+    //         if (navbar) { // If the navbar element exists
+    //             if (navbar.classList.contains('openBurger')) { // If the navbar has the 'openBurger' class
+    //                 navbar.style.mixBlendMode = 'diffrence'; // Set the mix-blend-mode to 'difference'
+    //             } else { // If the navbar does not have the 'openBurger' class
+    //                 navbar.style.mixBlendMode = 'difference'; // Set the mix-blend-mode to 'normal'
+    //             }
+    //         }
+    //     };
+    //     document.addEventListener('DOMContentLoaded', checkOpenBurger); // Add event listener for DOMContentLoaded to run checkOpenBurger
+    //     document.addEventListener('click', checkOpenBurger);
+    //     return () => { // Cleanup function to remove event listeners when the component unmounts
+    //         document.removeEventListener('DOMContentLoaded', checkOpenBurger);
+    //         document.removeEventListener('click', checkOpenBurger); // Remove DOMContentLoaded event listener
+    //     };
+    // }, []); // Empty dependency array to run the effect only once when the component mounts
+    useEffect(() => {
+        const checkOpenBurger = () => {
+            const navbar = document.querySelector('.navbar') as HTMLElement;
+            const burger = document.querySelector('.burger') as HTMLElement;
+    
+            if (navbar && burger) {
+                if (burger.classList.contains('burgerActive')) {
+                    navbar.classList.add('mix-blend-normal');
+                    navbar.classList.remove('mix-blend-difference');
+                } else {
+                    navbar.classList.add('mix-blend-difference');
+                    navbar.classList.remove('mix-blend-normal');
                 }
             }
         };
-        document.addEventListener('DOMContentLoaded', checkOpenBurger); // Add event listener for DOMContentLoaded to run checkOpenBurger
+    
         document.addEventListener('click', checkOpenBurger);
-        return () => { // Cleanup function to remove event listeners when the component unmounts
-            document.removeEventListener('DOMContentLoaded', checkOpenBurger);
-            document.removeEventListener('click', checkOpenBurger); // Remove DOMContentLoaded event listener
+    
+        checkOpenBurger();
+    
+        return () => {
+            document.removeEventListener('click', checkOpenBurger);
         };
-    }, []); // Empty dependency array to run the effect only once when the component mounts
+    }, []);
+    
+      
 
     useSplittingHover();
 
