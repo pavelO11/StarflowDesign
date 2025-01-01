@@ -145,9 +145,12 @@
 		display: none;
 	}
 	@media screen and (max-width: 1366px) {
-	  .underFooterBottom , .ul_link {
-		  font-size: 14px !important;
-	  }
+	    .underFooterBottom , .ul_link {
+		    font-size: 14px !important;
+	    }
+        .underLinkSecond .word .char , .underLinkSecond .word , .underLinkFirst .word .char , .underLinkFirst .word {
+            height: 14px;
+        }
 	}
 	@media screen and (max-width: 768px) {
 		.underFooterBottomContacts{

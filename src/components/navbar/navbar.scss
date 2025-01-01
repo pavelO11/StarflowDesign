@@ -154,8 +154,25 @@
 .hidden{
 	display: none;
 }
+
+@media screen and (max-width: 1366px){
+	.navbarSection .navbarBtn .word {
+        line-height: 11.2px;
+    }
+    .navbarBtn .word .char , .navbarBtn .word{
+        height: 14px;
+    }
+    .navbarTelegram .word .char , .navbarTelegram .word{
+        height: 11.5px;
+    }
+    // .char[data-char="р"] {
+    //     height: 12px !important;
+    //     transform: translateY(10%);
+    // }
+}
 @media screen and (max-width: 390px), (max-width: 375px), (max-width: 428px) {
 	.navbarSection{
 		padding: 24px 24px 0 24px;
+        position: relative;
 	}
 }

@@ -98,6 +98,9 @@
             &:hover .char:after { transform: translateY(-100%); }
         }
     }
+    .homeText{
+        display: none;
+    }
     .showLink{
         display: flex;
         gap: 24px;
@@ -174,15 +177,59 @@
         //     transition: transform 0.55s, -webkit-transform 0.55s;
         // }
     }
+    @media screen and (max-width: 1366px) {
+        .underLinkSecond .word .char , .underLinkSecond .word {
+            height: 14px;
+        }
+        .underLinkFirst{
+            line-height: 14px;
+        }
+    }
     @media screen and (max-width: 1024px) {
-      .contactMeMain{
-          display: block;
-      }
-      .showLink , .underLinkFirst , .underLinkSecond{
-          display:none;
-      }
-      .underFooterBottom {
-          justify-content: center;
-      }
+        .contactMeMain{
+            display: block;
+        }
+        .showLink , .underLinkFirst , .underLinkSecond{
+            display:none;
+        }
+        .underFooterBottom {
+            justify-content: center;
+        }
+    }
+    @media screen and  (max-width: 390px), (max-width: 375px), (max-width: 428px) {
+        .underFooterBottom{
+            flex-direction: column;
+            gap: 48px;
+            align-items: center;
+        }
+        .homeText{
+            display: flex;
+            flex-direction: column;
+			gap: 16px;
+            text-transform: uppercase;
+            p {
+                text-align: center;
+                line-height: 120%;
+                text-transform: uppercase;
+                letter-spacing: -4%;
+                overflow: hidden;
+                margin: 0;
+                opacity: 0;
+                transition: opacity 1s ease;
+                &.visible {
+                    opacity: 1;
+                }
+                .char {
+                    display: inline-block;
+                    transform: translateY(100%);
+                    opacity: 0;
+                    transition: transform 1s ease, opacity 1s ease;
+                }
+                &.visible .char {
+                    transform: translateY(0);
+                    opacity: 1;
+                }
+            }
+        }
     }
 }
