@@ -27,12 +27,15 @@
         flex-direction: column;
         justify-content: space-between;
         text-decoration: none;
-        height: 100%;
+        // height: 100%;
+        height: calc(100% - 66px);
+        margin-top: 66px;
         nav{
             display: flex;
             flex-direction: column;
             align-items: center;
             margin: auto;
+            // margin: calc(50% - 66px) auto auto auto !important;
             position: relative;
             .navLink{
                 font-size: 88px;
@@ -49,34 +52,6 @@
             .linkContent {
                 display: flex;
                 align-items: center;
-                overflow: hidden;
-                height: 107px;
-                .char {
-                    display: inline-block;
-                    // height: 60.5px; 390
-                    height: 85.5px;
-                    transform: translateY(100%);
-                    transition: transform 0.5s ease-in-out;
-                }
-                .char[data-char="У"] {
-                    width: 38px;
-                }
-                .word{
-                    line-height: 75px;
-                    width: -moz-available;
-                }
-                .whitespace{
-                    width: 8px;
-                }
-                // &.visible .char {
-                //     transform: translateY(0);
-                // }
-                // img {
-                //     transition: opacity 0 0.3s ease-in-out, opacity 1 0.3s ease-in-out;
-                // }
-                img , img:last-child {
-                    opacity: 1;
-                }
             }
         }
         article{
@@ -99,7 +74,7 @@
                 p{
                     font-family: 'Inter', sans-serif;
                     font-size: 32px;
-                    letter-spacing: -2px;
+                    letter-spacing: -1px;
                     // font-weight: 400;
                     z-index: 1000;
                     cursor: pointer;
@@ -119,7 +94,7 @@
         .lowerSection{
             display: flex;
             flex-direction: column;
-            gap: 64px;
+            gap: 48px;
             footer{
                 display: flex;
                 justify-content: space-between;
@@ -185,23 +160,12 @@
             }
         }
         @media screen and  (max-width: 390px), (max-width: 375px), (max-width: 428px) {
-            // nav{
-            //     gap: 8px; меньше расстояние между ними
-            // }
             article {
                 gap: 20%;
             }
-            nav .linkContent {
-                height: 67.5px;
-            }
-            .linkContent .char {
-                height: 60.5px;
-            }
-            nav .linkContent .char[data-char="У"] {
-                width: 24px;
-            }
             nav .navLink{
                 font-size: 56px;
+                height: 56px;
             }
             article .contactButtons{
                 width: 148px;
