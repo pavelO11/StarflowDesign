@@ -91,7 +91,7 @@ function Navigation() {
                     <p className='navigationLink'>{link.title}</p>
                 </Link>
             ))}
-            <p className='navigationText'>©2024</p>
+            <p className='navigationText'>©2025</p>
         </section>
     );
 }
