@@ -74,10 +74,10 @@ input[type="number"] {
     flex-direction: column;
     height: 100vh;
     background-color: #070707;
-    background-image: url(/3dstar.svg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+    // background-image: url(/3dstar.svg);
+    // background-size: cover;
+    // background-repeat: no-repeat;
+    // background-position: center;
 }
 .video-bg {
     position: absolute;
@@ -93,14 +93,13 @@ input[type="number"] {
 .navbar {
     flex: 0 0 auto;
     z-index: 50;
-    mix-blend-mode: difference !important;
+    mix-blend-mode: difference;
 }
 .mix-blend-normal {
-    mix-blend-mode: normal !important;
-    
+    mix-blend-mode: normal;
 }
 .mix-blend-difference {
-    mix-blend-mode: difference !important;
+    mix-blend-mode: difference;
 }
 // Content section styling
 .content {

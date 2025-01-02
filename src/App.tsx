@@ -45,7 +45,11 @@ const AppContent: FC = () => {
   //   };
   // }, []);
 
-  const isVideoPage = ['/', '/contacts', '/404'].includes(location.pathname);
+  // Массив путей, на которых НЕ будет отображаться видео
+  const pagesWithoutVideo = ['/projects', '/services', '/about'];
+
+  // Проверка, не нужно ли показывать видео
+  const isVideoPage = !pagesWithoutVideo.includes(location.pathname);
 
   return (
     <>
