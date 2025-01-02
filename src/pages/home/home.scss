@@ -174,24 +174,46 @@
 		.navbarText{
 			font-size: 14px;
 		}
+        h1 .char {
+            height: fit-content;
+            transform: translateY(110%);
+        }
 	}
 	@media screen and (max-width: 768px) {
 		h1 {
 			line-height: 116px;
+            position: relative;
+            margin-top: 136px;
 		}
 		.secText{
-			letter-spacing: -6px;
+			letter-spacing: -10px;
+            -webkit-text-stroke: 1px  #FAFAFA;
 		}
 		.homeText {
 			flex-direction: column;
 			gap: 16px;
 		}
+        .char[data-char="g"] {
+            height: 200px;
+            transform: translateY(150%);
+        }
+        h1 .char {
+            height: 120px;
+            transform: translateY(268%);
+        }
+        .owFollowing{
+            margin-left: -11px;
+        }
 	}
 	@media screen and  (max-width: 390px), (max-width: 375px), (max-width: 428px) {
 		h1{
 			font-size: 96px;
 			line-height: 80px;
+            margin-top: 48px;
 		}
+        h1 .char {
+            height: 96px;
+        }
 		.owFollowing {
 			margin-left: -10px;
 		}
@@ -199,10 +221,19 @@
 			-webkit-text-stroke: 1px  #FAFAFA;
 		}
 		.firText, .secText {
-			letter-spacing: -6px;
+			letter-spacing: -8px;
 		}
-		.homeText {
-			padding: 0;
-		}
+		// .homeText {
+		// 	padding: 0;
+        //     margin-block-end: 96px;
+        //     position: relative;
+        //     // top: auto;
+		// }
+        .homeText{
+            display: none;
+        }
+        .ligatures{
+            letter-spacing: 0px;
+        }
 	}
 }
