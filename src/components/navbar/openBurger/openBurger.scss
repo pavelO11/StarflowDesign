@@ -84,7 +84,6 @@
                     font-family: 'Playfair Display', sans-serif;
                     font-weight: 200;
                     font-style: italic;
-                    font-size: 16px;
                     z-index: 1000;
                     cursor: pointer;
                     color: vars.$main-color-text;
@@ -161,15 +160,17 @@
         }
         @media screen and  (max-width: 390px), (max-width: 375px), (max-width: 428px) {
             article {
-                gap: 20%;
+                display: flex;
+                justify-content: space-between;
+                gap: 0;
             }
             nav .navLink{
                 font-size: 56px;
                 height: 56px;
             }
             article .contactButtons{
-                width: 148px;
-                height: 66px;
+                width: auto;
+                height: 67px;
             }
             article .contactButtons p{
                 font-size: 24px;
