@@ -28,10 +28,18 @@ function Home() {
     return (
         <Curve>
             <section className='homeSection'>
-                <h1 data-splitting className='slide-vertical'>
+                <h1 data-splitting className='slide-vertical w-full'>
                     <span className='firText'>Star<span className='ligatures'>fl</span><span className='owFollowing'>ow</span></span>
                     <span className='secText'> Design</span>
                 </h1>
+                <div className='slide-vertical sm'>
+                <h1 data-splitting className='slide-vertical sm'>
+                    <span className='firText'>Star<span className='ligatures'>fl</span><span className='owFollowing'>ow</span></span>
+                </h1>
+                <h1 data-splitting className='slide-vertical'>
+                    <span className='secText'> Design</span>
+                </h1>
+                </div>
                 <section className='welcomeUnder'>
                     <span className='bracket1'>(</span>
                     <p className='navbarText'>

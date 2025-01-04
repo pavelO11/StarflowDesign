@@ -34,6 +34,9 @@
 			transform: translateY(0%);
 		}
 	}
+    .sm{
+        display: none;
+    }
 	.ligatures{
 		font-variant-ligatures: common-ligatures !important;
 		letter-spacing: -2px;
@@ -206,12 +209,33 @@
         }
 	}
 	@media screen and  (max-width: 390px), (max-width: 375px), (max-width: 428px) {
-		h1{
+        .w-full{
+            display: none;
+        }
+        .sm{
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            overflow: hidden;
+            width: -moz-available;
+            width: -webkit-fill-available;
+        }
+		.sm h1{
 			font-size: 96px;
-			line-height: 80px;
-            margin-top: 48px;
+			line-height: 72px;
+            margin: 0;
+            top: 0;
 		}
-        h1 .char {
+        .sm h1:first-child{
+            margin-top: 112px;
+        }
+        .sm h1:last-child{
+            margin-top: -16px;
+        }
+        // .sm h1:last-child{
+        //     margin-bottom: 24px;
+        // }
+        .sm h1 .char {
             height: 96px;
         }
 		.owFollowing {
