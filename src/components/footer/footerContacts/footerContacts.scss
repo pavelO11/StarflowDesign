@@ -159,7 +159,7 @@
 		.lowerSection{
       		display: flex;
      		flex-direction: column;
-      		gap: 64px;
+      		gap: 48px;
 			padding: 0 0 24px 0;
 			height: 100%;
 			article{
@@ -181,8 +181,8 @@
 					}
 					p{
 						font-size: 32px;
-						letter-spacing: -2px;
-						font-weight: 400;
+						letter-spacing: -1px;
+						font-weight: 350;
 						z-index: 1000;
 						cursor: pointer;
 						color: vars.$main-color-text;
@@ -268,7 +268,7 @@
 	@media screen and (max-width: 390px), (max-width: 375px), (max-width: 428px) {
 		article .contactButtons{
 			height: 73px;
-			width: 148px;
+			width: auto;
 		}
 		.lowerSection article .contactButtons p{
 			font-size: 24px;

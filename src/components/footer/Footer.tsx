@@ -51,6 +51,19 @@ const Footer = () => {
             </Link>
 			{/* <NavigationButtonsStatic/> */}
 			<NextPage />
+            <section className='mobileFooter'>
+                <Link
+                data-splitting
+                to='https://t.me/StarflowDesign'
+                className='goConversation'
+                >
+                    <p className='mainFooterTop'><span className='difText'>Обсудим </span> <span className='secText'>Ваш проект</span></p>
+                    <p className='mainFooterTopSecond'><span className='difText'>Обсудим</span><br /><span className='secText'>Ваш проект</span></p>
+                    <div className='mainFooterP'><img className='leftArrow' src={arrowLeft} alt='arrow' />написать в телеграм<img className='rightArrow' src={arrowRight} alt='arrow' /></div>
+                </Link>
+                {/* <NavigationButtonsStatic/> */}
+                <NextPage />
+            </section>
             <section className='mainFooterBottomSecond'>
                 <ul className='showLink'>
                     <Link data-splitting className='ul_link' to='https://dprofile.ru/starflowdesign' target="_blank" rel="noopener noreferrer">DPROFILE</Link>
