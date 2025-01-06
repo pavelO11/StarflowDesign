@@ -117,6 +117,7 @@
 			letter-spacing: -8px;
 		}
 		.secText{
+            font-family: 'InterSpecial';
 			letter-spacing: -8px;
 			-webkit-text-stroke: 1px  #FAFAFA;
 		}
@@ -440,7 +441,6 @@
             white-space: nowrap;
     		overflow-wrap: break-word;
 		}
-	
 		.accordion input[type='radio']:checked + label {
 			p, img {
 				opacity: 1;
@@ -453,7 +453,6 @@
 				}
 			}
 		}
-	
 		.accordion input[type='radio']:checked + label {
 			&::after {
 				display: none;
@@ -463,7 +462,6 @@
 			transform: rotate(135deg);
 			opacity: 1;
 		  }
-	
 		.accordion input[type='radio']:checked ~ label:hover::after,
 		.accordion input[type='radio']:checked + label::after {
 			transform: scaleX(0);
@@ -545,6 +543,7 @@
 		}
 		.servicesTextMobile{
 			display: flex;
+            
 		}
 		.mainServices .service{
 			width: 468px;
@@ -588,6 +587,9 @@
 	@media screen and (max-width: 390px), (max-width: 375px), (max-width: 428px) {
 		.servicesTextMobile {
 			gap: 48px;
+                .char[data-char="У"] {
+                    width: 26px;
+                }
 		}
 		.servicesTextMobile h1{
 			font-size: 56px;
@@ -602,6 +604,9 @@
 		.servicesTextMobile .firText , .servicesTextMobile .secText {
 			letter-spacing: -4px;
 		}
+        .servicesTextMobile .secText {
+            -webkit-text-stroke: 0.5px #FAFAFA;
+        }
 		.servicesTextMobile .mobileText {
 			gap: 16px;
 			flex-direction: column;

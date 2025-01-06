@@ -184,7 +184,7 @@ const Services = () => {
           <p>( Этапы сотрудничества )</p>
           <ul className='accordion'>
             {stages.map((stage, index) => (
-              <li key={stage.id} className={accordionStates[index] ? 'open' : ''} style={{ borderBottom: accordionStates[index] ? '1px solid #FAFAFA' : '1px solid #FFFFFF4D' }}>
+              <li key={stage.id} className={accordionStates[index] ? 'open' : ''} style={{ borderBottom: accordionStates[index] ? '1px solid #FAFAFA' : '1px solid rgba(255, 255, 255, 0.2)' }}>
                 <input
                   type='radio'
                   name='accordion'
