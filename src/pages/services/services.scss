@@ -59,9 +59,9 @@
 			.char[data-char="У"] {
 				width: 70px;
 			}
-			.char[data-char="и"] {
-				width: 83px;
-			}
+			// .char[data-char="и"] {
+			// 	width: 83px;
+			// }
 			&.animate-on-load .char {
 				transform: translateY(0%);
 			}
@@ -76,6 +76,9 @@
 			font-family: 'InterSpecial';
 			letter-spacing: -16px;
 			-webkit-text-stroke: 1px  #FAFAFA;
+			.char[data-char="и"] {
+				width: 82.5px;
+			}
 		}
 	}
 	.servicesTextMobile{
@@ -158,7 +161,7 @@
 			display: flex;
 			flex-direction: column;
 			justify-content: space-between;
-			padding: 0 24px 0 24px;
+			padding: 0 0 0 24px;
 			width: 446px;
 			height: 784px;
 			text-align: left;
@@ -206,7 +209,7 @@
 				// }
 				.number {
 					line-height: 19.2px;
-					font-weight: 350;
+					// font-weight: 350;
 					overflow: hidden;
 					opacity: 0.6;
 					transition: opacity 0.3s ease-in-out;
@@ -228,8 +231,8 @@
 				.title {
 					font-size: 48px;
 					line-height: 100%;
-					font-weight: 350;
-					letter-spacing: -1.5px;
+					font-weight: 300;
+					letter-spacing: -0.5px;
 					overflow: hidden;
 					line-height: 10px;
 					.word{
@@ -374,7 +377,7 @@
 				background-color: vars.$main-color-text;
 				transform: scaleX(0);
 				transform-origin: right;
-				transition: transform 0.5s cubic-bezier(0.4, 0.4, 0.2, 1), background-color 0.2s ease-in-out;
+				transition: transform 0.5s cubic-bezier(0.4, 0.4, 0.2, 0.1), background-color 0.2s ease-in-out;
 			}
 			&:hover::after {
 				transform-origin: left;
@@ -400,6 +403,14 @@
 			letter-spacing: -1px;
 			width: 100%;
 			margin-top: 24px;
+            img{
+                opacity: 0.6;
+            }
+            &:hover {
+				img{
+					opacity: 1;
+				}
+			}
 		}
 		input[type='radio'] {
 			display: none;
@@ -431,7 +442,7 @@
 		}
 	
 		.accordion input[type='radio']:checked + label {
-			p {
+			p, img {
 				opacity: 1;
 			}
 			& + .content {
@@ -552,7 +563,7 @@
 			height: auto;
 		}
 		img.leftArrow, img.rightArrow {
-			margin: 2px 4px 3.5px !important;
+			margin: 2px 4px 5px !important;
 		}
 		.mainServices{
 			flex-wrap: wrap;
@@ -563,21 +574,31 @@
 			margin-top: 48px;
 		}
 		.mainServices .service .top .title{
-			letter-spacing: -2px;
+			letter-spacing: -1px;
 		}
 	}
 	@media screen and (max-width: 768px) {
 		.mainServices .service{
 			width: 340px;
 		}
+        .mainServices .service .top{
+			gap: 8px;
+		}
 	}
 	@media screen and (max-width: 390px), (max-width: 375px), (max-width: 428px) {
 		.servicesTextMobile {
-			gap: 64px;
+			gap: 48px;
 		}
 		.servicesTextMobile h1{
 			font-size: 56px;
 		}
+        .servicesTextMobile{
+            margin-top: 112px;
+            top: 0;
+        }
+        .mainServices {
+            margin: 418px 0 24px 0 !important;
+          }
 		.servicesTextMobile .firText , .servicesTextMobile .secText {
 			letter-spacing: -4px;
 		}
@@ -589,10 +610,14 @@
 			gap: 48px;
 		}
 		.mainServices .service {
-			padding: 0 0 0 24px;
+			padding: 0 0 0 16px;
+            width: 100%;
 		}
 		.serviceStages {
 			margin: 100px 0 100px 0;
+		}
+        .serviceStages p {
+			margin-bottom: 8px;
 		}
 		.serviceStages .accordion li label p{
 			display: none;
