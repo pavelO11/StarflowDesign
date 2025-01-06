@@ -17,7 +17,7 @@ function Navigation() {
             const windowHeight = window.innerHeight;
             const docHeight = document.documentElement.scrollHeight;
 
-            if (currentScrollY + windowHeight >= docHeight) {
+            if (currentScrollY + windowHeight >= docHeight - 1) {
                 setIsHidden(false);
             } else if (currentScrollY > prevScrollY) {
                 setIsHidden(true);
@@ -26,7 +26,7 @@ function Navigation() {
             }
             setPrevScrollY(currentScrollY);
         };
-
+    
         window.addEventListener('scroll', handleScroll);
         return () => {
             window.removeEventListener('scroll', handleScroll);
