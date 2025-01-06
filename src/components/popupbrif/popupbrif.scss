@@ -35,7 +35,7 @@
 					font-weight: 400;
 				}
 				.ownInput, .ownInputSpecial, .ownTextarea {
-					border: #07070766 1px solid !important;
+					border: rgba(7, 7, 7, 0.2) 1px solid !important;
 				}
 				.ownInput, .ownInputSpecial, .ownTextarea {
 					&:hover, &:focus, &:active, &:not(:placeholder-shown) {
@@ -73,7 +73,7 @@
 					padding: 16px;
 					border-radius: 8px;
 					line-height: 100%;
-					border: #07070766 1px solid;
+					border: rgba(7, 7, 7, 0.2) 1px solid;
 					cursor: pointer;
 					transition: 0.5s;
 					align-items: center;
@@ -111,6 +111,14 @@
 						top: 0;
 						cursor: pointer;
 						margin-top: 8px;
+                        img{
+                            transition: transform 0.5s;
+                        }
+                        &:hover{
+                            img{
+                                transform: rotate(185deg);
+                            }
+                        }
 					}
 					.horizontalText{
 						display: flex;
