@@ -40,15 +40,18 @@ function Contacts() {
 			<AnimatePresence mode='wait'>
 				{brifOpened && <PopupBrif onClose={() => setBrifOpened(false)} selectedService={null} />}
 			</AnimatePresence>
-			<h1 data-splitting className='slide-vertical'>
+			<h1 data-splitting className='slide-vertical w-full'>
 				<span className='firText'>Давайте</span>
 				<span className='secText'> Сотрудничать</span>
 			</h1>
-			<h1 className='second'>
-				<span className='firText'>Давайте</span>
-			  	<br />
-				<span className='secText'>Сотрудничать</span>
-			</h1>
+            <div className="slide-vertical sm">
+            <h1 data-splitting className='slide-vertical sm'>
+                <span className='firText'>Давайте</span>
+            </h1>
+            <h1 data-splitting className='slide-vertical'>
+                <span className='secText'> Сотрудничать</span>
+            </h1>
+            </div>
 			<NavigationButtons />
 			<article className='contactText'>
 				<Link

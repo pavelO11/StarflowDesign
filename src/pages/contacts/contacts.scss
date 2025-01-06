@@ -34,14 +34,9 @@
 			transform: translateY(0%);
 		}
 	}
-	.second{
-		display: none;
-		font-size: 160px;
-		line-height: 100%;
-		font-weight: 350;
-		position: fixed;
-  		top: 20%;	
-	}
+    .sm{
+        display: none;
+    }
 	.firText{
 		font-family: 'Playfair Display', sans-serif;
 		font-weight: 350;
@@ -190,14 +185,32 @@
 		}
 	}
 	@media screen and (max-width: 1024px) {
-		h1, .navigationSection{
+        .w-full, .navigationSection{
 			display: none;
 		}
-		.second{
-			display: block;
-			font-size: 88px;
-			line-height: 72px;
+        .sm{
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            overflow: hidden;
+            width: -moz-available;
+            width: -webkit-fill-available;
+        }
+		.sm h1{
+			font-size: 56px;
+			line-height: 50px;
+            margin: 0;
+            top: 0;
 		}
+        .sm h1:first-child{
+            margin-top: 112px;
+        }
+        .sm h1:last-child{
+            margin-top: -16px;
+        }
+        .sm h1 .char {
+            height: 96px !important;
+        }
 		.contactSection .contactText {
 			padding: 0 170px;
 		}
@@ -208,10 +221,10 @@
 		}
 	}
 	@media screen and (max-width: 390px), (max-width: 375px), (max-width: 428px) {
-		.second{
-			font-size: 56px;
-			line-height: 50px;
-		}
+		// .second{
+		// 	font-size: 56px;
+		// 	line-height: 50px;
+		// }
 		.firText , .secText {
 			letter-spacing: -4px;
 		}
