@@ -1,19 +1,16 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { createContext, useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
+import './navbar.scss'
+import logo from '/logoSV.svg'
+
 import { burgerAnimation } from '../animations/modals'
 import useSplittingHover from '../hooks/useSplittingHover'
-import './navbar.scss'
 import OpenBurger from './openBurger/openBurger'
-import logo from '/logoSV.svg'
 
 export const BurgerContext = createContext<React.Dispatch<React.SetStateAction<boolean>> | undefined>(undefined);
 
-interface NavbarProps {
-    isAboutPage: boolean;
-}
-
-const Navbar = ({ isAboutPage }: NavbarProps) => {
+const Navbar = () => {
     const [isBurgerOpen, setIsBurgerOpen] = useState(false);
     const logoRef = useRef<HTMLImageElement>(null);
     const [shouldHideNavbar, setShouldHideNavbar] = useState(false);
@@ -22,19 +19,21 @@ const Navbar = ({ isAboutPage }: NavbarProps) => {
         const checkVisibility = () => {
             const isDrawerVisible = document.querySelector('.drawer, .drawerSecond, .drawerThird');
             const screenWidth = window.innerWidth;
-
+            
             if (screenWidth <= 1024 && isDrawerVisible) {
                 setShouldHideNavbar(true);
             } else {
                 setShouldHideNavbar(false);
             }
         };
-
+        
         checkVisibility();
+
         const observer = new MutationObserver(checkVisibility);
         observer.observe(document.body, { childList: true, subtree: true });
-        window.addEventListener('resize', checkVisibility);
 
+        window.addEventListener('resize', checkVisibility);
+        
         return () => {
             observer.disconnect();
             window.removeEventListener('resize', checkVisibility);
@@ -48,60 +47,94 @@ const Navbar = ({ isAboutPage }: NavbarProps) => {
                 logoRef.current.style.transform = `rotate(${window.scrollY * rotationSpeed}deg)`;
             }
         };
+
         window.addEventListener('scroll', handleScroll);
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);
 
+    // useEffect(() => { // Hook to run the effect when the component mounts
+    //     const checkOpenBurger = () => { // Function to check if the navbar has the 'openBurger' class
+    //         const navbar = document.querySelector('.navbar') as HTMLElement; // Select the navbar element
+    //         if (navbar) { // If the navbar element exists
+    //             if (navbar.classList.contains('openBurger')) { // If the navbar has the 'openBurger' class
+    //                 navbar.style.mixBlendMode = 'diffrence'; // Set the mix-blend-mode to 'difference'
+    //             } else { // If the navbar does not have the 'openBurger' class
+    //                 navbar.style.mixBlendMode = 'difference'; // Set the mix-blend-mode to 'normal'
+    //             }
+    //         }
+    //     };
+    //     document.addEventListener('DOMContentLoaded', checkOpenBurger); // Add event listener for DOMContentLoaded to run checkOpenBurger
+    //     document.addEventListener('click', checkOpenBurger);
+    //     return () => { // Cleanup function to remove event listeners when the component unmounts
+    //         document.removeEventListener('DOMContentLoaded', checkOpenBurger);
+    //         document.removeEventListener('click', checkOpenBurger); // Remove DOMContentLoaded event listener
+    //     };
+    // }, []); // Empty dependency array to run the effect only once when the component mounts
     useEffect(() => {
-        const navbar = document.querySelector('.navbar') as HTMLElement;
-        if (navbar) {
-            if (isAboutPage) {
-                navbar.style.mixBlendMode = 'normal'; // Set initial mode to normal on about page
-            } else {
-                navbar.style.mixBlendMode = 'difference'; // Set default mode to difference on other pages
+        const checkOpenBurger = () => {
+            const navbar = document.querySelector('.navbar') as HTMLElement;
+            const burger = document.querySelector('.burger') as HTMLElement;
+    
+            if (navbar && burger) {
+                if (burger.classList.contains('burgerActive')) {
+                    navbar.classList.add('mix-blend-normal');
+                    navbar.classList.remove('mix-blend-difference');
+                } else {
+                    navbar.classList.add('mix-blend-difference');
+                    navbar.classList.remove('mix-blend-normal');
+                }
             }
-        }
-    }, [isAboutPage]);
+        };
+    
+        document.addEventListener('click', checkOpenBurger);
+    
+        checkOpenBurger();
+    
+        return () => {
+            document.removeEventListener('click', checkOpenBurger);
+        };
+    }, []);
+    
+      
 
     useSplittingHover();
 
     return (
         <nav className={`navbarSection ${shouldHideNavbar ? 'hidden' : ''}`}>
-            <Link
+                <Link
                 data-splitting
-                className='navbarBtn'
-                to='/'
+                className='navbarBtn' 
+                to='/' 
                 onClick={() => {
                     setIsBurgerOpen(false);
                 }}
-            >
-                <img src={logo} alt='logo' ref={logoRef} />
-                <section>
-                    Starflow<br />Design
-                </section>
-            </Link>
-            <section
+                >
+                    <img src={logo} alt='logo' ref={logoRef} />
+                    <section>
+                        Starflow<br />Design
+                    </section>
+                </Link>
+                <section
                 className={`burger ${isBurgerOpen ? 'burgerActive' : ''}`}
                 onClick={() => setIsBurgerOpen(!isBurgerOpen)}
-            >
-                <span></span>
+                >
+                    <span></span>
                 {!isBurgerOpen && <span></span>}
-            </section>
+                </section>
             <AnimatePresence mode="wait">
                 {isBurgerOpen && (
-                    <motion.section
-                        variants={burgerAnimation}
-                        initial="initial"
-                        animate="enter"
-                        exit="exit"
-                        className='openBurger'
-                    >
-                        <BurgerContext.Provider value={setIsBurgerOpen}>
-                            <OpenBurger />
-                        </BurgerContext.Provider>
-                    </motion.section>
+                <motion.section 
+                    variants={burgerAnimation}
+                    initial="initial"
+                    animate="enter"
+                    exit="exit"
+                    className='openBurger'>
+                    <BurgerContext.Provider value={setIsBurgerOpen}>
+                        <OpenBurger />
+                    </BurgerContext.Provider>
+                </motion.section>
                 )}
             </AnimatePresence>
             <section className='welcome'>
@@ -115,11 +148,12 @@ const Navbar = ({ isAboutPage }: NavbarProps) => {
                 to="https://t.me/StarflowDesign"
                 target="_blank"
                 rel="noopener noreferrer"
-            >
-                Написать в<br />телеграм
+                >
+            	Написать в<br />телеграм
             </Link>
         </nav>
     );
 };
 
 export default Navbar;
+
