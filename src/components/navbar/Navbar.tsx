@@ -56,14 +56,16 @@ const Navbar = ({ isAboutPage }: NavbarProps) => {
 
     useEffect(() => {
         const navbar = document.querySelector('.navbar') as HTMLElement;
-        if (navbar) {
-            if (isAboutPage) {
-                navbar.style.mixBlendMode = 'normal'; // Set initial mode to normal on about page
+        const burger = document.querySelector('.burger') as HTMLElement;
+    
+        if (navbar && burger) {
+            if (isAboutPage || burger.classList.contains('burgerActive')) {
+                navbar.style.mixBlendMode = 'normal';
             } else {
-                navbar.style.mixBlendMode = 'difference'; // Set default mode to difference on other pages
+                navbar.style.mixBlendMode = 'difference';
             }
         }
-    }, [isAboutPage]);
+    }, [isAboutPage, isBurgerOpen]);
 
     useSplittingHover();
 
