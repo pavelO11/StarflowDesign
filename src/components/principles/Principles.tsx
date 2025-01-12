@@ -22,9 +22,11 @@ const Principles: React.FC<PrinciplesProps> = ({ handlePrinciplesShow }) => {
         }, 700); // the time is the same as the duration of the animation in CSS
     };
 
+    const isAboutPage = location.pathname === '/about';
+
     return (
         <section className={`principlesSection ${isVisible ? 'fadeIn' : 'fadeOut'}`}>
-            <Navbar />
+            <Navbar isAboutPage={isAboutPage} />
             <section className='principlesShow'>
                 <section className='marquee'>
                     <ParallaxText baseVelocity={-5}>Современность / Удобство / Понятность / Эстетика /</ParallaxText>
