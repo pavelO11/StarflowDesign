@@ -1,13 +1,13 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
-import Splitting from 'splitting'
-import AboutMe from '../../components/aboutMe/AboutMe'
-import useSplittingHover from '../../components/hooks/useSplittingHover'
-import useSplittingOnLoad from '../../components/hooks/useSplittingOnLoad'
-import Curve from '../../components/layoutTransition'
-import NavigationButtons from '../../components/navigation/Navigation'
-import Principles from '../../components/principles/Principles'
-import './about.scss'
+import React, { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
+import AboutMe from '../../components/aboutMe/AboutMe';
+import Principles from '../../components/principles/Principles';
+import './about.scss';
+import Splitting from 'splitting';
+import useSplittingHover from '../../components/hooks/useSplittingHover';
+import useSplittingOnLoad from '../../components/hooks/useSplittingOnLoad';
+import Curve from '../../components/layoutTransition';
+import NavigationButtons from '../../components/navigation/Navigation';
 
 const About = () => {
     const [visibleLines, setVisibleLines] = useState<number[]>([]);

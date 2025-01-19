@@ -189,8 +189,8 @@ const Services = () => {
                   type='radio'
                   name='accordion'
                   id={stage.id}
-                  checked={accordionStates[index]}
-                //   onChange={() => handleToggleAccordion(index)}
+                  // checked={accordionStates[index]}
+                  onChange={() => handleToggleAccordion(index)}
 				  onClick={() => handleToggleAccordion(index)}
                 />
                 <label htmlFor={stage.id}>
