@@ -1,5 +1,5 @@
 import React from 'react'
-import './timerContent.scss'
+import './timercontent.scss'
 import arrowLeft from '/arrowBlackL.svg'
 import arrowRight from '/arrowBlackR.svg'
 
