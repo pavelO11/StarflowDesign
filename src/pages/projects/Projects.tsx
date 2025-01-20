@@ -1,52 +1,3 @@
-// import './projects.scss'
-
-// import {
-//     motion,
-//     MotionValue,
-//     useScroll,
-//     useTransform
-// } from "framer-motion"
-// import { useRef } from "react"
-
-// const Projects: React.FC = () => {
-
-// function useParallax(value: MotionValue<number>, distance: number) {
-//   return useTransform(value, [0, 1], [-distance, distance]);
-// }
-
-// function Image({ id }: { id: number }) {
-//   const ref = useRef(null);
-//   const { scrollYProgress } = useScroll({ target: ref });
-//   const y = useParallax(scrollYProgress, 3);
-
-//   const images = [
-//     { id: '1', src: '/project1.svg' },
-//     { id: '2', src: '/project2.svg' },
-//     { id: '3', src: '/project3.svg' },
-//   ];
-
-//   return (
-//     <>
-//       <div ref={ref}>
-//         {images.map((image) => (
-//             <img alt='image' src={image.src} />
-//         ))}
-//       </div>
-//       <motion.h2 style={{ y }}>{`#00${id}`}</motion.h2>
-//     </>
-//   );
-// }
-
-//     return (
-//         <section className='projectSection'>
-//             <Image id={0} />
-//         </section>
-//     );
-// }
-
-// export default Projects;
-import './projects.css'
-
 import {
     motion,
     MotionValue,
@@ -54,40 +5,84 @@ import {
     useTransform
 } from "framer-motion"
 import { useRef } from "react"
-
-// Хук для параллакса
-function useParallax(value: MotionValue<number>, distance: number) {
-  return useTransform(value, [0, 1], [-distance, distance]);
-}
-
-// Компонент для одного изображения
-const ParallaxImage: React.FC<{ src: string; alt: string }> = ({ src, alt }) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref }); // Связь со скроллом секции
-  const y = useParallax(scrollYProgress, 300); // Параллакс для этого изображения
-
-  return (
-    <section className="image-section">
-      <div ref={ref} className="image-container">
-        <motion.img src={src} alt={alt} className="image" style={{ y }} />
-      </div>
-      <motion.h2 className="parallax-text" style={{ y }}>
-        {alt}
-      </motion.h2>
-    </section>
-  );
-};
-
-// Основной компонент
-const Projects: React.FC = () => {
-  return (
-    <main className="projects-container">
-      {/* Добавляем изображения */}
-      <ParallaxImage src="/project1.svg" alt="Project 1" />
-      <ParallaxImage src="/project2.svg" alt="Project 2" />
-      <ParallaxImage src="/project3.svg" alt="Project 3" />
-    </main>
-  );
-};
-
-export default Projects;
+import { Link } from 'react-router-dom'
+import useSplittingHover from '../../components/hooks/useSplittingHover'
+import './projects.scss'
+import arrowLeft from '/arrowLeft.svg'
+import arrowRight from '/arrowRight.svg'
+  
+  const projects = [
+    {
+      src: "/REAL_ESTATE.jpg",
+      first: "Real",
+      second: " Estate",
+      alt: "Image"
+    },
+    {
+      src: "/SF_STORE.jpg",
+      first: "SF",
+      second: " Store",
+      alt: "Image"
+    },
+    {
+      src: "/DETAILING_STUDIO.jpg",
+      first: "Detailing",
+      second: " Studio",
+      alt: "Image"
+    }
+  ];
+  
+  // parallax hook
+  function useParallax(value: MotionValue<number>, distance: number) {
+    return useTransform(value, [0, 1], [-distance, distance]);
+  }
+  
+  const ParallaxImage: React.FC<{ src: string; first: string; second: string; alt: string }> = ({ src, first, second, alt }) => {
+    const ref = useRef<HTMLDivElement>(null);
+    const { scrollYProgress } = useScroll({ target: ref });
+    const y = useParallax(scrollYProgress, 1);
+    useSplittingHover();
+    return (
+      <section className="image-section">
+        <div ref={ref} className="image-container">
+          <motion.img src={src} alt={alt} className="image" style={{ y }} />
+          <section className='mainText'>
+            <p>00-1 <span></span> 00-3</p>
+            <h1 className="slide-vertical">
+              <span className='firText'>{first}</span>
+              <span className='secText'>{second}</span>
+            </h1>
+            <Link
+              data-splitting
+              to="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              className='goProject'
+            >
+              <div>
+                <img className='leftArrow' src={arrowLeft} alt='arrow' />СМОТРЕТЬ КЕЙС<img className='rightArrow' src={arrowRight} alt='arrow' />
+              </div>
+            </Link>
+          </section>
+        </div>
+      </section>
+    );
+  };
+  
+  const Projects: React.FC = () => {
+    return (
+      <main className="projects-container">
+        {projects.map((project, index) => (
+          <ParallaxImage 
+            key={index} 
+            src={project.src} 
+            first={project.first} 
+            second={project.second} 
+            alt={project.alt} 
+          />
+        ))}
+      </main>
+    );
+  };
+  
+  export default Projects;

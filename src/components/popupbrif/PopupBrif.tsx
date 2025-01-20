@@ -27,7 +27,7 @@ function PopupBrif(props: Props) {
     const [showDefaultContent, setShowDefaultContent] = useState(true);
     const [showSuccessContent, setShowSuccessContent] = useState(false);
     const [showThirdContent, setShowThirdContent] = useState(false);
-    const { startTimer, stopTimer } = useTimer(0);
+    
 
     useEffect(() => {
       setDrawerIsOpen(true);
@@ -49,22 +49,59 @@ function PopupBrif(props: Props) {
     };
     }, [showDefaultContent, showSuccessContent, showThirdContent]);
 
+    const { remainingTime, startTimer, stopTimer } = useTimer(5 * 60 * 1000); // 5 minutes in milliseconds
+
     useEffect(() => {
-        const storedShowThirdContent = localStorage.getItem('showThirdContent');
-        if (storedShowThirdContent === 'true') {
-            setShowThirdContent(true);
-            setShowDefaultContent(false);
-            setShowSuccessContent(false);
-            startTimer();
+        const storedShowThirdContent = localStorage.getItem('showThirdContent') === 'true';
+        const storedStartTime = localStorage.getItem('startTime');
+        if (storedShowThirdContent && storedStartTime) {
+            const elapsed = Date.now() - parseInt(storedStartTime, 10);
+            const remaining = 5 * 60 * 1000 - elapsed;
+            if (remaining > 0) {
+                setShowThirdContent(true);
+                setShowDefaultContent(false);
+                setShowSuccessContent(false);
+                startTimer();
+                console.log('[PopupBrif] Restored third content.');
+            } else {
+                console.log('[PopupBrif] Timer expired.');
+                localStorage.removeItem('showThirdContent');
+                setShowDefaultContent(true);
+            }
         }
     }, [startTimer]);
 
     useEffect(() => {
-    if (showThirdContent) {
-        startTimer();
-    } else {
-    stopTimer();
-    }
+        if (showThirdContent && remainingTime === 0) {
+            console.log('[PopupBrif] Timer finished, switching to default content.');
+            setShowThirdContent(false);
+            setShowDefaultContent(true);
+            localStorage.removeItem('showThirdContent');
+            stopTimer();
+        }
+    }, [remainingTime, showThirdContent]);
+
+    useEffect(() => {
+        setSelectedProjectType(projectButtons.find(button => button.id === props.selectedService)?.value || null);
+    }, [props.selectedService]);
+
+    useEffect(() => {
+        if (showDefaultContent || showSuccessContent || showThirdContent) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+        return () => {
+            document.body.style.overflow = '';
+        };
+    }, [showDefaultContent, showSuccessContent, showThirdContent]);
+
+    useEffect(() => {
+        if (showThirdContent) {
+            startTimer();
+        } else {
+            stopTimer();
+        }
     }, [showThirdContent, startTimer, stopTimer]);
 
     const form = useForm({
@@ -250,7 +287,7 @@ function PopupBrif(props: Props) {
       ) : showSuccessContent ? (
         <SuccessContent ref={ref} handleDrawerClose={handleDrawerClose} />
       ) : (
-        <TimerContent ref={ref} handleDrawerClose={handleDrawerClose} />
+        <TimerContent ref={ref} handleDrawerClose={handleDrawerClose} remainingTime={remainingTime} />
       )}
     </motion.section>
   );

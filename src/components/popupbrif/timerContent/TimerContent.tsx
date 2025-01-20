@@ -1,38 +1,40 @@
-import { forwardRef } from 'react'
-import useTimer from '../../hooks/useTimer'
-import './timercontent.scss'
+import React from 'react'
+import './timerContent.scss'
 import arrowLeft from '/arrowBlackL.svg'
 import arrowRight from '/arrowBlackR.svg'
 
 interface TimerContentProps {
-  handleDrawerClose: () => void;
+    ref: React.RefObject<HTMLElement>;
+    handleDrawerClose: () => void;
+    remainingTime: number;
 }
 
-const TimerContent = forwardRef<HTMLElement, TimerContentProps>(({ handleDrawerClose }, ref) => {
-  const { elapsedTime, timerActive } = useTimer(0);
+const TimerContent: React.FC<TimerContentProps> = ({ ref, handleDrawerClose, remainingTime }) => {
+    const formatTime = (time: number) => {
+        const minutes = Math.floor(time / 60000);
+        const seconds = Math.floor((time % 60000) / 1000);
+        return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    };
 
-  return (
-    <article className='drawerThird' ref={ref}>
-        <header>
-            <p className='popupTextThird'>Пожалуйста, подождите,<br />пока закончится таймер</p>
-        </header>
-        <main>
-            {timerActive && (
+    return (
+        <article className='drawerThird' ref={ref}>
+            <header>
+                <p className='popupTextThird'>Пожалуйста, подождите,<br />пока закончится таймер</p>
+            </header>
+            <main>
                 <p className='timer'>
-                {`${String(Math.floor((5 * 60 - elapsedTime / 1000) / 60)).padStart(2, '0')}:${String(
-                Math.floor((5 * 60 - elapsedTime / 1000) % 60)
-                ).padStart(2, '0')}`}
+                    {remainingTime > 0 ? formatTime(remainingTime) : '00:00'}
                 </p>
-            )}
-        </main>
-        <footer>
-            <p className='footerFormText'>После завершения отсчета, Вы<br />снова сможете заполнить бриф</p>
-            <button onClick={handleDrawerClose} className='closeButton2'>
-                <img className='leftArrow' src={arrowLeft} alt='arrow' />Закрыть<img className='rightArrow' src={arrowRight} alt='arrow' />
-            </button>
-        </footer>
-    </article>
-  );
-});
+                {remainingTime === 0 && <p>Таймер завершился!</p>}
+            </main>
+            <footer>
+                <p className='footerFormText'>После завершения отсчета, Вы<br />снова сможете заполнить бриф</p>
+                <button onClick={handleDrawerClose} className='closeButton2'>
+                    <img className='leftArrow' src={arrowLeft} alt='arrow' />Закрыть<img className='rightArrow' src={arrowRight} alt='arrow' />
+                </button>
+            </footer>
+        </article>
+    );
+};
 
 export default TimerContent;

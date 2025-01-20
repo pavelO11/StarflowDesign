@@ -6,45 +6,62 @@ export const popupAnimation = {
 		x: '0%',
 		transition: {
 			duration: .8,
-			easyInOut: [.1,.1,.1,1]
+			easyInOut: [0.63, 0.05, 0.36, 1]
 		}
 	},
 	exit: {
 		x: '100%',
 		transition: {
 			duration: .6,
-			easyInOut: [1,.1,1,1]
+			easyInOut: [0.63, 0.05, 0.36, 1]
 		}
 	}
+	// initial: {
+    //     x: '100%',
+    //     scale: 1,
+    //     rotateX: 0,
+    //     rotateY: 0,
+    //     rotateZ: 0,
+    //     skew: 0,
+    //     transformStyle: 'preserve-3d',
+    // },
+    // enter: {
+    //     x: '0%',
+    //     scale: 1,
+    //     rotateX: 0,
+    //     rotateY: 0,
+    //     rotateZ: 0,
+    //     skew: 0,
+    //     transformStyle: 'preserve-3d',
+    //     transition: {
+    //         duration: 0.6,
+    //     },
+    // },
+    // exit: {
+    //     x: '100%',
+    //     scale: 1,
+    //     rotateX: 0,
+    //     rotateY: 0,
+    //     rotateZ: 0,
+    //     skew: 0,
+    //     transformStyle: 'preserve-3d',
+    //     transition: {
+    //         duration: 0.6,
+    //     },
+    // },
 }
 
 export const burgerAnimation = {
-	// initial: {
-	// 	y: '-100%'
-	// },
-	// enter: {
-	// 	y: '0%',
-	// 	transition: {
-	// 		duration: .6,
-	// 		easyInOut: [0.63, 0, 0.36, 0.99]
-	// 	}
-	// },
-	// exit: {
-	// 	y: '-100%',
-	// 	transition: {
-	// 		duration: .6,
-	// 		easyInOut: [0.63, 0, 0.36, 0.99]
-	// 	}
-	// }
+	// 		easyInOut: [0.63, 0.05, 0.36, 1]
 	initial: {
 		x: '100%',
 	  },
 	  enter: {
 		x: '0%',
 		transition: {
-		  duration: 0.8,
+		  duration: 0.5, //was 0.8
 		//   ease: [0.1, 0.5, 0.4, 0.4], // Стандартная ease-in-out кривая
-		easeInOut: [.57,.21,.69,1.25]
+		easeInOut: [0.63, 0.05, 0.36, 1]
 		// transition: {
 		// 	duration: 0.4,
 		// 	translate3d: [0, 0, 0]
@@ -52,10 +69,10 @@ export const burgerAnimation = {
 		},
 	},
 	  exit: {
-		x: '100%', // Возврат в исходное положение
+		x: '100%',
 		transition: {
-		  duration: 0.8,
-		  easeInOut: [.57,.21,.69,1.25]
+		  duration: 0.4,//was 0.8
+		  easeInOut: [0.63, 0.05, 0.36, 1]
 		},
 		// transition: {
 		// 	duration: 0.,
