@@ -24,7 +24,7 @@ function FooterContacts() {
                     <Link data-splitting className='ul_link' to='https://www.instagram.com/igor.dubovtsev.ui/' target="_blank" rel="noopener noreferrer">INSTAGRAM</Link>
                     <Link data-splitting className='ul_link' to='https://dribbble.com/StarflowDesign' target="_blank" rel="noopener noreferrer">DRIBBBLE</Link>
                 </ul>
-                <Link data-splitting className='underLinkSecond' to='https://github.com/p1baby' target="_blank" rel="noopener noreferrer">Верстка сайта<br />@p1baby</Link>
+                <Link data-splitting className='underLinkSecond' to='https://github.com/pavelO11' target="_blank" rel="noopener noreferrer">Верстка сайта<br />@pavelO11</Link>
             </section>
             <section className='lowerSection'>
                   <article>
@@ -54,10 +54,10 @@ function FooterContacts() {
                         </Link>
                         <Link 
                         className='footerLinkSecond'
-                        to='https://github.com/p1baby' 
+                        to='https://github.com/pavelO11' 
                         target="_blank" 
                         rel="noopener noreferrer">
-                            Верстка сайта<br />p1baby
+                            Верстка сайта<br />pavelO11
                         </Link>
                     </footer>
             </section>

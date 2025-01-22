@@ -77,11 +77,11 @@ function FooterHome() {
                 <Link 
                     data-splitting
                     className="underLinkSecond"
-                    to='https://github.com/p1baby' 
+                    to='https://github.com/pavelO11' 
                     target="_blank" 
                     rel="noopener noreferrer"
                     >
-                    Верстка сайта<br />@p1baby
+                    Верстка сайта<br />@pavelO11
                 </Link>
             </section>
         </footer>

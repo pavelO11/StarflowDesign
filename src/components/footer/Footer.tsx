@@ -72,7 +72,7 @@ const Footer = () => {
 				</ul>
             <section className='direct'>
                 <Link className='footerLinkFirst' to='mailto:starflowdesign@gmail.com' target="_blank" rel="noopener noreferrer">Рабочая почта<br />starflowdesign@gmail.com</Link>
-				<Link className='footerLinkSecond' to='https://github.com/p1baby' target="_blank" rel="noopener noreferrer">Верстка сайта<br />@p1baby</Link>
+				<Link className='footerLinkSecond' to='https://github.com/p1baby' target="_blank" rel="noopener noreferrer">Верстка сайта<br />"@pavelO11</Link>
             </section>
 			</section>
 			<section className='mainFooterBottom'>
@@ -93,11 +93,11 @@ const Footer = () => {
 				<Link
                     data-splitting 
                     className='footerLinkSecond' 
-                    to='https://github.com/p1baby' 
+                    to='https://github.com/pavelO11' 
                     target="_blank" 
                     rel="noopener noreferrer"
                     >
-                    Верстка сайта<br />@p1baby
+                    Верстка сайта<br />@pavelO11
                 </Link>
 			</section>
 		</footer>
