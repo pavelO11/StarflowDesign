@@ -27,7 +27,7 @@
 				height: 100vh;
 				background: vars.$main-color-text !important;
 				z-index: 1000;
-				padding: 64px 24px 24px 24px;
+				padding: 48px 24px 24px 24px;
 				gap: 40px;
 				.popupText{
 					color: vars.$black-text;
@@ -125,7 +125,7 @@
 						flex-direction: row;
 						justify-content: space-between;
 						text-align: start;
-						padding: 64px 0 0 0;
+						padding: 48px 0 0 0;
 					}
 				}
 				form{
