@@ -186,11 +186,11 @@ const Services = () => {
             {stages.map((stage, index) => (
               <li key={stage.id} className={accordionStates[index] ? 'open' : ''} style={{ borderBottom: accordionStates[index] ? '1px solid #FAFAFA' : '1px solid rgba(255, 255, 255, 0.2)' }}>
                 <input
-                  type='radio'
-                  name='accordion'
-                  id={stage.id}
-                  checked={accordionStates[index]}
-                //   onChange={() => handleToggleAccordion(index)}
+                    type='radio'
+                    readOnly
+                    name='accordion'
+                    id={stage.id}
+                    checked={accordionStates[index]}
 				    onClick={() => handleToggleAccordion(index)}
                 />
                 <label htmlFor={stage.id}>
