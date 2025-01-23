@@ -216,26 +216,69 @@ const Curve: FC<CurveProps> = ({ children, backgroundColor }) => {
     return () => window.removeEventListener('resize', resize);
   }, []);
 
-  useEffect(() => {
-    const wrapper = document.querySelector('.wrapper') as HTMLElement | null;
-    if (wrapper) {
-      // Добавляем класс wrapper при начале анимации
-      wrapper.classList.add('wrapper');
-      wrapper.classList.remove('wrapper-none-scroll');
+//   useEffect(() => {
+//     const wrapper = document.querySelector('.wrapper') as HTMLElement | null;
+//     if (wrapper) {
+//       // Добавляем класс wrapper при начале анимации
+//       wrapper.classList.add('wrapper');
+//       wrapper.classList.remove('wrapper-none-scroll');
 
-      // Устанавливаем таймер для смены класса через 3 секунды
-      const timer = setTimeout(() => {
-        if (wrapper) {
-          wrapper.classList.remove('wrapper');
-          wrapper.classList.add('wrapper-none-scroll');
-        }
-      }, 3000);
+//       // Устанавливаем таймер для смены класса через 3 секунды
+//       const timer = setTimeout(() => {
+//         if (wrapper) {
+//           wrapper.classList.remove('wrapper');
+//           wrapper.classList.add('wrapper-none-scroll');
+//         }
+//       }, 3000);
 
-      // Очищаем таймер при размонтировании компонента
-      return () => clearTimeout(timer);
-    }
+//       // Очищаем таймер при размонтировании компонента
+//       return () => clearTimeout(timer);
+//     }
 
-    return () => {};
+//     return () => {};
+//   }, [location.pathname]);
+    useEffect(() => {
+    const disableScroll = () => {
+      // Сохраняем текущую позицию прокрутки
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const scrollLeft = window.scrollX || document.documentElement.scrollLeft;
+  
+      // Устанавливаем стили для блокировки прокрутки
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollTop}px`;
+      document.body.style.left = `-${scrollLeft}px`;
+      document.body.style.width = '100%';
+    };
+  
+    const enableScroll = () => {
+      // Получаем сохранённые позиции прокрутки
+      const scrollTop = Math.abs(parseInt(document.body.style.top || '0', 10));
+      const scrollLeft = Math.abs(parseInt(document.body.style.left || '0', 10));
+  
+      // Восстанавливаем стили
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.body.style.width = '';
+  
+      // Восстанавливаем прокрутку
+      window.scrollTo(scrollLeft, scrollTop);
+    };
+  
+    // Блокируем прокрутку при начале анимации
+    disableScroll();
+  
+    // Убираем блокировку через 3 секунды
+    const timer = setTimeout(() => {
+      enableScroll();
+    }, 3000);
+  
+    return () => {
+      enableScroll();
+      clearTimeout(timer);
+    };
   }, [location.pathname]);
 
   const text = {

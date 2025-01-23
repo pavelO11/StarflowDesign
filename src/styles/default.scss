@@ -87,7 +87,7 @@ input[type="number"] {
     }
 }
 .wrapper {
-    overflow-y: hidden;
+    // overflow-y: hidden;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -98,14 +98,14 @@ input[type="number"] {
     // background-repeat: no-repeat;
     // background-position: center;
 }
-.wrapper-none-scroll{
-    overflow-y: inherit;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    background-color: #070707;   
-}
+// .wrapper-none-scroll{
+//     overflow-y: inherit;
+//     position: relative;
+//     display: flex;
+//     flex-direction: column;
+//     height: 100vh;
+//     background-color: #070707;   
+// }
 .video-bg {
     position: absolute;
     top: 0;
