@@ -101,7 +101,7 @@ const useTimer = (duration: number) => {
                 const elapsed = Date.now() - startTime.current!;
                 const remaining = duration - elapsed;
 
-                setRemainingTime((prev) => {
+                setRemainingTime((_prev) => {
                     const newRemaining = duration - elapsed;
                     return newRemaining > 0 ? newRemaining : 0;
                 });
