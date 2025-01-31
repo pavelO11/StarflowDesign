@@ -318,7 +318,8 @@ function PopupBrif(props: Props) {
     const [showDefaultContent, setShowDefaultContent] = useState(true);
     const [showSuccessContent, setShowSuccessContent] = useState(false);
     const [showThirdContent, setShowThirdContent] = useState(false);
-    const { remainingTime, startTimer, stopTimer } = useTimer(5 * 60 * 1000);
+    // const { remainingTime, startTimer, stopTimer } = useTimer(5 * 60 * 1000);
+    const { remainingTime, startTimer } = useTimer(5 * 60 * 1000);
 
     useEffect(() => {
         setSelectedProjectType(projectButtons.find(button => button.id === props.selectedService)?.value || null);

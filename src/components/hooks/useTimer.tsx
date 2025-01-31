@@ -89,6 +89,7 @@ const useTimer = (duration: number) => {
     const startTime = useRef<number | null>(null);
     const timerActive = useRef(false);
 
+    // Функция для запуска таймера
     const startTimer = () => {
         if (!timerActive.current) {
             const storedStartTime = localStorage.getItem('startTime');
@@ -110,6 +111,7 @@ const useTimer = (duration: number) => {
         }
     };
 
+    // Функция для остановки таймера
     const stopTimer = () => {
         if (timerActive.current) {
             timerActive.current = false;
@@ -123,6 +125,7 @@ const useTimer = (duration: number) => {
         }
     };
 
+    // Восстановление состояния таймера при монтировании компонента
     useEffect(() => {
         const storedStartTime = localStorage.getItem('startTime');
         if (storedStartTime) {
