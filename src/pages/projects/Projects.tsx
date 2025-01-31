@@ -11,43 +11,49 @@ import './projects.scss'
 import arrowLeft from '/arrowLeft.svg'
 import arrowRight from '/arrowRight.svg'
   
-  const projects = [
+const projects = [
     {
+      id: 1,
       src: "/REAL_ESTATE.jpg",
       first: "Real",
       second: " Estate",
-      alt: "Image"
+      alt: "Real Estate Project",
+      order: "00-1"
     },
     {
+      id: 2,
       src: "/SF_STORE.jpg",
       first: "SF",
       second: " Store",
-      alt: "Image"
+      alt: "SF Store Project",
+      order: "00-2"
     },
     {
+      id: 3,
       src: "/DETAILING_STUDIO.jpg",
       first: "Detailing",
       second: " Studio",
-      alt: "Image"
+      alt: "Detailing Studio Project",
+      order: "00-3"
     }
   ];
-  
+
   // parallax hook
   function useParallax(value: MotionValue<number>, distance: number) {
     return useTransform(value, [0, 1], [-distance, distance]);
   }
   
-  const ParallaxImage: React.FC<{ src: string; first: string; second: string; alt: string }> = ({ src, first, second, alt }) => {
+  const ParallaxImage: React.FC<{ src: string; first: string; second: string; alt: string, order: string }> = ({ src, first, second, alt, order }) => {
     const ref = useRef<HTMLDivElement>(null);
     const { scrollYProgress } = useScroll({ target: ref });
-    const y = useParallax(scrollYProgress, 1);
+    const y = useParallax(scrollYProgress, 0);
     useSplittingHover();
     return (
-      <section className="image-section">
+    //   <section className="image-section">
         <div ref={ref} className="image-container">
           <motion.img src={src} alt={alt} className="image" style={{ y }} />
           <section className='mainText'>
-            <p>00-1 <span></span> 00-3</p>
+            <p>{order}<span></span> 00-3</p>
             <h1 className="slide-vertical">
               <span className='firText'>{first}</span>
               <span className='secText'>{second}</span>
@@ -65,22 +71,23 @@ import arrowRight from '/arrowRight.svg'
             </Link>
           </section>
         </div>
-      </section>
+    //   </section>
     );
   };
   
   const Projects: React.FC = () => {
     return (
       <main className="projects-container">
-        {projects.map((project, index) => (
-          <ParallaxImage 
-            key={index} 
-            src={project.src} 
-            first={project.first} 
-            second={project.second} 
-            alt={project.alt} 
-          />
-        ))}
+        {projects.map((project) => (
+        <ParallaxImage 
+          key={project.id}
+          src={project.src}
+          first={project.first} 
+          second={project.second}
+          alt={project.alt}
+          order={project.order}
+        />
+      ))}
       </main>
     );
   };
