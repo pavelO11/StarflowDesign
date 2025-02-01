@@ -1,4 +1,6 @@
+import { motion } from 'framer-motion'
 import React from 'react'
+import { popupAnimation } from '../../animations/modals'
 import './timercontent.scss'
 import arrowLeft from '/arrowBlackL.svg'
 import arrowRight from '/arrowBlackR.svg'
@@ -17,7 +19,12 @@ const TimerContent: React.FC<TimerContentProps> = ({ ref, handleDrawerClose, rem
     };
 
     return (
-        <article className='drawerThird' ref={ref}>
+        <motion.article
+        variants={popupAnimation}
+        exit='exit'
+        initial='initial'
+        className='drawerThird' 
+        ref={ref}>
             <header>
                 <p className='popupTextThird'>Пожалуйста, подождите,<br />пока закончится таймер</p>
             </header>
@@ -30,7 +37,7 @@ const TimerContent: React.FC<TimerContentProps> = ({ ref, handleDrawerClose, rem
                     <img className='leftArrow' src={arrowLeft} alt='arrow' />Закрыть<img className='rightArrow' src={arrowRight} alt='arrow' />
                 </button>
             </footer>
-        </article>
+        </motion.article>
     );
 };
 

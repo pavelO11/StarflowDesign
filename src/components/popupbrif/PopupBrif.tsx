@@ -298,7 +298,7 @@ import { useForm } from '@mantine/form'
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { sendMessage } from '../../api/telegram'
-import { popupAnimation } from '../animations/modals'
+import { overlayAnimation, popupAnimation } from '../animations/modals'
 import useSplittingHover from '../hooks/useSplittingHover'
 import useTimer from '../hooks/useTimer'
 import { useOutsideClick } from '../popupbrif/outsideClick/useOutsideClick'
@@ -347,10 +347,24 @@ function PopupBrif(props: Props) {
         }
     }, [remainingTime]);
 
+    //block scroll
     useEffect(() => {
-        document.body.style.overflow = showDefaultContent || showSuccessContent || showThirdContent ? 'hidden' : '';
-        return () => {
+        const disableScroll = () => {
+            document.body.style.overflow = 'hidden';
+        };
+
+        const enableScroll = () => {
             document.body.style.overflow = '';
+        };
+
+        if (showDefaultContent || showSuccessContent || showThirdContent) {
+            disableScroll();
+        } else {
+            enableScroll();
+        }
+
+        return () => {
+            enableScroll(); // Всегда восстанавливаем прокрутку при размонтировании компонента
         };
     }, [showDefaultContent, showSuccessContent, showThirdContent]);
 
@@ -420,8 +434,8 @@ function PopupBrif(props: Props) {
 
             await sendMessage(message);
             setShowDefaultContent(false);
+            setShowSuccessContent(true);
             setTimeout(() => {
-                setShowSuccessContent(true);
                 setShowThirdContent(true);
                 startTimer();
             }, 2000);
@@ -445,11 +459,11 @@ function PopupBrif(props: Props) {
 
     return (
         <motion.section
+        variants={overlayAnimation}
+        initial="initial"
+        animate="enter"
+        exit="exit"
         className="overlay"
-        initial={{ opacity: 1 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 1 }}
-        transition={{ duration: 0.3 }}
         >
         {showDefaultContent ? (
             <>

@@ -1,4 +1,6 @@
+import { motion } from 'framer-motion'
 import { forwardRef } from 'react'
+import { popupAnimation } from '../../animations/modals'
 import './successcontent.scss'
 import arrowLeft from '/arrowBlackL.svg'
 import arrowRight from '/arrowBlackR.svg'
@@ -9,7 +11,11 @@ interface SuccessContentProps {
 
 const SuccessContent = forwardRef<HTMLElement, SuccessContentProps>(({ handleDrawerClose }, ref) => {
 	return (
-      <article className='drawerSecond' ref={ref}>
+      <motion.article
+      variants={popupAnimation}
+        exit='exit'
+      className='drawerSecond' 
+      ref={ref}>
             <header>
                 <p className='popupTextSecond'>Вместе мы сделаем что-то<br />по истине крутое</p>
             </header>
@@ -20,7 +26,7 @@ const SuccessContent = forwardRef<HTMLElement, SuccessContentProps>(({ handleDra
                 <p className='footerFormText'>Я изучу бриф и свяжусь с Вами<br />в ближайшее время</p>
                 <button onClick={handleDrawerClose} className='closeButton2'><img className='leftArrow' src={arrowLeft} alt='arrow' />Закрыть<img className='rightArrow' src={arrowRight} alt='arrow' /></button>
             </footer>
-        </article>
+        </motion.article>
 	);
 })
 
