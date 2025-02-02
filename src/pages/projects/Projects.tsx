@@ -146,23 +146,23 @@ const projects = [
     {
         id: 1,
         src: "/REAL_ESTATE.jpg",
-        first: "Real",
-        second: " Estate",
+        first: "Rеal",
+        second: " Estatе",
         order: "00-1",
         link: "https://dprofile.ru/case/76591/real-estate"
     },
     {
         id: 2,
         src: "/SF_STORE.jpg",
-        first: "SF",
-        second: " Store",
+        first: "SF —",
+        second: " Storе",
         order: "00-2",
         link: "https://dprofile.ru/case/55727/perfume-shop"
     },
     {
         id: 3,
         src: "/DETAILING_STUDIO.jpg",
-        first: "Detailing",
+        first: "Dеtailing",
         second: " Studio",
         order: "00-3",
         link: "https://dprofile.ru/case/47515/detailing-studio"

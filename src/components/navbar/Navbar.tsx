@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { createContext, useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { burgerAnimation } from '../animations/modals'
 import useSplittingHover from '../hooks/useSplittingHover'
 import './navbar.scss'
@@ -17,6 +17,9 @@ const Navbar = ({ isAboutPage }: NavbarProps) => {
     const [isBurgerOpen, setIsBurgerOpen] = useState(false);
     const logoRef = useRef<HTMLImageElement>(null);
     const [shouldHideNavbar, setShouldHideNavbar] = useState(false);
+
+    const location = useLocation();
+    const pagesWithoutMixBlendMode = ['/projects'];
 
     useEffect(() => {
         const checkVisibility = () => {
@@ -57,15 +60,18 @@ const Navbar = ({ isAboutPage }: NavbarProps) => {
     useEffect(() => {
         const navbar = document.querySelector('.navbar') as HTMLElement;
         const burger = document.querySelector('.burger') as HTMLElement;
-    
+
         if (navbar && burger) {
-            if (isAboutPage || burger.classList.contains('burgerActive')) {
-                navbar.style.mixBlendMode = 'normal';
+            // Проверяем, находится ли текущая страница в списке pagesWithoutMixBlendMode
+            const shouldDisableMixBlendMode = pagesWithoutMixBlendMode.includes(location.pathname);
+
+            if (isAboutPage || burger.classList.contains('burgerActive') || shouldDisableMixBlendMode) {
+                navbar.style.mixBlendMode = 'normal'; // Отключаем mix-blend-mode
             } else {
-                navbar.style.mixBlendMode = 'difference';
+                navbar.style.mixBlendMode = 'difference'; // Включаем mix-blend-mode
             }
         }
-    }, [isAboutPage, isBurgerOpen]);
+    }, [isAboutPage, isBurgerOpen, location.pathname]);
 
     useSplittingHover();
 
