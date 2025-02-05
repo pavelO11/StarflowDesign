@@ -14,7 +14,7 @@ const projects = [
     {
         id: 1,
         src: "/REAL_ESTATE.jpg",
-        first: "Rеal",
+        first: "Real",
         second: " Estatе",
         order: "00-1",
         link: "https://dprofile.ru/case/76591/real-estate"
@@ -30,8 +30,8 @@ const projects = [
     {
         id: 3,
         src: "/DETAILING_STUDIO.jpg",
-        first: "Dеtailing",
-        second: " Studio",
+        first: "Detailing",
+        second: " Studiо",
         order: "00-3",
         link: "https://dprofile.ru/case/47515/detailing-studio"
     }
