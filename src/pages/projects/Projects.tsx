@@ -46,7 +46,10 @@ const ParallaxImage: React.FC<{
     onVisible: () => void;
 }> = ({ src, onVisible }) => {
     const ref = useRef<HTMLDivElement>(null);
-    const { scrollYProgress } = useScroll({ target: ref });
+    const { scrollYProgress } = useScroll({ 
+        target: ref,
+        offset: ['start end', 'end start'] // Уточняем точки отсчета
+    });
     const y = useParallax(scrollYProgress, 0); // just for using
 
     useEffect(() => {
@@ -84,34 +87,6 @@ const Projects: React.FC = () => {
     const pRef = useRef<HTMLParagraphElement>(null);
 
     // animation on text during scroll
-    // useEffect(() => {
-    //     const initAnimations = () => {
-    //         const elements = [];
-    //         if (h1Ref.current) elements.push(h1Ref.current);
-    //         if (pRef.current) elements.push(pRef.current);
-
-    //         elements.forEach(element => {
-
-    //             Splitting({ 
-    //                 target: element, 
-    //                 by: 'chars', 
-    //                 key: null 
-    //             });
-    //             element.classList.remove('visible');
-                
-    //             Splitting({ 
-    //                 target: element, 
-    //                 by: 'chars' 
-    //             });
-                
-    //             setTimeout(() => {
-    //                 element.classList.add('visible');
-    //             }, 50);
-    //         });
-    //     };
-
-    //     initAnimations();
-    // }, [currentProject]);
     useEffect(() => {
         const initAnimation = (element: HTMLElement) => {
             // Сбрасываем предыдущее состояние
@@ -123,7 +98,7 @@ const Projects: React.FC = () => {
             element.dataset.originalContent = originalContent;
             
             // Применяем Splitting
-            Splitting({ target: element, by: 'chars' });
+            Splitting({ target: element, by: 'chars', ignore: '.static-text' });
             
             // Активируем анимацию
             setTimeout(() => {
@@ -152,13 +127,19 @@ const Projects: React.FC = () => {
                     {/* <span className="divider"></span> 
                     00-3 */}
                 {/* </p> */}
-                <p 
+                <div className='countProjects'>
+                <p
+                    key={currentProject.order}
                     ref={pRef} 
                     className="order" 
                     data-splitting
                 >  
-                    {currentProject.order}   
+                    {currentProject.order}
+                    <span className="divider"></span> 
+                    {/* <span className="static-text">00-3</span> */}
                 </p>
+                <p>00-3</p>
+                </div>
                 <h1
                     key={currentProject.id}
                     ref={h1Ref}

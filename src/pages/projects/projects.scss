@@ -22,6 +22,10 @@ html {
         padding: 0 24px;
         color: vars.$main-color-text;
         z-index: 10;
+        .countProjects{
+            display: flex;
+            gap: 8px;
+        }
         .order {
             display: flex;
             gap: 8px;
@@ -33,10 +37,6 @@ html {
                 color: vars.$main-color-text;
                 transition: transform 0.5s cubic-bezier(0.9,0,.2,1);
 				transition-delay: calc( 0.2s + ( 0.02s * ( var(--char-index)) ) );
-                // &[data-char="-"] {
-                //     transform: none !important;
-                //     transition: none !important;
-                // }
             }
             &.visible .char{
                 transform: translateY(0);
@@ -45,6 +45,11 @@ html {
                 width: 24px;
                 height: 1px;
                 background-color: #FAFAFA;
+            }
+            .static-text{
+                display: inline-block;
+                transform: none !important;
+                transition: none !important;
             }
         }
 
