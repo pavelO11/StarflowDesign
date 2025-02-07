@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom'
 import NavigationButtons from '../../components/navigation/Navigation.tsx'
 //import star404 from '/star404.svg';
 import useSplittingOnLoad from '../../components/hooks/useSplittingOnLoad.tsx'
-import Curve from '../../components/layoutTransition/index.tsx'
 import './404.scss'
 import arrowLeft from '/arrowLeft.svg'
 import arrowRight from '/arrowRight.svg'
@@ -12,7 +11,6 @@ function Undefpage() {
 	useSplittingOnLoad('.slide-vertical');
 	
 	return (
-        <Curve>
         <section className='undefSection'>
 					<h1 data-splitting className='slide-vertical'>
 						<span className='firText'>Страница</span>
@@ -29,7 +27,6 @@ function Undefpage() {
 						<section className='undefFooterLink'><img className='leftArrow' src={arrowLeft} alt='arrow' />вернуться на главную<img className='rightArrow' src={arrowRight} alt='arrow' /></section>
 					</Link>
 			</section>
-        </Curve>
 	);
 }
 
