@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import React from 'react'
 import { popupAnimation } from '../../animations/modals'
+import useSplittingHover from '../../hooks/useSplittingHover'
 import './timercontent.scss'
 import arrowLeft from '/arrowBlackL.svg'
 import arrowRight from '/arrowBlackR.svg'
@@ -18,6 +19,8 @@ const TimerContent: React.FC<TimerContentProps> = ({ ref, handleDrawerClose, rem
         return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
     };
 
+    useSplittingHover();
+
     return (
         <motion.article
         variants={popupAnimation}
@@ -33,7 +36,7 @@ const TimerContent: React.FC<TimerContentProps> = ({ ref, handleDrawerClose, rem
             </main>
             <footer>
                 <p className='footerFormText'>После завершения отсчета, Вы<br />снова сможете заполнить бриф</p>
-                <button onClick={handleDrawerClose} className='closeButton2'>
+                <button data-splitting onClick={handleDrawerClose} className='closeButtonTimer'>
                     <img className='leftArrow' src={arrowLeft} alt='arrow' />Закрыть<img className='rightArrow' src={arrowRight} alt='arrow' />
                 </button>
             </footer>
