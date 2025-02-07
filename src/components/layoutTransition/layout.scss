@@ -28,7 +28,7 @@
 		z-index: 52;
 		pointer-events: auto;
 		&::after {
-			content: 'Starflow Design ©';
+			content: 'Starflow Design';
 			position: absolute;
 			left: 0;
 			top: 0;
@@ -38,23 +38,23 @@
 			animation: fillAnimation 3s ease forwards;
 		}
 	}
-	// .labelc {
-	// 	font-size: 14px;
-	// 	vertical-align: super;
-	// 	color: #3e3e3e;
-	// 	position: relative;
-	// 	-webkit-text-stroke: 0.1px #3e3e3e;
-	// 	&::after {
-	// 		content: '©';
-	// 		position: absolute;
-	// 		left: 0;
-	// 		top: 0;
-	// 		color: vars.$main-color-text; 
-	// 		clip-path: inset(100% 0 0 0);
-	// 		-webkit-text-stroke: 0.1px vars.$main-color-text;
-	// 		animation: labelAnimation 3s ease forwards;
-	// 	}
-	// }
+	.labelc {
+		font-size: 14px;
+		vertical-align: super;
+		color: #3e3e3e;
+		position: relative;
+		-webkit-text-stroke: 0.1px #3e3e3e;
+		&::after {
+			content: '©';
+			position: absolute;
+			left: 0;
+			top: 0;
+			color: vars.$main-color-text; 
+			clip-path: inset(100% 0 0 0);
+			-webkit-text-stroke: 0.1px vars.$main-color-text;
+			animation: labelAnimation 3s ease forwards;
+		}
+	}
 	@keyframes fillAnimation {
 		0%, 30% {
 			clip-path: inset(100% 0 0 0);
@@ -63,14 +63,14 @@
 			clip-path: inset(0 0 0 0);
 		}
 	}
-	// @keyframes labelAnimation {
-	// 	0%, 30% {
-	// 		clip-path: inset(100% 0 0 0);
-	// 	}
-	// 	100% {
-	// 		clip-path: inset(0 0 0 0);
-	// 	}
-	// }
+	@keyframes labelAnimation {
+		0%, 30% {
+			clip-path: inset(100% 0 0 0);
+		}
+		100% {
+			clip-path: inset(0 0 0 0);
+		}
+	}
 	@media screen and (max-width: 1366px) {
 		.loadingText {
 			font-size: 24px;
