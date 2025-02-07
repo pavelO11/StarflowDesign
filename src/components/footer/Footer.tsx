@@ -49,7 +49,6 @@ const Footer = () => {
                 <p className='mainFooterTopSecond'><span className='difText'>Обсудим</span><br /><span className='secText'>Ваш проект</span></p>
                 <div className='mainFooterP'><img className='leftArrow' src={arrowLeft} alt='arrow' />написать в телеграм<img className='rightArrow' src={arrowRight} alt='arrow' /></div>
             </Link>
-			{/* <NavigationButtonsStatic/> */}
 			<NextPage />
             <section className='mobileFooter'>
                 <Link
@@ -61,7 +60,6 @@ const Footer = () => {
                     <p className='mainFooterTopSecond'><span className='difText'>Обсудим</span><br /><span className='secText'>Ваш проект</span></p>
                     <div className='mainFooterP'><img className='leftArrow' src={arrowLeft} alt='arrow' />написать в телеграм<img className='rightArrow' src={arrowRight} alt='arrow' /></div>
                 </Link>
-                {/* <NavigationButtonsStatic/> */}
                 <NextPage />
             </section>
             <section className='mainFooterBottomSecond'>
@@ -72,7 +70,7 @@ const Footer = () => {
 				</ul>
             <section className='direct'>
                 <Link className='footerLinkFirst' to='mailto:starflowdesign@gmail.com' target="_blank" rel="noopener noreferrer">Рабочая почта<br />starflowdesign@gmail.com</Link>
-				<Link className='footerLinkSecond' to='https://github.com/p1baby' target="_blank" rel="noopener noreferrer">Верстка сайта<br />"@pavelO11</Link>
+				<Link className='footerLinkSecond' to='https://github.com/p1baby' target="_blank" rel="noopener noreferrer">Верстка сайта<br />@pavelO11</Link>
             </section>
 			</section>
 			<section className='mainFooterBottom'>
