@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import ParallaxText from '../animations/velocity'
 import FooterPrinciples from '../footer/footerPrinciples/FooterPrinciples'
+import useScrollLock from '../hooks/useScrollLock'
 import Navbar from '../navbar/Navbar'
 import './principles.scss'
 
@@ -10,6 +11,8 @@ interface PrinciplesProps {
 
 const Principles: React.FC<PrinciplesProps> = ({ handlePrinciplesShow }) => {
     const [isVisible, setIsVisible] = useState(false);
+
+    useScrollLock();
 
     useEffect(() => {
         setIsVisible(true); // starting animation when component is mounted
@@ -42,46 +45,3 @@ const Principles: React.FC<PrinciplesProps> = ({ handlePrinciplesShow }) => {
 };
 
 export default Principles;
-// const words = [
-//   ['Современность', 'Удобство', 'Понятность', 'Эстетика'],
-//   ['Новизна', 'Эффективность', 'Эмпатия', 'Качество'],
-//   ['Результат', 'Чистота', 'Эмоция', 'Функциональность']
-// ];
-// import FooterPriciples from '../footer/footerPrinciples/FooterPrinciples';
-// import { VelocityScroll } from '../magicui/velocity';
-// import Navbar from '../navbar/Navbar';
-// import './principles.scss';
-
-// interface PrinciplesProps {
-//   handlePrinciplesShow: () => void;
-// }
-
-// const Principles: React.FC<PrinciplesProps> = ({ handlePrinciplesShow }) => {
-//   return (
-//     <section className='principlesSection'>
-//       <Navbar />
-//       <section className='principlesShow'>
-//         <div className='marquee'>
-//           <VelocityScroll
-//             text="Современность Удобство Понятность Эстетика"
-//             default_velocity={10}
-//             className="marquee-content"
-//           />
-//           <VelocityScroll
-//             text="Новизна Эффективность Эмпатия Качество"
-//             default_velocity={10}
-//             className="marquee-content"
-//           />
-//           <VelocityScroll
-//             text="Результат Чистота Эмоция Функциональность"
-//             default_velocity={10}
-//             className="marquee-content"
-//           />
-//         </div>
-//       </section>
-//       <FooterPriciples handlePrinciplesShow={handlePrinciplesShow} />
-//     </section>
-//   );
-// }
-
-// export default Principles;
