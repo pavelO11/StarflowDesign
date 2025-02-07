@@ -166,7 +166,7 @@
 			width: 446px;
 			height: 784px;
 			text-align: left;
-			margin: 680px 0 160px 0;
+			margin: 640px 0 160px 0;
 			position: relative;
 			&::after {
 				content: '';
@@ -650,5 +650,11 @@
         .serviceStages .accordion li {
             align-items: normal;
         }
+		.serviceStages .accordion li {
+			&:hover::after {
+			  transform: scaleX(0) !important; /* Без !important */
+			  transition: transform 0.5s cubic-bezier(0.4, 0.4, 0.2, 0.1) !important; /* Плавность при наведении */
+			}
+		}  
 	}
 }
