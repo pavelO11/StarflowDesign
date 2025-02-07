@@ -48,7 +48,6 @@ const ParallaxImage: React.FC<{
     const ref = useRef<HTMLDivElement>(null);
     const { scrollYProgress } = useScroll({ 
         target: ref,
-        offset: ['start end', 'end start'] // Уточняем точки отсчета
     });
     const y = useParallax(scrollYProgress, 0); // just for using
 
@@ -83,8 +82,12 @@ const ParallaxImage: React.FC<{
 
 const Projects: React.FC = () => {
     const [currentProject, setCurrentProject] = useState(projects[0]);
-    const h1Ref = useRef<HTMLHeadingElement>(null);
-    const pRef = useRef<HTMLParagraphElement>(null);
+    // const h1Ref = useRef<HTMLHeadingElement>(null);
+    // const pRef = useRef<HTMLParagraphElement>(null);
+    const h1RefDesktop = useRef<HTMLHeadingElement>(null);
+    const pRefDesktop = useRef<HTMLParagraphElement>(null);
+    const h1RefMobile = useRef<HTMLHeadingElement>(null);
+    const pRefMobile = useRef<HTMLParagraphElement>(null);
 
     // animation on text during scroll
     useEffect(() => {
@@ -106,8 +109,14 @@ const Projects: React.FC = () => {
             }, 50);
         };
 
-        if (h1Ref.current) initAnimation(h1Ref.current);
-        if (pRef.current) initAnimation(pRef.current);
+        if (window.innerWidth > 768) {
+            if (h1RefDesktop.current) initAnimation(h1RefDesktop.current);
+            if (pRefDesktop.current) initAnimation(pRefDesktop.current);
+        } else {
+            if (h1RefMobile.current) initAnimation(h1RefMobile.current);
+            if (pRefMobile.current) initAnimation(pRefMobile.current);
+        }
+
     }, [currentProject]);
 
     const handleProjectVisible = (id: number) => {
@@ -116,33 +125,59 @@ const Projects: React.FC = () => {
 
     return (
         <main className="projects-container">
+            <section className='mainTextMobile'>
+                    <h1
+                        key={currentProject.id}
+                        ref={h1RefMobile}
+                        className="slide-vertical"
+                        data-splitting
+                    >
+                        <span className='firText'>{currentProject.first}</span>
+                        <span className='secText'>{currentProject.second}</span>
+                    </h1>
+                    <div className='underMobile'>
+                        <div className='countProjects'>
+                        <p
+                            key={currentProject.order}
+                            ref={pRefMobile} 
+                            className="order" 
+                            data-splitting
+                        >  
+                            {currentProject.order}
+                            <span className="divider"></span> 
+                        </p>
+                        <p>00-3</p>
+                        </div>
+                        <Link
+                            className='goProject'
+                            to={currentProject.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <div>
+                                <img className='leftArrow' src={arrowLeft} alt='arrow' />
+                                СМОТРЕТЬ КЕЙС
+                                <img className='rightArrow' src={arrowRight} alt='arrow' />
+                            </div>
+                        </Link>
+                    </div>
+            </section>
             <section className='mainText'>
-                {/* <p 
-                // key={currentProject.id} 
-                ref={pRef} 
-                className='order' 
-                data-splitting
-                >
-                    {currentProject.order} */}
-                    {/* <span className="divider"></span> 
-                    00-3 */}
-                {/* </p> */}
                 <div className='countProjects'>
                 <p
                     key={currentProject.order}
-                    ref={pRef} 
+                    ref={pRefDesktop} 
                     className="order" 
                     data-splitting
                 >  
                     {currentProject.order}
                     <span className="divider"></span> 
-                    {/* <span className="static-text">00-3</span> */}
                 </p>
                 <p>00-3</p>
                 </div>
                 <h1
                     key={currentProject.id}
-                    ref={h1Ref}
+                    ref={h1RefDesktop}
                     className="slide-vertical"
                     data-splitting
                 >
@@ -162,7 +197,6 @@ const Projects: React.FC = () => {
                     </div>
                 </Link>
             </section>
-
             {projects.map((project) => (
                 <ParallaxImage 
                     key={project.id}
