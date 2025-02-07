@@ -1,5 +1,6 @@
-import { motion, useScroll } from 'framer-motion'
-import React, { useRef } from 'react'
+// import { motion, useScroll } from 'framer-motion'
+// import React, { useRef } from 'react'
+import React from 'react'
 import { useLocation } from 'react-router-dom'
 import './aboutme.scss'
 
@@ -7,12 +8,12 @@ const AboutMe = () => {
     const location = useLocation();
     const isServicesPage = location.pathname === '/services';
 
-    const element = useRef(null);
+    // const element = useRef(null);
 
-    const { scrollYProgress } = useScroll({
-        target: element,
-        offset: ['start 0.9', 'start 0.25']
-    })
+    // const { scrollYProgress } = useScroll({
+    //     target: element,
+    //     offset: ['start 0.9', 'start 0.25']
+    // })
 
     // useEffect( () => {
     //     scrollYProgress.on('change', e => console.log(e))
@@ -42,15 +43,18 @@ const AboutMe = () => {
                 <p>{isServicesPage ? '( Мой подход )' : '( Обо мне )'}</p>
                 {isServicesPage ? (
                     <React.Fragment>
-                        <motion.h4 ref={element} style={{opacity: scrollYProgress}}>Разделяю большие и сложные задачи<br />на самодостаточные и прозрачные этапы,<br />чтобы клиент всегда знал, как движется<br />его проект.</motion.h4>
+                        {/* <motion.h4 ref={element} style={{opacity: scrollYProgress}}>Разделяю большие и сложные задачи<br />на самодостаточные и прозрачные этапы,<br />чтобы клиент всегда знал, как движется<br />его проект.</motion.h4>
                         <motion.h4 ref={element} style={{opacity: scrollYProgress}}>Разделяю большие и сложные<br />задачи на самодостаточные<br />и прозрачные этапы, чтобы<br />клиент всегда знал, как<br />движется его проект.</motion.h4>
-                        <motion.h4 ref={element} style={{opacity: scrollYProgress}}>Разделяю большие<br />и сложные задачи<br />на самодостаточные<br />и прозрачные этапы,<br />чтобы клиент всегда<br />знал, как движется<br /> его проект.</motion.h4>
+                        <motion.h4 ref={element} style={{opacity: scrollYProgress}}>Разделяю большие<br />и сложные задачи<br />на самодостаточные<br />и прозрачные этапы,<br />чтобы клиент всегда<br />знал, как движется<br /> его проект.</motion.h4> */}
+                        <h4 >Разделяю большие и сложные задачи<br />на самодостаточные и прозрачные этапы,<br />чтобы клиент всегда знал, как движется<br />его проект.</h4>
+                        <h4 >Разделяю большие и сложные<br />задачи на самодостаточные<br />и прозрачные этапы, чтобы<br />клиент всегда знал, как<br />движется его проект.</h4>
+                        <h4 >Разделяю большие<br />и сложные задачи<br />на самодостаточные<br />и прозрачные этапы,<br />чтобы клиент всегда<br />знал, как движется<br /> его проект.</h4>
                     </React.Fragment>
                 ) : (
                     <React.Fragment>
-                        <motion.h3 ref={element} style={{opacity: scrollYProgress}}>Я люблю продуманный дизайн. Стремлюсь<br />к понятности, простоте и эстетике.<br />Пробую современные визуальные решения.<br />Каждая моя работа — это вызов самому себе.</motion.h3>
-                        <motion.h3 ref={element} style={{opacity: scrollYProgress}}>Я люблю продуманный дизайн. Стремлюсь к понятности, простоте и эстетике. Пробую современные визуальные решения. Каждая моя работа — это вызов самому себе.</motion.h3>
-                        <motion.h3 ref={element} style={{opacity: scrollYProgress}}>Я люблю продуманный дизайн. Стремлюсь к понятности, простоте<br />и эстетике. Пробую современные визуальные решения. Каждая моя работа — это вызов самому себе.</motion.h3>                    
+                        <h3 >Я люблю продуманный дизайн. Стремлюсь<br />к понятности, простоте и эстетике.<br />Пробую современные визуальные решения.<br />Каждая моя работа — это вызов самому себе.</h3>
+                        <h3 >Я люблю продуманный дизайн. Стремлюсь к понятности, простоте и эстетике. Пробую современные визуальные решения. Каждая моя работа — это вызов самому себе.</h3>
+                        <h3 >Я люблю продуманный дизайн. Стремлюсь к понятности, простоте<br />и эстетике. Пробую современные визуальные решения. Каждая моя работа — это вызов самому себе.</h3>                    
                     </React.Fragment>
                 )}      
             </section>
