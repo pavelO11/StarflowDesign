@@ -378,20 +378,21 @@
 				background-color: vars.$main-color-text;
 				transform: scaleX(0);
 				transform-origin: right;
-				transition: transform 0.5s cubic-bezier(0.4, 0.4, 0.2, 0.1), background-color 0.2s ease-in-out;
+				// transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1), background-color 0.2s ease-in-out;
+				transition: transform 0.6s cubic-bezier(0.3, 0.5, 0.32, 1), background-color 1s ease-in-out;
 			}
 			&:hover::after {
 				transform-origin: left;
 				transform: scaleX(1) !important;
 			}
 			&:hover {
-				p{
+				cursor: pointer;
+				p, img{
 					opacity: 1;
 				}
 			}
 			&.open::after {
 				transform: scaleX(1);
-				transition: cubic-bezier(0.4, 0.4, 0.2, 1);
 			}
 		}		
 		.accordion li label {
@@ -423,6 +424,7 @@
 			flex-direction: column;
 			max-height: 0;
 			overflow: hidden;
+			// transition: max-height 0.6s ease-in-out, padding 0.6s ease-in-out, opacity 0.6s ease-in-out;
 			transition: max-height 0.6s ease-in-out, padding 0.6s ease-in-out, opacity 0.6s ease-in-out;
 			p {
 				opacity: 1;
@@ -432,7 +434,7 @@
 			}
 		}
 		.accordion img {
-			transition: transform 0.5s ease, opacity 0.5s ease;
+			transition: transform 0.6s ease, opacity 0.6s ease;
 		  }
 		.accordion input[type='radio']:checked + label + .content {
 			opacity: 1;
