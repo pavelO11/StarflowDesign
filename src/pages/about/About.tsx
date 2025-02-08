@@ -83,10 +83,18 @@ const About = () => {
             {principlesShow && <Principles handlePrinciplesShow={handlePrinciplesShow} />}
             <section className='aboutSection'>
                 <section className='aboutIntro' ref={imageRef}>
-                    <h1 data-splitting className='slide-vertical'>
+                    <h1 data-splitting className='slide-vertical w-full'>
                         <span className='firText'>Привет,</span>
                         <span className='secText'>Я Игорь</span>
                     </h1>
+                    <div className="slide-vertical sm">
+                        <h1 data-splitting className='slide-vertical sm'>
+                            <span className='firText'>Привет,</span>
+                        </h1>
+                        <h1 data-splitting className='slide-vertical'>
+                            <span className='secText'>Я Игорь</span>
+                        </h1>
+                    </div>
                     <article className='homeText'>
                         <section>
                             <p className={visibleLines.includes(0) ? 'visible' : ''} data-splitting>

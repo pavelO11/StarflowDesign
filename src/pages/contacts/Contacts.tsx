@@ -44,12 +44,12 @@ function Contacts() {
 				<span className='secText'> Сотрудничать</span>
 			</h1>
             <div className="slide-vertical sm">
-            <h1 data-splitting className='slide-vertical sm'>
-                <span className='firText'>Давайте</span>
-            </h1>
-            <h1 data-splitting className='slide-vertical'>
-                <span className='secText'> Сотрудничать</span>
-            </h1>
+				<h1 data-splitting className='slide-vertical sm'>
+					<span className='firText'>Давайте</span>
+				</h1>
+				<h1 data-splitting className='slide-vertical'>
+					<span className='secText'>Сотрудничать</span>
+				</h1>
             </div>
 			<NavigationButtons />
 			<article className='contactText'>
