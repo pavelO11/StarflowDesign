@@ -50,12 +50,12 @@
             transition-delay: calc( 0.02s * ( var(--char-index)) );
             }
         }
-        &:hover .char:before { 
-            transition-delay: calc( 0.2s + ( 0.02s * ( var(--char-index)) ) );
-        }
-        &:hover .char:after {
-            transition-delay: calc( 0.02s * ( var(--char-index)) );
-        }
+			&:hover .char:before { 
+				transition-delay: calc( 0.2s + ( 0.02s * ( var(--char-index)) ) );
+			}
+			&:hover .char:after {
+				transition-delay: calc( 0.02s * ( var(--char-index)) );
+			}
 		}
 		.mainFooterTop, .mainFooterTopSecond {
 			color: vars.$main-color-text;
