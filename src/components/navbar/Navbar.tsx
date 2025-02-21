@@ -83,7 +83,9 @@ const Navbar = ({ isAboutPage }: NavbarProps) => {
                 to='/'
                 onClick={() => {
                     setIsBurgerOpen(false);
+                    window.dispatchEvent(new CustomEvent('navHomeClicked'));
                 }}
+                
             >
                 <img src={logo} alt='logo' ref={logoRef} />
                 <section>

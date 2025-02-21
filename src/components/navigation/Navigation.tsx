@@ -78,6 +78,16 @@ function Navigation() {
         setIsTransitioning(true);
     };
 
+    useEffect(() => {
+        const handleNavHomeClicked = () => {
+            setIsTransitioning(true);
+        };
+        window.addEventListener('navHomeClicked', handleNavHomeClicked);
+        return () => {
+            window.removeEventListener('navHomeClicked', handleNavHomeClicked);
+        };
+    }, []);
+
     return (
         <section className={`navigationSection ${isVisible ? (isHidden ? 'fadeOut' : 'fadeIn') : ''} ${isTransitioning ? 'fadeOut' : ''}`}>
             {linksMain.map((link) => (
