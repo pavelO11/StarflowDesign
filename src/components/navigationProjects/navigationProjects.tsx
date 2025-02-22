@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import useSplittingHover from '../hooks/useSplittingHover'
-import './navigationProjects.scss'
+import '../navigation/navigation.scss'
 
 interface NavigationProjectsProps {
   scrollContainerRef: React.RefObject<HTMLElement>
@@ -56,6 +56,16 @@ function NavigationProjects({ scrollContainerRef }: NavigationProjectsProps) {
       container.removeEventListener('touchmove', handleTouchMove)
     }
   }, [scrollContainerRef])
+
+  useEffect(() => {
+    const handleNavHomeClicked = () => {
+        setIsTransitioning(true);
+    };
+    window.addEventListener('navHomeClicked', handleNavHomeClicked);
+    return () => {
+        window.removeEventListener('navHomeClicked', handleNavHomeClicked);
+    };
+}, []);
 
   // Задержка первоначального появления
   useEffect(() => {
