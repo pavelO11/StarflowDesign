@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import Splitting from 'splitting'
 import useSplittingOnLoad from '../../components/hooks/useSplittingOnLoad.tsx'
+import Curve from '../../components/layoutTransition/index.tsx'
 import NavigationButtons from '../../components/navigation/Navigation.tsx'
 import './home.scss'
 
@@ -25,7 +26,7 @@ function Home() {
     }, []);
 
     return (
-        // <Curve>
+        <Curve>
             <section className='homeSection'>
                 <h1 data-splitting className='slide-vertical w-full'>
                     <span className='firText'>Star<span className='ligatures'>fl</span><span className='owFollowing'>ow</span></span>
@@ -73,7 +74,7 @@ function Home() {
 					</section>
                 </article>
             </section>
-        // </Curve>
+        </Curve>
     );
 }
 

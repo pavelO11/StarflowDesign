@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import Splitting from 'splitting'
 import useSplittingHover from '../../components/hooks/useSplittingHover.tsx'
 import useSplittingOnLoad from '../../components/hooks/useSplittingOnLoad.tsx'
+import Curve from '../../components/layoutTransition/index.tsx'
 import NavigationButtons from '../../components/navigation/Navigation.tsx'
 import PopupBrif from '../../components/popupbrif/PopupBrif.tsx'
 import './contacts.scss'
@@ -34,7 +35,7 @@ function Contacts() {
   }, []);
 	
 	return (
-		// <Curve>
+		<Curve>
 		  <section className='contactSection'>
 			<AnimatePresence mode='wait'>
 				{brifOpened && <PopupBrif onClose={() => setBrifOpened(false)} selectedService={null} />}
@@ -79,7 +80,7 @@ function Contacts() {
 				</a>
 			</article>
 		  </section>
-		// </Curve>
+		</Curve>
 	  );	
 }
 

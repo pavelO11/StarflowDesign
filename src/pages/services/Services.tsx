@@ -10,6 +10,7 @@ import Splitting from 'splitting'
 import AboutMe from '../../components/aboutMe/AboutMe'
 import useSplittingHover from '../../components/hooks/useSplittingHover'
 import useSplittingOnLoad from '../../components/hooks/useSplittingOnLoad'
+import Curve from '../../components/layoutTransition'
 import NavigationButtons from '../../components/navigation/Navigation'
 import PopupBrif from '../../components/popupbrif/PopupBrif'
 
@@ -91,7 +92,7 @@ const Services = () => {
   }, []);
 
   return (
-    // <Curve>
+    <Curve>
     <>
               <AnimatePresence mode='wait'>
         {brifOpened && <PopupBrif selectedService={selectedService} onClose={() => setBrifOpened(false)} />}
@@ -216,7 +217,7 @@ const Services = () => {
         </section>
       </section>
     </>
-    // </Curve>
+    </Curve>
   )
 }
 export default Services;

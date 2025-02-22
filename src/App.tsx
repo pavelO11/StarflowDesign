@@ -4,7 +4,6 @@ import 'lenis/dist/lenis.css'
 import { FC, useEffect } from 'react'
 import { Route, BrowserRouter as Router, Routes, useLocation } from 'react-router-dom'
 import { Footer, Navbar } from './components'
-import Curve from './components/layoutTransition'
 import Page404 from './pages/404/404'
 import About from './pages/about/About'
 import Contacts from './pages/contacts/Contacts'
@@ -76,7 +75,7 @@ const AppContent: FC = () => {
                     <Navbar isAboutPage={isAboutPage} />
                 </section>
                 <section className="content">
-                <Curve>
+                {/* <Curve> */}
                     <AnimatePresence mode="wait">
                         <Routes location={location} key={location.pathname}>
                                 <Route path="/" element={<Home />} />
@@ -88,7 +87,7 @@ const AppContent: FC = () => {
                                 <Route path="*" element={<Page404 />} />
                         </Routes>
                     </AnimatePresence>
-                </Curve>
+                {/* </Curve> */}
                 </section>
                 <section className="footer">
                     <Footer />

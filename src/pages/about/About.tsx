@@ -4,6 +4,7 @@ import Splitting from 'splitting'
 import AboutMe from '../../components/aboutMe/AboutMe'
 import useSplittingHover from '../../components/hooks/useSplittingHover'
 import useSplittingOnLoad from '../../components/hooks/useSplittingOnLoad'
+import Curve from '../../components/layoutTransition'
 import NavigationButtons from '../../components/navigation/Navigation'
 import Principles from '../../components/principles/Principles'
 import './about.scss'
@@ -78,7 +79,7 @@ const About = () => {
     }, []);
 
     return (
-        // <Curve>
+        <Curve>
         <>
             {principlesShow && <Principles handlePrinciplesShow={handlePrinciplesShow} />}
             <section className='aboutSection'>
@@ -150,7 +151,7 @@ const About = () => {
                 </section>
             </section>
         </>
-        // </Curve>
+        </Curve>
     );
 };
 
