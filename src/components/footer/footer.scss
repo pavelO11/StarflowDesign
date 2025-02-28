@@ -33,29 +33,29 @@
 			display: flex;
 			align-items: baseline; // centered arrows
 			justify-content: center;
-			.whitespace{
-				width: 4px;
-			}
-			.char {
-				overflow: hidden;
-				color: transparent;
-				&:before,
-				&:after {
-				  visibility: visible;
-				  color: vars.$main-color-text;
-				  transition: transform 0.5s cubic-bezier(0.9, 0, .2, 1);
-				  transition-delay: calc(0.2s + (0.02s * (var(--char-index))));
-		    }
-          &:before {
-            transition-delay: calc( 0.02s * ( var(--char-index)) );
-            }
-        }
-			&:hover .char:before { 
-				transition-delay: calc( 0.2s + ( 0.02s * ( var(--char-index)) ) );
-			}
-			&:hover .char:after {
-				transition-delay: calc( 0.02s * ( var(--char-index)) );
-			}
+		// 	.whitespace{
+		// 		width: 4px;
+		// 	}
+		// 	.char {
+		// 		overflow: hidden;
+		// 		color: transparent;
+		// 		&:before,
+		// 		&:after {
+		// 		  visibility: visible;
+		// 		  color: vars.$main-color-text;
+		// 		  transition: transform 0.5s cubic-bezier(0.9, 0, .2, 1);
+		// 		  transition-delay: calc(0.2s + (0.02s * (var(--char-index))));
+		//     }
+        //   &:before {
+        //     transition-delay: calc( 0.02s * ( var(--char-index)) );
+        //     }
+        // }
+			// &:hover .char:before { 
+			// 	transition-delay: calc( 0.2s + ( 0.02s * ( var(--char-index)) ) );
+			// }
+			// &:hover .char:after {
+			// 	transition-delay: calc( 0.02s * ( var(--char-index)) );
+			// }
 		}
 		.mainFooterTop, .mainFooterTopSecond {
 			color: vars.$main-color-text;
@@ -64,11 +64,11 @@
 			display: none;
 		}
 	}
-    .goConversation {
-        .char:before { transform: translateY(100%); }
-		&:hover .char:before { transform: translateY(0%); }
-		&:hover .char:after { transform: translateY(-100%); }
-    }
+    // .goConversation {
+    //     .char:before { transform: translateY(100%); }
+	// 	&:hover .char:before { transform: translateY(0%); }
+	// 	&:hover .char:after { transform: translateY(-100%); }
+    // }
 	.mainFooterTop, .mainFooterTopSecond {
 		color: vars.$main-color-text;
 	}
@@ -81,9 +81,9 @@
 		p {
 			letter-spacing: -4px;
 		}
-		.char:before { transform: translateY(100%); }
-		&:hover .char:before { transform: translateY(0%); }
-		&:hover .char:after { transform: translateY(-100%); }
+		// .char:before { transform: translateY(100%); }
+		// &:hover .char:before { transform: translateY(0%); }
+		// &:hover .char:after { transform: translateY(-100%); }
 	}
 	.nextPageLink {
 		line-height: 16px;
@@ -92,30 +92,30 @@
 		display: flex;
 		align-items: baseline; // centered arrows
 		justify-content: center;
-		.whitespace{
-			width: 4px;
-		}
-		.char {
-			overflow: hidden;
-			color: transparent;
-			&:before,
-			&:after {
-			  visibility: visible;
-			  height: 17px;
-			  color: vars.$main-color-text;
-			  transition: transform 0.5s cubic-bezier(0.9, 0, .2, 1);
-			  transition-delay: calc(0.2s + (0.02s * (var(--char-index))));
-			}
-            &:before {
-                transition-delay: calc( 0.02s * ( var(--char-index)) );
-            }
-	  }
-      &:hover .char:before { 
-        transition-delay: calc( 0.2s + ( 0.02s * ( var(--char-index)) ) );
-        }
-        &:hover .char:after {
-            transition-delay: calc( 0.02s * ( var(--char-index)) );
-        }
+		// .whitespace{
+		// 	width: 4px;
+		// }
+		// .char {
+		// 	overflow: hidden;
+		// 	color: transparent;
+		// 	&:before,
+		// 	&:after {
+		// 	  visibility: visible;
+		// 	  height: 17px;
+		// 	  color: vars.$main-color-text;
+		// 	  transition: transform 0.5s cubic-bezier(0.9, 0, .2, 1);
+		// 	  transition-delay: calc(0.2s + (0.02s * (var(--char-index))));
+		// 	}
+        //     &:before {
+        //         transition-delay: calc( 0.02s * ( var(--char-index)) );
+        //     }
+	  	// }
+    //   &:hover .char:before { 
+    //     transition-delay: calc( 0.2s + ( 0.02s * ( var(--char-index)) ) );
+    //     }
+    //     &:hover .char:after {
+    //         transition-delay: calc( 0.02s * ( var(--char-index)) );
+    //     }
 	}
 	img.leftArrow, img.rightArrow {
 		margin: 0 8px;
