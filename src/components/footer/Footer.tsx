@@ -41,7 +41,7 @@ const Footer = () => {
 	return (
 		<footer className='mainFooter'>
             <Link
-            data-splitting
+            // data-splitting
             to='https://t.me/StarflowDesign'
             className='goConversation'
             >
