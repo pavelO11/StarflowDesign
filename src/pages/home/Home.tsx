@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Helmet } from 'react-helmet'
 import Splitting from 'splitting'
 import useSplittingOnLoad from '../../components/hooks/useSplittingOnLoad.tsx'
 import Curve from '../../components/layoutTransition/index.tsx'
@@ -27,6 +28,10 @@ function Home() {
 
     return (
         <Curve>
+            <Helmet>
+                <title>Starflow Design - UX & UI дизайнер</title>
+                <meta name="description" content="Starflow Design - портфолио Игоря Дубовцева, фрилансера и визуального дизайнера с искренним подходом. Создаю сайты для амбициозных компаний, готовых к переменам. Сочетаю эстетику, удобство и смыслы, забочусь о пользователях и вашем бизнесе." />
+            </Helmet>
             <section className='homeSection'>
                 <h1 data-splitting className='slide-vertical w-full'>
                     <span className='firText'>Star<span className='ligatures'>fl</span><span className='owFollowing'>ow</span></span>

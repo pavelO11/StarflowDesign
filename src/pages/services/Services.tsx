@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { Helmet } from 'react-helmet'
 
 import arrowLeft from '/arrowLeft.svg'
 import arrowRight from '/arrowRight.svg'
@@ -91,12 +92,47 @@ const Services = () => {
     });
   }, []);
 
+//   document.addEventListener('DOMContentLoaded', function() {
+//     const accordionItems = document.querySelectorAll('.accordion li');
+    
+//     accordionItems.forEach(item => {
+//         // For touch devices
+//         item.addEventListener('touchend', function(this: HTMLElement, e) {
+//             if (!this.classList.contains('open')) {
+//                 // Play animation when tapped
+//                 this.classList.remove('tapped');
+//                 // The CSS animation will play because the 'tapped' class is removed
+//                 // After animation finishes, mark as tapped
+//                 setTimeout(() => {
+//                     if (!this.classList.contains('open')) {
+//                         this.classList.add('tapped');
+//                     }
+//                 }, 200); // Same as your animation duration
+//             }
+//         });
+        
+//         // Reset tapped state when closed
+//         const radioButton = item.querySelector('input[type="radio"]');
+//         if (radioButton) {
+//             radioButton.addEventListener('change', function(this: HTMLInputElement) {
+//                 if (!this.checked) {
+//                     item.classList.remove('tapped');
+//                 }
+//             });
+//         }
+//     });
+// });
+
   return (
     <Curve>
     <>
-              <AnimatePresence mode='wait'>
-        {brifOpened && <PopupBrif selectedService={selectedService} onClose={() => setBrifOpened(false)} />}
-      </AnimatePresence>
+        <Helmet>
+          <title>Starflow Design — Услуги</title>
+          <meta name="description" content="Дизайн, который улучшает имидж. Разработка сайта с акцентом на бизнес-задачи. Я верю в силу качественного дизайна и люблю сотрудничать с людьми, которые чувствуют также. Давайте работать вместе." />
+        </Helmet>
+        <AnimatePresence mode='wait'>
+            {brifOpened && <PopupBrif selectedService={selectedService} onClose={() => setBrifOpened(false)} />}
+        </AnimatePresence>
       <section className='servicesSection'>
         <section className='servicesText'>
           <section>
@@ -185,7 +221,7 @@ const Services = () => {
           <p>( Этапы сотрудничества )</p>
           <ul className='accordion'>
             {stages.map((stage, index) => (
-              <li key={stage.id} className={accordionStates[index] ? 'open' : ''} style={{ borderBottom: accordionStates[index] ? '1px solid #FAFAFA' : '1px solid rgba(255, 255, 255, 0.2)' }}>
+              <li key={stage.id} onClick={() => handleToggleAccordion(index)} className={accordionStates[index] ? 'open' : ''} style={{ borderBottom: accordionStates[index] ? '1px solid #FAFAFA' : '1px solid rgba(255, 255, 255, 0.2)' }}>
                 <input
                     type='radio'
                     readOnly

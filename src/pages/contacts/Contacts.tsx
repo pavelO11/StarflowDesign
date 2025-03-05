@@ -1,5 +1,6 @@
 import { AnimatePresence } from 'framer-motion'
 import { useEffect, useState } from 'react'
+import { Helmet } from 'react-helmet'
 import { Link } from 'react-router-dom'
 import Splitting from 'splitting'
 import useSplittingHover from '../../components/hooks/useSplittingHover.tsx'
@@ -36,6 +37,10 @@ function Contacts() {
 	
 	return (
 		<Curve>
+			<Helmet>
+          		<title>Starflow Design - Контакты</title>
+          		<meta name="description" content="Хотите заказать дизайн сайта с упором на эстетику, удобство и смыслы, который соответствует вашим бизнес-целям - свяжитесь со мной." />
+            </Helmet>
 		  <section className='contactSection'>
 			<AnimatePresence mode='wait'>
 				{brifOpened && <PopupBrif onClose={() => setBrifOpened(false)} selectedService={null} />}

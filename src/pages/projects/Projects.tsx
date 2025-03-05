@@ -6,6 +6,7 @@ import {
     useTransform
 } from "framer-motion"
 import { useEffect, useRef, useState } from "react"
+import { Helmet } from 'react-helmet'
 import { Link } from 'react-router-dom'
 import Splitting from 'splitting'
 import Curve from '../../components/layoutTransition'
@@ -133,7 +134,11 @@ const Projects: React.FC = () => {
 
   return (
     <Curve>
-            <main className="projects-container" ref={containerRef}>
+        <Helmet>
+          <title>Starflow Design - Портфолио</title>
+          <meta name="description" content="Ознакомьтесь с избранными работами Игоря Дубовцева, демонстрирующими опыт в UX & UI дизайне. Откройте для себя проекты, сочетающие эстетику, удобство и смыслы, направленные на усиление бизнеса." />
+        </Helmet>
+        <main className="projects-container" ref={containerRef}>
         <NavigationProjects scrollContainerRef={containerRef} />
         <section className="mainTextMobile">
         <h1

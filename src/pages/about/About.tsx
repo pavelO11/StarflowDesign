@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { Helmet } from 'react-helmet'
 import { Link } from 'react-router-dom'
 import Splitting from 'splitting'
 import AboutMe from '../../components/aboutMe/AboutMe'
@@ -81,6 +82,10 @@ const About = () => {
     return (
         <Curve>
         <>
+            <Helmet>
+                <title>Игорь Дубовцев - UX & UI дизайнер</title>
+                <meta name="description" content="Фрилансер, визуальный дизайнер, увлеченный созданием впечатляющих цифровых продуктов. Помогаю компаниям создавать лучшее будущее. Действую по принципу вин-вин. Ваш успех — мой успех. Если вашему бизнесу нужна качественная упаковка — это ко мне." />
+            </Helmet>
             {principlesShow && <Principles handlePrinciplesShow={handlePrinciplesShow} />}
             <section className='aboutSection'>
                 <section className='aboutIntro' ref={imageRef}>
