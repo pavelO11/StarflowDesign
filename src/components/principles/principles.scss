@@ -49,6 +49,7 @@
 .parallax {
     display: flex;
     flex-wrap: nowrap;
+    overflow: hidden;
 }
 .parallax .scroller {
     font-family: 'Playfair Display', sans-serif;
@@ -61,6 +62,7 @@
     white-space: nowrap;
     opacity: 0;
     animation: textFadeIn 0.5s ease-in-out forwards;
+    will-change: transform;
 }
 @keyframes textFadeIn {
     to {
