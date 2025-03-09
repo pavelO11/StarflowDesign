@@ -74,7 +74,7 @@
     .parallax .scroller {
         font-size: 64px;
     }
-    .principlesShow .marquee {
+    .principlesSection .principlesShow .marquee {
         gap: 64px;
     }
     .principlesShow .marquee .parallax , .principlesShow .marquee .parallax .scroller {
@@ -86,16 +86,16 @@
     .parallax .scroller {
         font-size: 56px;
     }
-    .principlesShow .marquee {
+    .principlesSection .principlesShow .marquee {
         gap: 56px;
     }
 }
 
 @media screen and (max-width: 390px), (max-width: 375px), (max-width: 428px) {
-    .parallax .scroller {
+    .principlesShow .parallax .scroller {
         font-size: 40px;
     }
-    .principlesShow .marquee {
+    .principlesSection .principlesShow .marquee {
         gap: 40px;
     }
     .principlesShow .marquee .parallax , .principlesShow .marquee .parallax .scroller{

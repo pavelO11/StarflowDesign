@@ -87,25 +87,12 @@ input[type="number"] {
     }
 }
 .wrapper {
-    // overflow-y: hidden;
     position: relative;
     display: flex;
     flex-direction: column;
     height: 100vh;
     background-color: #070707;
-    // background-image: url(/3dstar.svg);
-    // background-size: cover;
-    // background-repeat: no-repeat;
-    // background-position: center;
 }
-// .wrapper-none-scroll{
-//     overflow-y: inherit;
-//     position: relative;
-//     display: flex;
-//     flex-direction: column;
-//     height: 100vh;
-//     background-color: #070707;   
-// }
 .video-bg {
     position: absolute;
     top: 0;
