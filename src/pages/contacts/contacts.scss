@@ -62,12 +62,6 @@
 			text-decoration: none;
 			height: 100px;
 			width: 288px;
-			.contactLight{
-				z-index: 0;
-				position: relative;
-				top: -230%;
-				filter: blur(40px);
-			}
 			p{
 				display: flex;
 				flex-direction: column;
