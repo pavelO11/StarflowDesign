@@ -16,7 +16,7 @@ html {
         justify-content: space-between;
         align-items: baseline;
         position: absolute;
-        top: 86%;
+        top: 84.5%;
         left: 50%;
         transform: translate(-50%, -10%);
         z-index: 2;
@@ -24,11 +24,11 @@ html {
         padding: 0 24px;
         color: vars.$main-color-text;
         z-index: 10;
-        @media screen and (min--moz-device-pixel-ratio:0) {
-            .mainText {
-                top: 85% !important;
-            } 
-        }
+        // @media screen and (min--moz-device-pixel-ratio:0) {
+        //     .mainText {
+        //         top: 85% !important;
+        //     } 
+        // }
         .countProjects{
             display: flex;
             gap: 8px;
@@ -78,7 +78,6 @@ html {
                 &[data-char="е"] { width: 86px; }
                 &[data-char="о"] { width: 89px; }
             }
-
             &.visible .char {
                 transform: translateY(0);
             }

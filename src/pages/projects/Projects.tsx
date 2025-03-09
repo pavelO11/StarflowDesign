@@ -128,9 +128,6 @@ const Projects: React.FC = () => {
           setCurrentProject(projects.find(p => p.id === id) || projects[0]);
         }, 50); // Задержка в 100 мс
       };
-      
-
-        //ref={containerRef} in projects-container
 
   return (
     <Curve>
