@@ -316,6 +316,9 @@
             font-weight: 150;
             top: 45%;
         }
+        .aboutIntro{
+            height: 100vh;
+        }
         .aboutIntro .firText {
             letter-spacing: -4px;
         }
@@ -339,10 +342,12 @@
             padding: 0 32px;
         }
         .aboutIntro .sm h1:first-child{
-            top: 40.5%;
+            top: 43.5%;
+            width: 90%;
         }
         .aboutIntro .sm h1:last-child{
-            top: 49.5%;
+            top: 52%;
+            width: 93%;
         }
 	}
 }
