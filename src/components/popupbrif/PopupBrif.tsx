@@ -54,23 +54,36 @@ function PopupBrif(props: Props) {
     //block scroll
     useEffect(() => {
         const disableScroll = () => {
-            document.body.style.overflow = 'hidden';
+          const scrollTop = window.scrollY || document.documentElement.scrollTop;
+          const scrollLeft = window.scrollX || document.documentElement.scrollLeft;
+          document.body.style.overflow = 'hidden';
+          document.body.style.position = 'fixed';
+          document.body.style.top = `-${scrollTop}px`;
+          document.body.style.left = `-${scrollLeft}px`;
+          document.body.style.width = '100%';
         };
-
+    
         const enableScroll = () => {
-            document.body.style.overflow = '';
+          const scrollTop = Math.abs(parseInt(document.body.style.top || '0', 10));
+          const scrollLeft = Math.abs(parseInt(document.body.style.left || '0', 10));
+          document.body.style.overflow = '';
+          document.body.style.position = '';
+          document.body.style.top = '';
+          document.body.style.left = '';
+          document.body.style.width = '';
+          window.scrollTo(scrollLeft, scrollTop);
         };
-
-        if (showDefaultContent || showSuccessContent || showThirdContent) {
-            disableScroll();
-        } else {
-            enableScroll();
-        }
-
+    
+        disableScroll();
+        const timer = setTimeout(() => {
+          enableScroll();
+        }, 3000);
+    
         return () => {
-            enableScroll(); // Всегда восстанавливаем прокрутку при размонтировании компонента
+          enableScroll();
+          clearTimeout(timer);
         };
-    }, [showDefaultContent, showSuccessContent, showThirdContent]);
+      }, [location.pathname]);
 
     const form = useForm({
         mode: 'uncontrolled',
