@@ -348,7 +348,6 @@
             visibility: visible;
             transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
         }
-        &[data-char="о"] { width: 89px; }
     }
     &.animate-on-load .char {
         transform: translateY(0%);
