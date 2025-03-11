@@ -24,12 +24,8 @@ const App: FC = () => {
 const AppContent: FC = () => {
     const location = useLocation();
 
-    // Array of routes where Lenis should not be active
-    const pagesWithoutLenis = ['/projects'];
-
     // Initialize Lenis only if the current page is not in the pagesWithoutLenis array
     useEffect(() => {
-        if (!pagesWithoutLenis.includes(location.pathname)) {
             const lenis = new Lenis({
                 duration: 1.3,
                 easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // https://www.desmos.com/calculator/brs54l4xou
@@ -52,8 +48,7 @@ const AppContent: FC = () => {
             return () => {
                 lenis.destroy();
             };
-        }
-    }, [location.pathname]);
+    }, []);
 
     // Array route with no video
     const pagesWithoutVideo = ['/projects', '/services', '/about'];
