@@ -236,7 +236,7 @@ const projects = [
     id: 1,
     src: "/REAL_ESTATE.jpg",
     first: "Real",
-    second: " Estatе",
+    second: " Estate",
     order: "00-1",
     link: "https://dprofile.ru/case/76591/real-estate"
   },
@@ -244,7 +244,7 @@ const projects = [
     id: 2,
     src: "/SF_STORE.jpg",
     first: "SF —",
-    second: " Storе",
+    second: " Store",
     order: "00-2",
     link: "https://dprofile.ru/case/55727/perfume-shop"
   },
@@ -252,7 +252,7 @@ const projects = [
     id: 3,
     src: "/DETAILING_STUDIO.jpg",
     first: "Detailing",
-    second: " Studiо",
+    second: " Studio",
     order: "00-3",
     link: "https://dprofile.ru/case/47515/detailing-studio"
   }
