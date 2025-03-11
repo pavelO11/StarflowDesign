@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet'
 import Splitting from 'splitting'
 import useSplittingOnLoad from '../../components/hooks/useSplittingOnLoad.tsx'
 import Curve from '../../components/layoutTransition/index.tsx'
-import NavigationButtons from '../../components/navigation/Navigation.tsx'
+import Navigation from '../../components/navigation/Navigation.tsx'
 import './home.scss'
 
 function Home() {
@@ -52,7 +52,7 @@ function Home() {
                     </p>
                     <span className='bracket2'>)</span>
                 </section>
-                <NavigationButtons/>
+                <Navigation/>
                 <article className='homeText'>
 					<section>
 						<p className={visibleLines.includes(0) ? 'visible' : ''} data-splitting>
