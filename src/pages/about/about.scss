@@ -164,54 +164,61 @@
             }
         }
     }
-    .trump{
+    .trump {
         display: flex;
         flex-direction: column;
         height: 100vh;
-        justify-content: space-between;
+        justify-content: center;
+        align-items: center;     
+        position: relative;      
         background-color: #070707;
         background-image: url(/aboutme2.jpg);
-		background-repeat: no-repeat;
-		-webkit-background-size: cover;
-		-moz-background-size: cover;
-		-o-background-size: cover;
-		background-size: cover;
+        background-repeat: no-repeat;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
         background-position: center;
-        .textMain{
-          margin: auto;
-          h2{
-            font-family: 'Playfair Display', sans-serif;
-            font-weight: 350;
-            font-style: italic;
-            letter-spacing: -8px;
-            font-size: 120px;
-            line-height: 90%;
-          }
+        .textMain {
+            margin: auto;
+            h2 {
+                font-family: 'Playfair Display', sans-serif;
+                font-weight: 350;
+                font-style: italic;
+                letter-spacing: -8px;
+                font-size: 120px;
+                line-height: 90%;
+            }
         }
-        .textBottom{
-          display: flex;
-          justify-content: space-between;
-          width: 100%;
-          padding: 0 24px 24px 24px;
-          .textBfirst{
-            text-align: start;
-          }
-          .textBsecond{
-            text-align: end;
-          }
+        .textBottom {
+            position: absolute;
+            bottom: 24px;
+            left: 24px;
+            right: 24px;
+            display: flex;
+            justify-content: space-between;
+            .textBfirst{
+                text-align: start;
+            }
+            .textBsecond{
+                text-align: end;
+            }
         }
-        .textBottomMobile{
+        .textBottomMobile {
             justify-content: space-between;
             width: 100%;
             flex-direction: column;
             padding: 0 24px 24px 24px;
             display: none;
             gap: 16px;
-            .textBfirst, .textBsecond{
-              text-align: start;
+            .textBfirst{
+                text-align: start;
             }
-          }
-      }
+            .textBsecond{
+                text-align: end;
+            }
+        }
+    }
       @media screen and (max-width: 1440px) {
         .aboutIntro h1{
             font-size: 120px;
@@ -277,7 +284,7 @@
             padding: 0;
         }
         .trump .textMain h2{
-            padding: 0 72px;
+            padding: 0 120px;
             line-height: 52px;
         }
         .aboutIntro .w-full {
@@ -308,9 +315,9 @@
         }
     }
     @media screen and (max-width: 390px), (max-width: 375px), (max-width: 428px) {
-        // .aboutIntro{
-        //     padding: 0 24px 32px 24px;
-        // }
+        .trump .textBottomMobile .textBsecond {
+            text-align: start;
+        }
         .aboutIntro h1{
             font-size: 56px;
             font-weight: 150;
@@ -320,10 +327,12 @@
             height: 100vh;
         }
         .aboutIntro .firText {
-            letter-spacing: -4px;
+            letter-spacing: -4.48px;
         }
         .aboutIntro .secText {
-            letter-spacing: -2px;
+            letter-spacing: -4px;
+            line-height: 100%;
+            font-weight: 300;
         }
 		.trump .textBottom {
             display: none;
