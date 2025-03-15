@@ -48,9 +48,12 @@
   &.hidden {
     color: transparent;
   }
-}
 
-/* Переопределение курсора для интерактивных элементов, чтобы показывался нативный pointer */
+  &.hidden-in-footer {
+    opacity: 0 !important;
+    pointer-events: none;
+  }
+}
 /* Переопределение курсора для интерактивных элементов, чтобы показывался нативный pointer */
 a:not(.image-link),
 button,
@@ -64,4 +67,11 @@ select,
 /* Специальное правило для элементов image-link */
 .image-link {
   cursor: none;
+}
+
+/* Add specific rule for footer interactive elements */
+footer a, 
+footer button, 
+footer [role="button"] {
+  cursor: pointer;
 }
