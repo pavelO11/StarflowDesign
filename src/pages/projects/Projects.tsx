@@ -231,6 +231,9 @@ import Curve from '../../components/layoutTransition'
 import Navigation from '../../components/navigation/Navigation'
 import './projects.scss'
 
+import arrowLeft from '/arrowLeft.svg'
+import arrowRight from '/arrowRight.svg'
+
 const projects = [
   {
     id: 1,
@@ -288,6 +291,25 @@ const Projects: React.FC = () => {
                   <span className="firText">{project.first}</span>
                   <span className="secText">{project.second}</span>
                 </h1>
+              </div>
+              <div className="mainTextMobile">
+                <h1 data-splitting className="slide-vertical">
+                  <span className="firText">{project.first}</span>
+                  <span className="secText">{project.second}</span>
+                </h1>
+                <Link
+                    className="goProject"
+                    key={project.id} 
+                    to={project.link} 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                <div>
+                    <img className="leftArrow" src={arrowLeft} alt="arrow" />
+                        СМОТРЕТЬ КЕЙС
+                    <img className="rightArrow" src={arrowRight} alt="arrow" />
+                </div>
+                </Link>
               </div>
             </section>
           </Link>
