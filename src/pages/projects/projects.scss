@@ -361,8 +361,8 @@
     }
     .secText {
       font-family: 'InterSpecial';
-      letter-spacing: -13px;
-      -webkit-text-stroke: 3px #FAFAFA;
+      letter-spacing: -16px;
+      -webkit-text-stroke: 1px #FAFAFA;
     }
   }
 
@@ -445,6 +445,7 @@
     .goProject {
         color: #FAFAFA;
         text-decoration: none;
+        opacity: 0;
             img.leftArrow, img.rightArrow {
                 margin: 0 8px;
                 transition: transform 0.3s ease;
@@ -476,11 +477,15 @@
             &:hover .char:after {
                 transition-delay: calc( 0.02s * ( var(--char-index)) );
             }
-        .goProject{
-            .char:before { transform: translateY(100%); }
-            &:hover .char:before { transform: translateY(0%); }
-            &:hover .char:after { transform: translateY(-100%); }
-        }
+            &.fadeIn {
+                opacity: 1;
+                transition: opacity .7s ease-in-out;
+            }
+            &.fadeOut {
+                opacity: 0;
+                z-index: 0;
+                pointer-events: none;
+            }
     }
   }
 }
@@ -499,9 +504,6 @@
         font-size: 56px;
         .firText, .secText {
           letter-spacing: -4px;
-        }
-        .secText {
-          -webkit-text-stroke: 0.5px #FAFAFA;
         }
       }
     }

@@ -95,12 +95,15 @@ const CustomCursor: React.FC = () => {
         const footer = document.querySelector('footer');
         if (footer) {
           const footerRect = footer.getBoundingClientRect();
-          const cursorRect = cursorRef.current.getBoundingClientRect();
+          // Add tolerance buffer for footer detection (5px)
+          const tolerance = 5;
+          
+          // Check if cursor is near or inside footer
           if (
-            cursorRect.left >= footerRect.left &&
-            cursorRect.right <= footerRect.right &&
-            cursorRect.top >= footerRect.top &&
-            cursorRect.bottom <= footerRect.bottom
+            e.clientX >= footerRect.left - tolerance &&
+            e.clientX <= footerRect.right + tolerance &&
+            e.clientY >= footerRect.top - tolerance &&
+            e.clientY <= footerRect.bottom + tolerance
           ) {
             setIsInFooter(true);
           } else {
@@ -112,16 +115,14 @@ const CustomCursor: React.FC = () => {
 
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      if (!target.closest('footer') && 
-          target.closest('a:not(.image-link), button, input, textarea, select, [role="button"]:not(.image-link)')) {
+      if (target.closest('a:not(.image-link), button, input, textarea, select, [role="button"]:not(.image-link)')) {
         setIsInteractive(true);
       }
     };
 
     const handleMouseOut = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      if (!target.closest('footer') && 
-          target.closest('a:not(.image-link), button, input, textarea, select, [role="button"]:not(.image-link)')) {
+      if (target.closest('a:not(.image-link), button, input, textarea, select, [role="button"]:not(.image-link)')) {
         setIsInteractive(false);
       }
     };

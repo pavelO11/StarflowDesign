@@ -54,8 +54,13 @@
     pointer-events: none;
   }
 }
+
+.navbarSection {
+  cursor: none;
+}
+
 /* Переопределение курсора для интерактивных элементов, чтобы показывался нативный pointer */
-a:not(.image-link),
+a:not(.image-link):not(.navbarBtn):not(.navbarTelegram):not(.navbarText),
 button,
 input,
 textarea,
