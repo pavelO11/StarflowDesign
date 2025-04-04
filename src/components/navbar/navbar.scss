@@ -151,9 +151,9 @@
 		}
 	}
 }
-.hidden{
-	display: none;
-}
+// .hidden{
+// 	display: none;
+// }
 
 @media screen and (max-width: 1366px){
 	.navbarSection .navbarBtn .word {
@@ -173,6 +173,5 @@
 @media screen and (max-width: 390px), (max-width: 375px), (max-width: 428px) {
 	.navbarSection{
 		padding: 24px 24px 0 24px;
-    
 	}
 }
