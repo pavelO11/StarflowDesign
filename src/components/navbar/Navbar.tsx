@@ -19,7 +19,7 @@ const Navbar = ({ isAboutPage }: NavbarProps) => {
     const [shouldHideNavbar, setShouldHideNavbar] = useState(false);
 
     const location = useLocation();
-    const pagesWithoutMixBlendMode = ['/projects'];
+    const pagesWithoutMixBlendMode = [''];
 
     useEffect(() => {
         const checkVisibility = () => {

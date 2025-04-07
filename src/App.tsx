@@ -4,6 +4,7 @@ import 'lenis/dist/lenis.css'
 import { FC, useEffect } from 'react'
 import { Route, BrowserRouter as Router, Routes, useLocation } from 'react-router-dom'
 import { Footer, Navbar } from './components'
+import CustomCursor from './components/customCursor/CustomCursor'
 import Page404 from './pages/404/404'
 import About from './pages/about/About'
 import Contacts from './pages/contacts/Contacts'
@@ -58,9 +59,15 @@ const AppContent: FC = () => {
     // Determine if the current page is the about page
     const isAboutPage = location.pathname === '/about';
 
+    const projects = ['/projects'];
+    const isCustomCursor = projects.includes(location.pathname);
+
     return (
         <>
             <section className="wrapper">
+                {isCustomCursor && (
+                     <CustomCursor />
+                )}
                 {isVideoPage && (
                     <video autoPlay muted loop playsInline className="video-bg">
                         <source src="back.mp4" type="video/mp4" />

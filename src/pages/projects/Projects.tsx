@@ -334,7 +334,6 @@
 
 import { Helmet } from 'react-helmet'
 import { Link } from 'react-router-dom'
-import CustomCursor from '../../components/customCursor/CustomCursor'
 import useSplittingOnLoad from '../../components/hooks/useSplittingOnLoad'
 import Curve from '../../components/layoutTransition'
 import Navigation from '../../components/navigation/Navigation'
@@ -475,9 +474,7 @@ const Projects: React.FC = () => {
                         </div>
                     </section>
                 </Link>
-
                 <Navigation />
-                <CustomCursor />
             </main>
         </Curve>
     );
