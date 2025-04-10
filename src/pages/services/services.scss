@@ -687,6 +687,12 @@
 		}
 	}
 	@media screen and (max-width: 390px), (max-width: 375px), (max-width: 428px) {
+		.mainServices .service:nth-child(3) .top .title {
+			font-size: 32px !important;
+		}
+		.mainServices .service:nth-child(4) .top .title {
+			font-size: 32px !important;
+		}
 		.servicesTextMobile {
 			gap: 48px;
                 .char[data-char="У"] {
