@@ -117,7 +117,6 @@
         h1{
 			font-size: 88px;
 			line-height: 100%;
-			font-weight: 300;
             overflow: hidden;
 			.char {
 				display: inline-block;
@@ -144,13 +143,17 @@
     .secText {
         font-family: 'InterSpecial';
         letter-spacing: -5px;
-        font-weight: 350 !important;
-        // -webkit-text-stroke: 3px #FAFAFA;
+        -webkit-text-stroke: 0.3px  #FAFAFA;
     }
     .goProject {
         color: #FAFAFA;
         text-decoration: none;
         opacity: 0;
+            div{
+                display: flex;
+                align-items: flex-end;
+                justify-content: center;
+            }
             img.leftArrow, img.rightArrow {
                 margin: 0 8px;
                 transition: transform 0.3s ease;
@@ -205,6 +208,7 @@
     color: vars.$main-color-text;
     z-index: 10;
     flex-direction: column;
+    font-weight: 500;
     h1 {
         font-size: 56px;
         .firText, .secText {
