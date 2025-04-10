@@ -143,15 +143,18 @@
     .secText {
         font-family: 'InterSpecial';
         letter-spacing: -5px;
-        -webkit-text-stroke: 0.3px  #FAFAFA;
     }
     .goProject {
         color: #FAFAFA;
         text-decoration: none;
         opacity: 0;
             div{
+                line-height: 16px;
+                font-weight: 350;
+                color: vars.$main-color-text;
+                text-transform: uppercase;
                 display: flex;
-                align-items: flex-end;
+                align-items: end; // centered arrows
                 justify-content: center;
             }
             img.leftArrow, img.rightArrow {
