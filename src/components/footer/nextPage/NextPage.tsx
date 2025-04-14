@@ -1,47 +1,70 @@
 import { useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import useSplittingHover from '../../hooks/useSplittingHover'
 import arrowLeft from '/arrowLeft.svg'
 import arrowRight from '/arrowRight.svg'
 
 function NextPage() {
     const location = useLocation();
-    const [currentPage] = useState(location.pathname);
+    const navigate = useNavigate();
+    const currentPage = location.pathname;
+
+    const [nextPageTitle, setNextPageTitle] = useState(getNextPageTitle()); // text state
 
     function getNextPage() {
         switch (currentPage) {
-        case '/projects':
-            return '/services';
-        case '/services':
-            return '/about';
-        case '/about':
-            return '/contacts';
-        default:
-            return '/'; // if current page undefind => home
+            case '/projects':
+                return '/services';
+            case '/services':
+                return '/about';
+            case '/about':
+                return '/contacts';
+            default:
+                return '/'; // if current page undefined => home
         }
     }
 
     function getNextPageTitle() {
         switch (getNextPage()) {
-        case '/services':
-            return 'Услуги';
-        case '/about':
-            return 'Обо мне';
-        case '/contacts':
-            return 'Контакты';
-        default:
-            return '';
+            case '/services':
+                return 'Услуги';
+            case '/about':
+                return 'Обо мне';
+            case '/contacts':
+                return 'Контакты';
+            default:
+                return '';
         }
     }
-    
+
     useSplittingHover();
-    
-	return (
-        <Link data-splitting to={getNextPage()} className='nextPage'>
-            <p style={{ fontSize: '80px' }}>{getNextPageTitle()}</p>
-            <section className='nextPageLink'><img className='leftArrow' src={arrowLeft} alt='arrow' />Следующая страница<img className='rightArrow' src={arrowRight} alt='arrow' /></section>
-        </Link>
-	);
+
+    function handleClick(event: React.MouseEvent<HTMLAnchorElement>) {
+        event.preventDefault();
+        const nextPage = getNextPage();
+
+        setTimeout(() => {
+            setNextPageTitle(getNextPageTitle());
+        }, 2000);
+
+        navigate(nextPage);
+    }
+
+    return (
+        <a
+            data-splitting
+            href={getNextPage()}
+            className="nextPage"
+            onClick={handleClick}
+        >
+            <p style={{ fontSize: '80px' }}>{nextPageTitle}</p>
+            <section className="nextPageLink">
+                <img className="leftArrow" src={arrowLeft} alt="arrow" />
+                Следующая страница
+                <img className="rightArrow" src={arrowRight} alt="arrow" />
+            </section>
+        </a>
+    );
 }
 
 export default NextPage;
