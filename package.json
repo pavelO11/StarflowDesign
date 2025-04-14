@@ -10,8 +10,8 @@
         "preview": "vite preview"
     },
     "dependencies": {
-        "@mantine/core": "^7.17.3",
-        "@mantine/form": "^7.17.3",
+        "@mantine/core": "^7.17.4",
+        "@mantine/form": "^7.17.4",
         "@mantine/hooks": "^7.17.2",
         "@motionone/utils": "^10.18.0",
         "@studio-freight/lenis": "^1.0.42",
@@ -34,10 +34,10 @@
         "@vitejs/plugin-react": "^4.3.4",
         "clsx": "^2.1.1",
         "framer-motion": "^11.18.2",
-        "sass": "^1.86.1",
+        "sass": "^1.86.3",
         "tailwind-merge": "^2.6.0",
         "tailwindcss": "^3.4.17",
-        "typescript": "^5.8.2",
-        "vite": "^5.4.16"
+        "typescript": "^5.8.3",
+        "vite": "^5.4.18"
     }
 }
