@@ -63,7 +63,6 @@ const AppContent: FC = () => {
     const isCustomCursor = projects.includes(location.pathname);
 
     return (
-        <>
             <section className="wrapper">
                 {isCustomCursor && (
                      <CustomCursor />
@@ -77,7 +76,6 @@ const AppContent: FC = () => {
                     <Navbar isAboutPage={isAboutPage} />
                 </section>
                 <section className="content">
-                {/* <Curve> */}
                     <AnimatePresence mode="wait">
                         <Routes location={location} key={location.pathname}>
                                 <Route path="/" element={<Home />} />
@@ -89,13 +87,11 @@ const AppContent: FC = () => {
                                 <Route path="*" element={<Page404 />} />
                         </Routes>
                     </AnimatePresence>
-                {/* </Curve> */}
                 </section>
                 <section className="footer">
                     <Footer />
                 </section>
             </section>
-        </>
     );
 };
 
