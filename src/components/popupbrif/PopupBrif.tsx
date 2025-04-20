@@ -126,9 +126,9 @@ function PopupBrif(props: Props) {
     
     const projectBudget = [
         { id: '1', title: 'Менее 50к', value: 'Менее 50к' },
-        { id: '2', title: '50к-80к', value: '50-80к' },
-        { id: '3', title: '80к-120к', value: '80к-120к' },
-        { id: '4', title: 'Более 120к', value: 'Более 120к'},
+        { id: '2', title: '50к-100к', value: '50-100к' },
+        { id: '3', title: '100к-200к', value: '100к-200к' },
+        { id: '4', title: 'Более 200к', value: 'Более 200к'},
     ];
 
     const handleFormSubmit = async (values: typeof form.values) => {
