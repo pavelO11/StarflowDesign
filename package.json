@@ -31,7 +31,7 @@
         "@types/react-helmet": "^6.1.11",
         "@types/react-transition-group": "^4.4.12",
         "@types/splitting": "^1.0.6",
-        "@vitejs/plugin-react": "^4.5.2",
+        "@vitejs/plugin-react": "^4.6.0",
         "clsx": "^2.1.1",
         "framer-motion": "^11.18.2",
         "sass": "^1.89.2",
