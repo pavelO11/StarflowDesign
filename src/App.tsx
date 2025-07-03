@@ -4,7 +4,9 @@ import 'lenis/dist/lenis.css'
 import { FC, useEffect } from 'react'
 import { Route, BrowserRouter as Router, Routes, useLocation } from 'react-router-dom'
 import { Footer, Navbar } from './components'
+import CursorTrail from './components/cursorTrail/CursorTrail'
 import CustomCursor from './components/customCursor/CustomCursor'
+import Curve from './components/layoutTransition'
 import Page404 from './pages/404/404'
 import About from './pages/about/About'
 import Contacts from './pages/contacts/Contacts'
@@ -60,13 +62,15 @@ const AppContent: FC = () => {
     const isAboutPage = location.pathname === '/about';
 
     const projects = ['/projects'];
+
     const isCustomCursor = projects.includes(location.pathname);
+    const showTrail = location.pathname !== '/projects';
 
     return (
             <section className="wrapper">
-                {isCustomCursor && (
-                     <CustomCursor />
-                )}
+                {showTrail && <CursorTrail />}
+
+                {isCustomCursor && <CustomCursor />}
                 {isVideoPage && (
                     <video autoPlay muted loop playsInline className="video-bg">
                         <source src="back.mp4" type="video/mp4" />
@@ -75,7 +79,7 @@ const AppContent: FC = () => {
                 <section className="navbar">
                     <Navbar isAboutPage={isAboutPage} />
                 </section>
-                <section className="content">
+                {/* <section className="content">
                     <AnimatePresence mode="wait">
                         <Routes location={location} key={location.pathname}>
                                 <Route path="/" element={<Home />} />
@@ -86,6 +90,20 @@ const AppContent: FC = () => {
                                 <Route path="/404" element={<Page404 />} />
                                 <Route path="*" element={<Page404 />} />
                         </Routes>
+                    </AnimatePresence>
+                </section> */}
+                <section className="content">
+                    <AnimatePresence mode="wait">
+                    <Routes location={location} key={location.pathname}>
+                        {/* Обернуть каждую страницу в Curve */}
+                        <Route path="/" element={<Curve><Home /></Curve>} />
+                        <Route path="/projects" element={<Curve><Projects /></Curve>} />
+                        <Route path="/services" element={<Curve><Services /></Curve>} />
+                        <Route path="/about" element={<Curve><About /></Curve>} />
+                        <Route path="/contacts" element={<Curve><Contacts /></Curve>} />
+                        <Route path="/404" element={<Curve><Page404 /></Curve>} />
+                        <Route path="*" element={<Curve><Page404 /></Curve>} />
+                    </Routes>
                     </AnimatePresence>
                 </section>
                 <section className="footer">
