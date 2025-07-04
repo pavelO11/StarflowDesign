@@ -19,7 +19,7 @@
 	position: fixed;
 	background-color: transparent;
 	width: 100%;
-	// cursor: none !important;
+	cursor: default !important;
 	// isolation: isolate;
   	// mix-blend-mode: difference;
 	.welcome{
@@ -151,6 +151,9 @@
 			display: none;
 		}
 	}
+}
+.navbarSection.projects-navbar {
+  cursor: none !important;
 }
 // .hidden{
 // 	display: none;

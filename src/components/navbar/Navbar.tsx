@@ -76,7 +76,8 @@ const Navbar = ({ isAboutPage }: NavbarProps) => {
     useSplittingHover();
 
     return (
-        <nav className={`navbarSection ${shouldHideNavbar ? 'hidden' : ''}`}>
+        // <nav className={`navbarSection ${shouldHideNavbar ? 'hidden' : ''}`}>
+        <nav className={`navbarSection${location.pathname === '/projects' ? ' projects-navbar' : ''}${shouldHideNavbar ? ' hidden' : ''}`}>
             <Link
                 data-splitting
                 className='navbarBtn'
