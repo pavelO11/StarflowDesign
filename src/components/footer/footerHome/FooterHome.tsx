@@ -72,7 +72,7 @@ function FooterHome() {
                 <ul className='showLink'>
                     <Link data-splitting className='ul_link' to='https://dprofile.ru/starflowdesign' target="_blank" rel="noopener noreferrer">DPROFILE</Link>
                     <Link data-splitting className='ul_link' to='https://www.instagram.com/igor.dubovtsev.ui/' target="_blank" rel="noopener noreferrer">INSTAGRAM</Link>
-                    <Link data-splitting className='ul_link' to='https://dribbble.com/StarflowDesign' target="_blank" rel="noopener noreferrer">DRIBBBLE</Link>
+                    <Link data-splitting className='ul_link' to='https://t.me/StaflowDesign' target="_blank" rel="noopener noreferrer">TELEGRAM</Link>
                 </ul>
                 <Link 
                     data-splitting
