@@ -49,7 +49,6 @@ const CursorTrail: React.FC = () => {
         const pathString = points.map(([px, py]) => `${px},${py}`).join(' ');
         poly.setAttribute('points', pathString);
         
-        // ОБНОВЛЯЕМ ГРАДИЕНТ - ВАЖНОЕ ИЗМЕНЕНИЕ
         if (points.length > 1) {
           // Начало градиента (прозрачное) - текущая позиция курсора (последняя точка)
           const startPoint = points[points.length - 1];
