@@ -108,7 +108,7 @@ input[type="number"] {
     flex: 0 0 auto;
     z-index: 50;
     mix-blend-mode: difference; // Default mode
-    cursor: none !important;
+    // cursor: none !important;
 
     &.mix-blend-normal {
         mix-blend-mode: normal !important;
