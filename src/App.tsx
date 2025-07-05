@@ -7,7 +7,6 @@ import { Footer, Navbar } from './components'
 import CursorTrail from './components/cursorTrail/CursorTrail'
 import CustomCursor from './components/customCursor/CustomCursor'
 import { NextPageProvider } from './components/footer/nextPage/NextPageContextType'
-import Curve from './components/layoutTransition'
 import Page404 from './pages/404/404'
 import About from './pages/about/About'
 import Contacts from './pages/contacts/Contacts'
@@ -80,31 +79,17 @@ const AppContent: FC = () => {
                 <section className="navbar">
                     <Navbar isAboutPage={isAboutPage} />
                 </section>
-                {/* <section className="content">
-                    <AnimatePresence mode="wait">
-                        <Routes location={location} key={location.pathname}>
-                                <Route path="/" element={<Home />} />
-                                <Route path="/projects" element={<Projects />} />
-                                <Route path="/services" element={<Services />} />
-                                <Route path="/about" element={<About />} />
-                                <Route path="/contacts" element={<Contacts />} />
-                                <Route path="/404" element={<Page404 />} />
-                                <Route path="*" element={<Page404 />} />
-                        </Routes>
-                    </AnimatePresence>
-                </section> */}
                 <section className="content">
                     <AnimatePresence mode="wait">
-                    <Routes location={location} key={location.pathname}>
-                        {/* Обернуть каждую страницу в Curve */}
-                        <Route path="/" element={<Curve><Home /></Curve>} />
-                        <Route path="/projects" element={<Curve><Projects /></Curve>} />
-                        <Route path="/services" element={<Curve><Services /></Curve>} />
-                        <Route path="/about" element={<Curve><About /></Curve>} />
-                        <Route path="/contacts" element={<Curve><Contacts /></Curve>} />
-                        <Route path="/404" element={<Curve><Page404 /></Curve>} />
-                        <Route path="*" element={<Curve><Page404 /></Curve>} />
-                    </Routes>
+                        <Routes location={location} key={location.pathname}>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/projects" element={<Projects />} />
+                        <Route path="/services" element={<Services />} />
+                        <Route path="/about" element={<About />} />
+                        <Route path="/contacts" element={<Contacts />} />
+                        <Route path="/404" element={<Page404 />} />
+                        <Route path="*" element={<Page404 />} />
+                        </Routes>
                     </AnimatePresence>
                 </section>
                 <section className="footer">
