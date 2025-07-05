@@ -6,6 +6,7 @@ import { Route, BrowserRouter as Router, Routes, useLocation } from 'react-route
 import { Footer, Navbar } from './components'
 import CursorTrail from './components/cursorTrail/CursorTrail'
 import CustomCursor from './components/customCursor/CustomCursor'
+import { NextPageProvider } from './components/footer/nextPage/NextPageContextType'
 import Curve from './components/layoutTransition'
 import Page404 from './pages/404/404'
 import About from './pages/about/About'
@@ -107,7 +108,10 @@ const AppContent: FC = () => {
                     </AnimatePresence>
                 </section>
                 <section className="footer">
-                    <Footer />
+                    <NextPageProvider>
+                        {/* ваш layout, например: */}
+                        <Footer />
+                    </NextPageProvider>
                 </section>
             </section>
     );

@@ -1,15 +1,16 @@
-import { useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import useSplittingHover from '../../hooks/useSplittingHover'
+import { useNextPageContext } from './NextPageContextType'
 import arrowLeft from '/arrowLeft.svg'
 import arrowRight from '/arrowRight.svg'
 
 function NextPage() {
     const location = useLocation();
     const navigate = useNavigate();
+    const { title, setTitle, delayTitle, setDelayTitle } = useNextPageContext();
     const currentPage = location.pathname;
-
-    const [nextPageTitle, setNextPageTitle] = useState(getNextPageTitle()); // text state
+    const timeoutRef = useRef<number | null>(null);
 
     function getNextPage() {
         switch (currentPage) {
@@ -20,12 +21,12 @@ function NextPage() {
             case '/about':
                 return '/contacts';
             default:
-                return '/'; // if current page undefined => home
+                return '/';
         }
     }
 
-    function getNextPageTitle() {
-        switch (getNextPage()) {
+    function getNextPageTitle(path = getNextPage()) {
+        switch (path) {
             case '/services':
                 return 'Услуги';
             case '/about':
@@ -41,14 +42,33 @@ function NextPage() {
 
     function handleClick(event: React.MouseEvent<HTMLAnchorElement>) {
         event.preventDefault();
-        const nextPage = getNextPage();
-
-        setTimeout(() => {
-            setNextPageTitle(getNextPageTitle());
-        }, 2000);
-
-        navigate(nextPage);
+        // Устанавливаем флаг задержки в контексте - он сохранится при переходе
+        setDelayTitle(true);
+        // Переходим на следующую страницу немедленно
+        navigate(getNextPage());
     }
+
+    useEffect(() => {
+        // Очищаем предыдущий таймер, если он был
+        if (timeoutRef.current) {
+            clearTimeout(timeoutRef.current);
+        }
+
+        if (delayTitle) {
+            // Если установлен флаг задержки, показываем заголовок через 2 секунды
+            timeoutRef.current = setTimeout(() => {
+                setTitle(getNextPageTitle());
+                setDelayTitle(false); // Сбрасываем флаг задержки
+            }, 2000);
+        } else {
+            // Если это обычная загрузка страницы, устанавливаем заголовок сразу
+            setTitle(getNextPageTitle());
+        }
+
+        return () => {
+            if (timeoutRef.current) clearTimeout(timeoutRef.current);
+        };
+    }, [location.pathname, delayTitle, setTitle, setDelayTitle]);
 
     return (
         <a
@@ -57,7 +77,7 @@ function NextPage() {
             className="nextPage"
             onClick={handleClick}
         >
-            <p style={{ fontSize: '80px' }}>{nextPageTitle}</p>
+            <p style={{ fontSize: '80px' }}>{title}</p>
             <section className="nextPageLink">
                 <img className="leftArrow" src={arrowLeft} alt="arrow" />
                 Следующая страница
