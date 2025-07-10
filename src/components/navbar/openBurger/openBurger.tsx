@@ -69,8 +69,7 @@ const OpenBurger = () => {
                     <ul className='ulPortfolio'>
                         <Link data-splitting className='ul_link' to='https://dprofile.ru/starflowdesign' target="_blank" rel="noopener noreferrer">DPROFILE</Link>
                         <Link data-splitting className='ul_link' to='https://www.instagram.com/igor.dubovtsev.ui/' target="_blank" rel="noopener noreferrer">INSTAGRAM</Link>
-                        
-                        <Link data-splitting className='ul_link' to='https://t.me/StaflowDesign' target="_blank" rel="noopener noreferrer">TELEGRAM</Link>
+                        <Link data-splitting className='ul_link' to='https://t.me/StaflowDesign ' target="_blank" rel="noopener noreferrer">TELEGRAM</Link>
                         </ul>
                     <footer>
                         <Link className='footerLinkFirst' to='mailto:starflowdesign@gmail.com' target='_blank' rel='noopener noreferrer'>Рабочая почта<br />starflowdesign@gmail.com</Link>
