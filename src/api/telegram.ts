@@ -1,15 +1,20 @@
-const baseUrl = 'https://api.telegram.org/bot7221598703:AAF6G5y1t3drGOqIEnkdV-_Z2kZeVfSrFjE';
+const token = import.meta.env.VITE_TELEGRAM_BOT_TOKEN;
+const chatId = import.meta.env.VITE_TELEGRAM_CHAT_ID;
 
-export const sendMessage = async(message:string): Promise<void> => {
-    const url = `${baseUrl}/sendMessage?chat_id=-1002243042688&text=${encodeURIComponent(message)}`;
+if (!token || !chatId) {
+  throw new Error('Telegram credentials are missing');
+}
 
-    const response = await fetch(url);
+const baseUrl = `https://api.telegram.org/bot${token}`;
 
-    if(!response.ok){
-        const error = await response.json();
+export const sendMessage = async (message: string): Promise<void> => {
+  const url = `${baseUrl}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
+  const response = await fetch(url);
 
-        await Promise.reject(error.description || 'Error')
-    }
+  if (!response.ok) {
+    const error = await response.json();
+    return Promise.reject(error.description || 'Error');
+  }
 
-    console.log('response', response);
+  console.log('response', await response.json());
 };
