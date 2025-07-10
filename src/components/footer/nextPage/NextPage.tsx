@@ -10,7 +10,7 @@ function NextPage() {
     const navigate = useNavigate();
     const { title, setTitle, delayTitle, setDelayTitle } = useNextPageContext();
     const currentPage = location.pathname;
-    const timeoutRef = useRef<number | null>(null);
+    const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
     function getNextPage() {
         switch (currentPage) {
