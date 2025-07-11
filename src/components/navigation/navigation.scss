@@ -29,9 +29,9 @@
 	  	text-decoration: none;
 	  	color: #FFF;
 	  	gap: 8px;
-		.char:before { transform: translateY(100%); }
-		&:hover .char:before { transform: translateY(0%); }
-		&:hover .char:after { transform: translateY(-100%); }
+		// .char:before { transform: translateY(100%); }
+		// &:hover .char:before { transform: translateY(0%); }
+		// &:hover .char:after { transform: translateY(-100%); }
 	}
 	.upperText {
 	  	font-weight: 350;
@@ -49,24 +49,49 @@
 	  	position: relative;
 	  	text-decoration: none;
 	  	text-transform: uppercase;
-	  	.char {
-			overflow: hidden;
-			color: transparent;
-			&:before,
-			&:after {
-		  	visibility: visible;
-		  	color: vars.$main-color-text;
-		  	transition: transform 0.5s cubic-bezier(0.9, 0, .2, 1);
-		  	transition-delay: calc(0.2s + (0.02s * (var(--char-index))));
-		}
-	  	}
-		&:hover .char:before {
-			transition-delay: calc(0.2s + (0.02s * (var(--char-index))));
-	  	}
-	  	&:hover .char:after {
-			transition-delay: calc(0.02s * (var(--char-index)));
-	  	}
+	  	// .char {
+		// 	overflow: hidden;
+		// 	color: transparent;
+		// 	&:before,
+		// 	&:after {
+		//   	visibility: visible;
+		//   	color: vars.$main-color-text;
+		//   	transition: transform 0.5s cubic-bezier(0.9, 0, .2, 1);
+		//   	transition-delay: calc(0.2s + (0.02s * (var(--char-index))));
+		// }
+	  	// }
+		// &:hover .char:before {
+		// 	transition-delay: calc(0.2s + (0.02s * (var(--char-index))));
+	  	// }
+	  	// &:hover .char:after {
+		// 	transition-delay: calc(0.02s * (var(--char-index)));
+	  	// }
+		.char {
+                overflow: hidden;
+                color: transparent;
+                &:before,
+                &:after {
+                    visibility: visible;
+                    color: vars.$main-color-text;
+                    transition: transform 0.5s cubic-bezier(0.9,0,.2,1);
+                    transition-delay: calc( 0.2s + ( 0.02s * ( var(--char-index)) ) );
+                }
+                &:before {
+                    transition-delay: calc( 0.02s * ( var(--char-index)) );
+                }
+            }
+            &:hover .char:before { 
+                transition-delay: calc( 0.2s + ( 0.02s * ( var(--char-index)) ) );
+            }
+            &:hover .char:after {
+                transition-delay: calc( 0.02s * ( var(--char-index)) );
+            }
 	}
+	.navigationLink {
+            .char:before { transform: translateY(100%); }
+            &:hover .char:before { transform: translateY(0%); }
+            &:hover .char:after { transform: translateY(-100%); }
+        }
 	.navigationText {
 		font-weight: 350;
 		line-height: 120%;

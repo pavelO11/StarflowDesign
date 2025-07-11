@@ -92,13 +92,13 @@ function Navigation() {
         <section className={`navigationSection ${isVisible ? (isHidden ? 'fadeOut' : 'fadeIn') : ''} ${isTransitioning ? 'fadeOut' : ''}`}>
             {linksMain.map((link) => (
                 <Link
-                    data-splitting
+                    // data-splitting
                     to={link.link}
                     onClick={() => handleLinkClick(link.link)} // cheking links before going
                     key={link.id}
                 >
                     <p className='upperText'>{link.number}</p>
-                    <p className='navigationLink'>{link.title}</p>
+                    <p data-splitting className='navigationLink'>{link.title}</p>
                 </Link>
             ))}
             <p className='navigationText'>©2025</p>
