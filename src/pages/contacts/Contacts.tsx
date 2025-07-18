@@ -43,7 +43,7 @@ function Contacts() {
             </Helmet>
 		  <section className='contactSection'>
 			<AnimatePresence mode='wait'>
-				{brifOpened && <PopupBrif onClose={() => setBrifOpened(false)} selectedService={null} />}
+				{brifOpened && <PopupBrif opened={brifOpened} onClose={() => setBrifOpened(false)} selectedService={null} />}
 			</AnimatePresence>
 			<h1 data-splitting className='slide-vertical w-full'>
 				<span className='firText'>Давайте</span>

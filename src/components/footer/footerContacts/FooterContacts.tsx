@@ -15,7 +15,7 @@ function FooterContacts() {
 
 	return (
         <>
-        {brifOpened && <PopupBrif onClose={() => setBrifOpened(false)} selectedService={null} /> }
+        {brifOpened && <PopupBrif opened={brifOpened} onClose={() => setBrifOpened(false)} selectedService={null} /> }
         <footer className='underFooterContacts'>
             <section className='underFooterBottomContacts'>
                 <Link data-splitting className='underLinkFirst' to='mailto:starflowdesign@gmail.com' target="_blank" rel="noopener noreferrer">Рабочая почта<br />starflowdesign@gmail.com</Link>

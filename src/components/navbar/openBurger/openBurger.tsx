@@ -38,7 +38,7 @@ const OpenBurger = () => {
     return (
         <>
             <AnimatePresence mode='wait'>
-                {brifOpened && <PopupBrif onClose={() => setBrifOpened(false)} selectedService={null} />}
+                {brifOpened && <PopupBrif opened={brifOpened} onClose={() => setBrifOpened(false)} selectedService={null} />}
             </AnimatePresence>
             <section className='burgerContent'>
                 <nav>
