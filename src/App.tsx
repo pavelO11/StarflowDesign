@@ -1,6 +1,7 @@
 import { AnimatePresence } from 'framer-motion'
+import Lenis from 'lenis'
 import 'lenis/dist/lenis.css'
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import { Route, BrowserRouter as Router, Routes, useLocation } from 'react-router-dom'
 import { Footer, Navbar } from './components'
 import CursorTrail from './components/cursorTrail/CursorTrail'
@@ -26,30 +27,30 @@ const App: FC = () => {
 const AppContent: FC = () => {
     const location = useLocation();
     // Initialize Lenis only if the current page is not in the pagesWithoutLenis array
-    // useEffect(() => {
-    //         const lenis = new Lenis({
-    //             duration: 1.3,
-    //             easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // https://www.desmos.com/calculator/brs54l4xou
-    //             orientation: "vertical", // vertical, horizontal
-    //             gestureOrientation: "vertical", // vertical, horizontal, both
-    //             smoothWheel: true,
-    //             wheelMultiplier: 1,
-    //             syncTouch: false,
-    //             touchMultiplier: 1,
-    //             infinite: false
-    //         });
+    useEffect(() => {
+            const lenis = new Lenis({
+                duration: 1.3,
+                easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // https://www.desmos.com/calculator/brs54l4xou
+                orientation: "vertical", // vertical, horizontal
+                gestureOrientation: "vertical", // vertical, horizontal, both
+                smoothWheel: true,
+                wheelMultiplier: 1,
+                syncTouch: false,
+                touchMultiplier: 1,
+                infinite: false
+            });
 
-    //         function raf(time: number) {
-    //             lenis.raf(time);
-    //             requestAnimationFrame(raf);
-    //         }
+            function raf(time: number) {
+                lenis.raf(time);
+                requestAnimationFrame(raf);
+            }
 
-    //         requestAnimationFrame(raf);
+            requestAnimationFrame(raf);
 
-    //         return () => {
-    //             lenis.destroy();
-    //         };
-    // }, []);
+            return () => {
+                lenis.destroy();
+            };
+    }, []);
 
     // Array route with no video
     const pagesWithoutVideo = ['/projects', '/services', '/about'];
