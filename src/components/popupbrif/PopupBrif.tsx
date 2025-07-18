@@ -13,6 +13,7 @@ import TimerContent from './timerContent/TimerContent'
 interface Props {
     onClose: () => void;
     selectedService: string | null;
+    opened: boolean;
 }
 
 function PopupBrif(props: Props) {
@@ -51,7 +52,7 @@ function PopupBrif(props: Props) {
         }
     }, [remainingTime]);
 
-    //block scroll
+    // //block scroll
     useEffect(() => {
         const disableScroll = () => {
           const scrollTop = window.scrollY || document.documentElement.scrollTop;
@@ -75,15 +76,12 @@ function PopupBrif(props: Props) {
         };
     
         disableScroll();
-        const timer = setTimeout(() => {
-          enableScroll();
-        }, 3000);
     
         return () => {
           enableScroll();
-          clearTimeout(timer);
         };
-      }, [location.pathname]);
+      }, []);
+
 
     const form = useForm({
         mode: 'uncontrolled',

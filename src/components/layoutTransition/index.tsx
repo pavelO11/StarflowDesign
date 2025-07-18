@@ -369,7 +369,7 @@
 
 
 
-
+// 3 более менее рабочий вариант
 import { motion } from 'framer-motion'
 import React, { FC, useEffect, useRef, useState } from 'react'
 import { useLocation } from 'react-router-dom'

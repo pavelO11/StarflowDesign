@@ -131,7 +131,7 @@ const Services = () => {
           <meta name="description" content="Дизайн, который улучшает имидж. Разработка сайта с акцентом на бизнес-задачи. Я верю в силу качественного дизайна и люблю сотрудничать с людьми, которые чувствуют также. Давайте работать вместе." />
         </Helmet>
         <AnimatePresence mode='wait'>
-            {brifOpened && <PopupBrif selectedService={selectedService} onClose={() => setBrifOpened(false)} />}
+            {brifOpened && <PopupBrif selectedService={selectedService} opened={brifOpened} onClose={() => setBrifOpened(false)} />}
         </AnimatePresence>
       <section className='servicesSection'>
         <section className='servicesText'>
