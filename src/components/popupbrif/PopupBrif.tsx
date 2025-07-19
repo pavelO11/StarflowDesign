@@ -53,34 +53,76 @@ function PopupBrif(props: Props) {
     }, [remainingTime]);
 
     // //block scroll
+    // useEffect(() => {
+    //     const disableScroll = () => {
+    //       const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    //       const scrollLeft = window.scrollX || document.documentElement.scrollLeft;
+    //       document.body.style.overflow = 'hidden';
+    //       document.body.style.position = 'fixed';
+    //       document.body.style.top = `-${scrollTop}px`;
+    //       document.body.style.left = `-${scrollLeft}px`;
+    //       document.body.style.width = '100%';
+    //     };
+    
+    //     const enableScroll = () => {
+    //       const scrollTop = Math.abs(parseInt(document.body.style.top || '0', 10));
+    //       const scrollLeft = Math.abs(parseInt(document.body.style.left || '0', 10));
+    //       document.body.style.overflow = '';
+    //       document.body.style.position = '';
+    //       document.body.style.top = '';
+    //       document.body.style.left = '';
+    //       document.body.style.width = '';
+    //       window.scrollTo(scrollLeft, scrollTop);
+    //     };
+    
+    //     disableScroll();
+    
+    //     return () => {
+    //       enableScroll();
+    //     };
+    //   }, []);
     useEffect(() => {
-        const disableScroll = () => {
-          const scrollTop = window.scrollY || document.documentElement.scrollTop;
-          const scrollLeft = window.scrollX || document.documentElement.scrollLeft;
-          document.body.style.overflow = 'hidden';
-          document.body.style.position = 'fixed';
-          document.body.style.top = `-${scrollTop}px`;
-          document.body.style.left = `-${scrollLeft}px`;
-          document.body.style.width = '100%';
-        };
+    // Store scroll position
+    const scrollY = window.scrollY || document.documentElement.scrollTop;
     
-        const enableScroll = () => {
-          const scrollTop = Math.abs(parseInt(document.body.style.top || '0', 10));
-          const scrollLeft = Math.abs(parseInt(document.body.style.left || '0', 10));
-          document.body.style.overflow = '';
-          document.body.style.position = '';
-          document.body.style.top = '';
-          document.body.style.left = '';
-          document.body.style.width = '';
-          window.scrollTo(scrollLeft, scrollTop);
-        };
+    const disableScroll = () => {
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.left = '0';
+      document.body.style.width = '100%';
+      
+      // Pause Lenis if available
+      if (window.lenis) {
+        window.lenis.stop();
+      }
+    };
+
+    const enableScroll = () => {
+      // Clean up styles
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.body.style.width = '';
+      
+      // Start Lenis before scrolling to position
+      if (window.lenis) {
+        window.lenis.start();
+        // Use Lenis to scroll if available
+        window.lenis.scrollTo(scrollY, { immediate: true });
+      } else {
+        // Fallback to native scroll
+        window.scrollTo(0, scrollY);
+      }
+    };
+
+    disableScroll();
     
-        disableScroll();
-    
-        return () => {
-          enableScroll();
-        };
-      }, []);
+    return () => {
+      enableScroll();
+    };
+}, []);
 
 
     const form = useForm({
