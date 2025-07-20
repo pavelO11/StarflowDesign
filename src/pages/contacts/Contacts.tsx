@@ -22,17 +22,17 @@ function Contacts() {
 	useSplittingHover();
 
 	useEffect(() => {
-		Splitting({ target: '.contactButtons' });
-		
-		const descriptions = document.querySelectorAll('.discription');
-		descriptions.forEach(description => {
-			description.outerHTML = `<span class="discription">${description.textContent}</span>`;
-		});
+    Splitting({ target: '.contactButtons' });
+    
+    const descriptions = document.querySelectorAll('.discription');
+    descriptions.forEach(description => {
+    	description.outerHTML = `<span class="discription">${description.textContent}</span>`;
+    });
 
-		const initialDelay = 3800; // delay
-		setTimeout(() => {
-			setVisibleLines([0, 1]);
-		}, initialDelay);
+    const initialDelay = 3800; // delay
+    setTimeout(() => {
+    	setVisibleLines([0, 1]);
+    }, initialDelay);
   	}, []);
 	
 	return (
