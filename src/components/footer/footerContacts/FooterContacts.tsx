@@ -1,17 +1,35 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import Splitting from 'splitting'
 import useSplittingHover from '../../hooks/useSplittingHover'
+import useSplittingOnLoad from '../../hooks/useSplittingOnLoad'
 import PopupBrif from '../../popupbrif/PopupBrif'
 import './footerContacts.scss'
 
 function FooterContacts() {
     const [brifOpened, setBrifOpened] = React.useState(false);
+    const [visibleLines, setVisibleLines] = useState<number[]>([]);
 
     const handleOpenPopup = () => {
         setBrifOpened(true);
     };
     
+    useSplittingOnLoad('.slide-vertical');
     useSplittingHover();
+
+    useEffect(() => {
+            Splitting({ target: '.contactButtons' });
+            
+            const descriptions = document.querySelectorAll('.discription');
+            descriptions.forEach(description => {
+                description.outerHTML = `<span class="discription">${description.textContent}</span>`;
+            });
+    
+            const initialDelay = 3800; // delay
+            setTimeout(() => {
+                setVisibleLines([0, 1]);
+            }, initialDelay);
+        }, []);
 
 	return (
         <>
@@ -27,18 +45,44 @@ function FooterContacts() {
                 <Link data-splitting className='underLinkSecond' to='https://github.com/pavelO11' target="_blank" rel="noopener noreferrer">Верстка сайта<br />@pavelO11</Link>
             </section>
             <section className='lowerSection'>
-                  <article>
-                        <Link to='https://t.me/StarflowDesign' target='_blank' rel='noopener noreferrer' className='contactButtons'>
+                  {/* <article>
+                        <Link data-splitting to='https://t.me/StarflowDesign' target='_blank' rel='noopener noreferrer' className='slide-vertical contactButtons'>
                             <p>СВЯЗАТЬСЯ<br></br>СО МНОЙ</p>
                             <span className='discription'>( телеграм )</span>
                             <img className='contactLight' alt='light' src='/burgerLight.svg' />
                         </Link>
-                        <a onClick={handleOpenPopup} className='contactButtons'>
+                        <a data-splitting onClick={handleOpenPopup} className='slide-vertical contactButtons'>
                             <p>ЗАПОЛНИТЬ<br></br>БРИФ</p>
                             <span className='discription'>( небольшой )</span>
                             <img className='contactLight' alt='light' src='/burgerLight.svg' />
                         </a>
-                  </article>
+                  </article> */}
+                <article>
+                    <Link
+                        data-splitting
+                        to='https://t.me/StarflowDesign'
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        className='contactButtons'
+                    >
+                        <p className={visibleLines.includes(0) ? 'visible' : ''} >
+                            <span className='char'>СВЯЗАТЬСЯ</span>
+                            <span className='char'>СО МНОЙ</span>
+                            <span className='discription'>( телеграм )</span>
+                        </p>
+				    </Link>
+                    <a
+                        data-splitting
+                        onClick={handleOpenPopup}
+                        className='contactButtons'
+                    >
+					<p className={visibleLines.includes(0) ? 'visible' : ''} >
+						<span className='char'>ЗАПОЛНИТЬ</span>
+						<span className='char'>БРИФ</span>
+						<span className='discription'>( небольшой )</span>
+					</p>
+				</a>
+                </article>
                     <ul className='ulPortfolio'>
                         <Link data-splitting className='ul_link' to='https://dprofile.ru/starflowdesign' target="_blank" rel="noopener noreferrer">DPROFILE</Link>
                         <Link data-splitting className='ul_link' to='https://www.instagram.com/igor.dubovtsev.ui/' target="_blank" rel="noopener noreferrer">INSTAGRAM</Link>
