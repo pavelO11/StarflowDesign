@@ -96,9 +96,12 @@
         font-size: 40px;
     }
     .principlesSection .principlesShow .marquee {
-        gap: 40px;
+        gap: 24px;
     }
     .principlesShow .marquee .parallax , .principlesShow .marquee .parallax .scroller{
         word-spacing: 24px;
+    }
+    .parallax .scroller {
+        letter-spacing: -2px;
     }
 }
