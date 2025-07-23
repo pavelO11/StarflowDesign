@@ -10,7 +10,7 @@ import './popupbrif.scss'
 import SuccessContent from './successContent/SuccessContent'
 import TimerContent from './timerContent/TimerContent'
 
-
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
 
 interface Props {
     onClose: () => void;
@@ -83,34 +83,51 @@ function PopupBrif(props: Props) {
     //       enableScroll();
     //     };
     //   }, []);
+
+    // useEffect(() => {
+    //     const disableScroll = () => {
+    //       const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    //       const scrollLeft = window.scrollX || document.documentElement.scrollLeft;
+    //       document.body.style.overflow = 'hidden';
+    //       document.body.style.position = 'fixed';
+    //       document.body.style.top = `-${scrollTop}px`;
+    //       document.body.style.left = `-${scrollLeft}px`;
+    //       document.body.style.width = '100%';
+    //     };
+    
+    //     const enableScroll = () => {
+    //       const scrollTop = Math.abs(parseInt(document.body.style.top || '0', 10));
+    //       const scrollLeft = Math.abs(parseInt(document.body.style.left || '0', 10));
+    //       document.body.style.overflow = '';
+    //       document.body.style.position = '';
+    //       document.body.style.top = '';
+    //       document.body.style.left = '';
+    //       document.body.style.width = '';
+    //       window.scrollTo(scrollLeft, scrollTop);
+    //     };
+    
+    //     disableScroll();
+    
+    //     return () => {
+    //       enableScroll();
+    //     };
+    //   }, []);
+
     useEffect(() => {
-        const disableScroll = () => {
-          const scrollTop = window.scrollY || document.documentElement.scrollTop;
-          const scrollLeft = window.scrollX || document.documentElement.scrollLeft;
-          document.body.style.overflow = 'hidden';
-          document.body.style.position = 'fixed';
-          document.body.style.top = `-${scrollTop}px`;
-          document.body.style.left = `-${scrollLeft}px`;
-          document.body.style.width = '100%';
-        };
-    
-        const enableScroll = () => {
-          const scrollTop = Math.abs(parseInt(document.body.style.top || '0', 10));
-          const scrollLeft = Math.abs(parseInt(document.body.style.left || '0', 10));
-          document.body.style.overflow = '';
-          document.body.style.position = '';
-          document.body.style.top = '';
-          document.body.style.left = '';
-          document.body.style.width = '';
-          window.scrollTo(scrollLeft, scrollTop);
-        };
-    
-        disableScroll();
-    
-        return () => {
-          enableScroll();
-        };
-      }, []);
+  // Use a more specific target element if possible
+  const targetElement = document.querySelector('.drawer');
+  
+  if (props.opened && targetElement) {
+    disableBodyScroll(targetElement);
+  } else if (targetElement) {
+    enableBodyScroll(targetElement);
+  }
+  
+  return () => {
+    if (targetElement) enableBodyScroll(targetElement);
+    // Or use clearAllBodyScrollLocks() if using v3
+  };
+}, [props.opened]);
     
     const form = useForm({
         mode: 'uncontrolled',

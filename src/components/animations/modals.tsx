@@ -18,45 +18,16 @@ export const popupAnimation = {
     },
 };
 
-export const overlayAnimation = {
-    initial: {
-        opacity: 0,
-    },
-    enter: {
-        opacity: 1,
-        transition: {
-            duration: 0.6,
-            ease: [0.63, 0.05, 0.36, 1],
-        },
-    },
-    exit: {
-        opacity: 0,
-        transition: {
-            duration: 0.6,
-            ease: [0.63, 0.05, 0.36, 1],
-        },
-    },
-};
+export const burgerAnimation = popupAnimation;
 
-export const burgerAnimation = {
-    initial: {
-        x: '100%',
-        opacity: 1,
-    },
-    enter: {
-        x: '0%',
-        opacity: 1,
-        transition: {
-            duration: 0.8,
-            ease: [0.63, 0.05, 0.36, 1],
-        },
-    },
-    exit: {
-        x: '100%',
-        opacity: 1,
-        transition: {
-            duration: 0.6,
-            ease: [0.63, 0.05, 0.36, 1],
-        },
-    },
+export const overlayAnimation = {
+  initial: { backgroundColor: 'rgba(0, 0, 0, 0)' },
+  enter: {
+    backgroundColor: 'rgba(0, 0, 0, 0.6)',
+    transition: { duration: 0.6, ease: [0.63, 0.05, 0.36, 1] },
+  },
+  exit: {
+    backgroundColor: 'rgba(0, 0, 0, 0)',
+    transition: { duration: 0.6, ease: [0.63, 0.05, 0.36, 1] },
+  },
 };
