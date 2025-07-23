@@ -167,7 +167,6 @@ function PopupBrif(props: Props) {
         }
     };
 
-
     useSplittingHover();
 
     return (
