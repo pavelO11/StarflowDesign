@@ -10,7 +10,7 @@ import './popupbrif.scss'
 import SuccessContent from './successContent/SuccessContent'
 import TimerContent from './timerContent/TimerContent'
 
-import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
+import { clearAllBodyScrollLocks, disableBodyScroll } from 'body-scroll-lock'
 
 interface Props {
     onClose: () => void;
@@ -113,19 +113,41 @@ function PopupBrif(props: Props) {
     //     };
     //   }, []);
 
-    useEffect(() => {
-  // Use a more specific target element if possible
-  const targetElement = document.querySelector('.drawer');
+//     useEffect(() => {
+//   // Use a more specific target element if possible
+//   const targetElement = document.querySelector('.drawer');
   
-  if (props.opened && targetElement) {
-    disableBodyScroll(targetElement);
-  } else if (targetElement) {
-    enableBodyScroll(targetElement);
+//   if (props.opened && targetElement) {
+//     disableBodyScroll(targetElement);
+//   } else if (targetElement) {
+//     enableBodyScroll(targetElement);
+//   }
+  
+//   return () => {
+//     if (targetElement) enableBodyScroll(targetElement);
+//     // Or use clearAllBodyScrollLocks() if using v3
+//   };
+// }, [props.opened]);
+
+useEffect(() => {
+  if (props.opened) {
+    // Small timeout to ensure the drawer element is rendered
+    setTimeout(() => {
+      const targetElement = document.querySelector('.drawer');
+      if (targetElement) {
+        disableBodyScroll(targetElement, {
+          reserveScrollBarGap: true, // Prevents layout shift by adding padding
+        });
+      } else {
+        // Fallback to body if drawer isn't found
+        disableBodyScroll(document.body);
+      }
+    }, 10);
   }
   
+  // Cleanup function
   return () => {
-    if (targetElement) enableBodyScroll(targetElement);
-    // Or use clearAllBodyScrollLocks() if using v3
+    clearAllBodyScrollLocks();
   };
 }, [props.opened]);
     
