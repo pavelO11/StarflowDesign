@@ -134,15 +134,25 @@ function PopupBrif(props: Props) {
         }
     };
 
+    // const handleDrawerClose = () => {
+    //     if (showSuccessContent) {
+    //         setShowSuccessContent(false);
+    //         setShowThirdContent(true);
+    //     } else if (showThirdContent) {
+    //         setShowThirdContent(false);
+    //         props.onClose();
+    //     }
+    // };
     const handleDrawerClose = () => {
-        if (showSuccessContent) {
-            setShowSuccessContent(false);
-            setShowThirdContent(true);
-        } else if (showThirdContent) {
-            setShowThirdContent(false);
-            props.onClose();
-        }
-    };
+    if (showSuccessContent) {
+        setShowSuccessContent(false);
+        setShowThirdContent(true);
+    } else if (showThirdContent) {
+        setShowThirdContent(false);
+        setShowDefaultContent(true); // Возвращаемся к первому этапу, не закрываем попап
+        // props.onClose(); // Удалить этот вызов!
+    }
+};
 
     useSplittingHover();
 
