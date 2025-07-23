@@ -33,12 +33,18 @@ const OpenBurger = () => {
         '/contacts': 'Контакты',
     };
 
-    useScrollLock();
+    useScrollLock(true);
     
     return (
         <>
-            <AnimatePresence mode='wait'>
-                {brifOpened && <PopupBrif opened={brifOpened} onClose={() => setBrifOpened(false)} selectedService={null} />}
+            <AnimatePresence mode="wait">
+                {brifOpened && (
+                <PopupBrif
+                    opened={brifOpened}
+                    onClose={() => setBrifOpened(false)}
+                    selectedService={null}
+                />
+                )}
             </AnimatePresence>
             <section className='burgerContent'>
                 <nav>
