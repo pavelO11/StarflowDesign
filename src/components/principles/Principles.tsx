@@ -12,7 +12,7 @@ interface PrinciplesProps {
 const Principles: React.FC<PrinciplesProps> = ({ handlePrinciplesShow }) => {
     const [isVisible, setIsVisible] = useState(false);
 
-    useScrollLock();
+    useScrollLock(true);
 
     useEffect(() => {
         setIsVisible(true); // starting animation when component is mounted
