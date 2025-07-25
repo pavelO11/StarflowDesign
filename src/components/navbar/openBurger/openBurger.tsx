@@ -18,7 +18,7 @@ const OpenBurger = () => {
         if (setIsBurgerOpen) {
             setTimeout(() => {
                 setIsBurgerOpen(false);
-            }, 2300); // Закрытие через 300 мс
+            }, 100); // Закрытие через 300 мс
         }
     };
     

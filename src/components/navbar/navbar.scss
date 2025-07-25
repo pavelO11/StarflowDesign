@@ -146,6 +146,7 @@
 	@media screen and (max-width: 1024px) {
 		.burger{
 			display: flex;
+			mix-blend-mode: difference;
 		}
 		.welcome , .navbarTelegram{
 			display: none;
