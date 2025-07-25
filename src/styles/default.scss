@@ -107,17 +107,17 @@ input[type="number"] {
 .navbar {
     flex: 0 0 auto;
     z-index: 50;
-    mix-blend-mode: difference; // Default mode
+    // mix-blend-mode: difference; // Default mode
     // cursor: none !important;
     cursor: default !important;
 
-    &.mix-blend-normal {
-        mix-blend-mode: normal !important;
-    }
+    // &.mix-blend-normal {
+    //     mix-blend-mode: normal !important;
+    // }
 
-    &.mix-blend-difference {
-        mix-blend-mode: difference !important;
-    }
+    // &.mix-blend-difference {
+    //     mix-blend-mode: difference !important;
+    // }
 }
 // Content section styling
 .content {
