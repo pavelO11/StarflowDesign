@@ -1,9 +1,11 @@
 export const popupAnimation = {
     initial: {
         x: '100%', // Начальное положение (за пределами экрана справа)
+        opacity: 1,
     },
     enter: {
         x: '0%', // Конечное положение (полностью видимо)
+        opacity: 1,
         transition: {
             duration: 0.8, // Продолжительность анимации
             ease: [0.63, 0.05, 0.36, 1], // Кастомная easing-функция
@@ -11,6 +13,7 @@ export const popupAnimation = {
     },
     exit: {
         x: '100%', // Возвращение за пределы экрана справа
+        opacity: 1,
         transition: {
             duration: 0.6, // Продолжительность анимации
             ease: [0.63, 0.05, 0.36, 1], // Кастомная easing-функция

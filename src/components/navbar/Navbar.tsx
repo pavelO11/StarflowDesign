@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { createContext, useEffect, useRef, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { burgerAnimation } from '../animations/modals'
+import { overlayAnimation, popupAnimation } from '../animations/modals'
 import useSplittingHover from '../hooks/useSplittingHover'
 import './navbar.scss'
 import OpenBurger from './openBurger/openBurger'
@@ -100,7 +100,7 @@ const Navbar = ({ isAboutPage }: NavbarProps) => {
                 <span></span>
                 {!isBurgerOpen && <span></span>}
             </section>
-            <AnimatePresence mode="wait">
+            {/* <AnimatePresence mode="wait">
                 {isBurgerOpen && (
                     <motion.section
                         variants={burgerAnimation}
@@ -112,6 +112,31 @@ const Navbar = ({ isAboutPage }: NavbarProps) => {
                         <BurgerContext.Provider value={setIsBurgerOpen}>
                             <OpenBurger />
                         </BurgerContext.Provider>
+                    </motion.section>
+                )}
+            </AnimatePresence> */}
+            <AnimatePresence mode="wait">
+                {isBurgerOpen && (
+                    <motion.section
+                        variants={overlayAnimation}
+                        initial="initial"
+                        animate="enter"
+                        exit="exit"
+                        className="overlay"
+                        onClick={() => setIsBurgerOpen(false)}
+                    >
+                        <motion.section
+                            variants={popupAnimation}
+                            initial="initial"
+                            animate="enter"
+                            exit="exit"
+                            className='openBurger'
+                            onClick={e => e.stopPropagation()}
+                        >
+                            <BurgerContext.Provider value={setIsBurgerOpen}>
+                                <OpenBurger />
+                            </BurgerContext.Provider>
+                        </motion.section>
                     </motion.section>
                 )}
             </AnimatePresence>
