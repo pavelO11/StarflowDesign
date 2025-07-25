@@ -1,11 +1,11 @@
 @use "../../styles/variables" as vars;
 
-// .mix-blend-normal {
-//     mix-blend-mode: normal !important;
-// }
-// .mix-blend-difference {
-//     mix-blend-mode: difference !important;
-// }
+.mix-blend-normal {
+    mix-blend-mode: normal !important;
+}
+.mix-blend-difference {
+    mix-blend-mode: difference !important;
+}
 .navbarSection{
 	display: flex;
 	flex-direction: row;
