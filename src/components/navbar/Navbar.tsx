@@ -68,7 +68,7 @@ const Navbar = ({ isAboutPage }: NavbarProps) => {
             if (isAboutPage || burger.classList.contains('burgerActive') || shouldDisableMixBlendMode) {
                 navbar.style.mixBlendMode = 'normal'; // Отключаем mix-blend-mode
             } else {
-                navbar.style.mixBlendMode = 'difference'; // Включаем mix-blend-mode
+                navbar.style.mixBlendMode = 'normal'; // Включаем mix-blend-mode WAS DIFFERENCE
             }
         }
     }, [isAboutPage, isBurgerOpen, location.pathname]);
