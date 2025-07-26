@@ -75,6 +75,82 @@ const Navbar = ({ isAboutPage }: NavbarProps) => {
 
     useSplittingHover();
 
+    useEffect(() => {
+    let hideTimer: NodeJS.Timeout;
+    
+    const checkVisibility = () => {
+        const drawerElement = document.querySelector('.drawer, .drawerSecond, .drawerThird');
+        const screenWidth = window.innerWidth;
+        const burger = document.querySelector('.burger') as HTMLElement;
+        const logo = document.querySelector('.navbarBtn') as HTMLElement;
+
+        if (screenWidth <= 1024 && drawerElement) {
+            // Создаем IntersectionObserver для отслеживания видимости drawer
+            const observer = new IntersectionObserver((entries) => {
+                // entries[0].intersectionRatio содержит процент видимости элемента (от 0 до 1)
+                const visibilityPercentage = entries[0].intersectionRatio;
+                
+                // Если drawer виден хотя бы на 80%, скрываем элементы
+                if (visibilityPercentage > 0.8) {
+                    setShouldHideNavbar(true);
+                    
+                    // Плавное скрытие элементов в зависимости от % видимости drawer
+                    clearTimeout(hideTimer);
+                    hideTimer = setTimeout(() => {
+                        if (burger) {
+                            burger.style.display = 'none';
+                        }
+                        if (logo) {
+                            logo.style.display = 'none';
+                        }
+                    }, 300); // Уменьшенная задержка для более быстрой реакции
+                } else {
+                    setShouldHideNavbar(false);
+                    clearTimeout(hideTimer);
+                    
+                    if (burger) {
+                        burger.style.display = '';
+                    }
+                    if (logo) {
+                        logo.style.display = '';
+                    }
+                }
+            }, {
+                threshold: [0, 0.3, 0.5, 0.7, 1], // Отслеживаем разные пороги видимости
+                root: null // Относительно области просмотра
+            });
+            
+            // Начинаем наблюдение за drawer
+            observer.observe(drawerElement);
+            
+            // Очищаем наблюдатель при размонтировании
+            return () => {
+                observer.disconnect();
+            };
+        } else {
+            setShouldHideNavbar(false);
+            clearTimeout(hideTimer);
+            
+            if (burger) {
+                burger.style.display = '';
+            }
+            if (logo) {
+                logo.style.display = '';
+            }
+        }
+    };
+
+    const mutationObserver = new MutationObserver(checkVisibility);
+    mutationObserver.observe(document.body, { childList: true, subtree: true });
+    window.addEventListener('resize', checkVisibility);
+
+    return () => {
+        mutationObserver.disconnect();
+        window.removeEventListener('resize', checkVisibility);
+        clearTimeout(hideTimer);
+    };
+}, []);
+
     return (
         // <nav className={`navbarSection ${shouldHideNavbar ? 'hidden' : ''}`}>
         <nav className={`navbarSection${location.pathname === '/projects' ? ' projects-navbar' : ''}${shouldHideNavbar ? ' hidden' : ''}`}>
