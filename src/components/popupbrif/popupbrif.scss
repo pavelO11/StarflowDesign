@@ -197,7 +197,7 @@
 					}
 					.submitButton{
 						font-family: 'Inter', sans-serif;
-						background: vars.$black-text;
+						background: transparent;
 						padding: 16px;
 						color: transparent;
 						border: vars.$black-text 1px solid;
@@ -213,29 +213,27 @@
 							&:after {
 								visibility: visible;
 								height: 22px;
-								// color: vars.$black-text;
-								color: #ffffff;
+								color: vars.$black-text;
 								transition: transform 0.5s cubic-bezier(0.9,0,.2,1);
 								transition-delay: calc( 0.2s + ( 0.02s * ( var(--char-index)) ) );
 							}
 							&:before {
 								transition-delay: calc( 0.02s * ( var(--char-index)) );
-								color: vars.$black-text;
+								color: vars.$main-color-text;
 							}
 						}
 						&:hover .char:before { 
 							transition-delay: calc( 0.2s + ( 0.02s * ( var(--char-index)) ) );
-							color: vars.$black-text;
+							color: vars.$main-color-text;
 						}
 						&:hover .char:after {
 							transition-delay: calc( 0.02s * ( var(--char-index)) );
-							color: vars.$black-text;
+							color: vars.$main-color-text;
 						}
 					}
 					.submitButton:hover{
 						border: vars.$black-text 1px solid;
-						background: #ffff;
-
+						background: vars.$black-text;
 						transition: ease-in-out 0.5s;
 					}
 					.submitButton {
@@ -328,4 +326,25 @@
 				.drawer .submitButton{
 					font-weight: 500;
 				}
+				.submitButton{
+						background: vars.$black-text;
+						.char {
+							&:before,
+							&:after {
+								color: #ffffff;
+							}
+							&:before {
+								color: vars.$black-text;
+							}
+						}
+						&:hover .char:before { 
+							color: vars.$black-text;
+						}
+						&:hover .char:after {
+							color: vars.$black-text;
+						}
+					}
+					.submitButton:hover{
+						background: #ffff;
+					}
 			}
