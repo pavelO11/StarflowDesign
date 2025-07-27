@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import { usePageRefresh } from '../context/PageRefreshContext'
 import useSplittingHover from '../hooks/useSplittingHover'
 import './navigation.scss'
 
@@ -63,11 +64,15 @@ function Navigation() {
         };
     }, []);
 
+    const isPageRefresh = usePageRefresh(); // получаем флаг
+
     useEffect(() => {
-        setTimeout(() => {
+        const timeout = setTimeout(() => {
             setIsVisible(true);
-        }, 4800); // delay
-    }, []);
+        }, isPageRefresh ? 4800 : 0.1); // 4800 при перезагрузке, 200 при переходе
+
+        return () => clearTimeout(timeout);
+    }, [isPageRefresh]);
 
     useSplittingHover();
 

@@ -22,6 +22,7 @@ const Projects: React.FC = () => {
 
     return (
         <Curve>
+            <>
             <Helmet>
                 <title>Starflow Design - Портфолио</title>
                 <meta
@@ -30,7 +31,7 @@ const Projects: React.FC = () => {
                 />
             </Helmet>
             <main className="projects-container">
-                <>
+                <Navigation />
                 <Link
                     to="https://dprofile.ru/case/76591/real-estate"
                     target="_blank"
@@ -65,7 +66,6 @@ const Projects: React.FC = () => {
                                 </div>
                             </Link>
                         </div>
-                        <Navigation />
                     </section>
                 </Link>
 
@@ -142,8 +142,8 @@ const Projects: React.FC = () => {
                         </div>
                     </section>
                 </Link>
-                </>
             </main>
+            </>
         </Curve>
     );
 };

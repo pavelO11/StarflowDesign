@@ -92,37 +92,6 @@ const Services = () => {
     });
   }, []);
 
-//   document.addEventListener('DOMContentLoaded', function() {
-//     const accordionItems = document.querySelectorAll('.accordion li');
-    
-//     accordionItems.forEach(item => {
-//         // For touch devices
-//         item.addEventListener('touchend', function(this: HTMLElement, e) {
-//             if (!this.classList.contains('open')) {
-//                 // Play animation when tapped
-//                 this.classList.remove('tapped');
-//                 // The CSS animation will play because the 'tapped' class is removed
-//                 // After animation finishes, mark as tapped
-//                 setTimeout(() => {
-//                     if (!this.classList.contains('open')) {
-//                         this.classList.add('tapped');
-//                     }
-//                 }, 200); // Same as your animation duration
-//             }
-//         });
-        
-//         // Reset tapped state when closed
-//         const radioButton = item.querySelector('input[type="radio"]');
-//         if (radioButton) {
-//             radioButton.addEventListener('change', function(this: HTMLInputElement) {
-//                 if (!this.checked) {
-//                     item.classList.remove('tapped');
-//                 }
-//             });
-//         }
-//     });
-// });
-
   return (
     <Curve>
     <>

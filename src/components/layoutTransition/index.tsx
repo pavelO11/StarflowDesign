@@ -1,9 +1,8 @@
-
-
+// заебумба
 import { motion } from 'framer-motion'
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, useCallback, useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
-import { PageRefreshContext } from '../context/PageRefrashContext'
+import { PageRefreshContext } from '../context/PageRefreshContext'
 import './layout.scss'
 
 interface CurveProps {
@@ -29,24 +28,20 @@ const Curve: FC<CurveProps> = ({ children, backgroundColor }) => {
     width: 0,
     height: 0,
   });
-  const [showContent, setShowContent] = useState(false);
-  const [isPageRefresh, setIsPageRefresh] = useState(() => {
-    // Если нет флага, значит это реальная загрузка/перезагрузка
-    return !sessionStorage.getItem('pageLoaded');
-  });
 
-  useEffect(() => {
-  // Проверяем: если это не перезагрузка, просто показываем контент
-  if (!isPageRefresh) {
-    setShowContent(true);
-    return;
-  }
+  const enableScroll = useCallback(() => {
+    document.body.style.overflow = '';
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.left = '';
+    document.body.style.width = '';
+    document.body.classList.remove('hide-cursor');
+    // Если используете кастомный скролл (Lenis), запустите его тут
+    if ((window as any).lenis) (window as any).lenis.start();
+  }, []);
 
-  // Ставим флаг, чтобы при следующей навигации не было анимации
-  sessionStorage.setItem('pageLoaded', 'true');
-
-  // Блокируем скролл только при перезагрузке страницы
-  const disableScroll = () => {  
+  // Корректно заблокировать скролл
+  const disableScroll = useCallback(() => {
     const scrollY = window.scrollY;
     window.scrollTo(0, 0);
     document.body.style.overflow = 'hidden';
@@ -55,35 +50,61 @@ const Curve: FC<CurveProps> = ({ children, backgroundColor }) => {
     document.body.style.left = '0';
     document.body.style.width = '100%';
     document.body.classList.add('hide-cursor');
-    if (window.lenis) window.lenis.stop();
-  };
+    // Если используете кастомный скролл (Lenis), остановите его тут
+    if ((window as any).lenis) (window as any).lenis.stop();
+  }, []);
 
-  const enableScroll = () => {
-    const scrollY = parseInt(document.body.style.top || '0');
-    document.body.style.overflow = '';
-    document.body.style.position = '';
-    document.body.style.top = '';
-    document.body.style.left = '';
-    document.body.style.width = '';
-    document.body.classList.remove('hide-cursor');
-    window.scrollTo(0, Math.abs(scrollY) || 0);
-    setShowContent(true);
-    if (window.lenis) window.lenis.start();
-  };
+  const [showContent, setShowContent] = useState(false);
+  
+  // Проверяем, первая ли это загрузка страницы
+  const [isPageRefresh, setIsPageRefresh] = useState(() => {
+    const hasPageLoaded = sessionStorage.getItem('pageLoaded');
+    return !hasPageLoaded; // true если первая загрузка, false если переход
+  });
 
-  disableScroll();
-  const timer = setTimeout(() => {
-    enableScroll();
-    setIsPageRefresh(false);
-  }, 4000);
+  // Первая загрузка (заставка)
+  useEffect(() => {
+    if (isPageRefresh) {
+      sessionStorage.setItem('pageLoaded', 'true');
+      disableScroll();
+      setShowContent(false);
+      const timer = setTimeout(() => {
+        enableScroll();
+        setShowContent(true);
+        setIsPageRefresh(false);
+        // Гарантируем, что скролл сверху
+        setTimeout(() => window.scrollTo(0, 0), 10);
+      }, 3800);
+      return () => {
+        clearTimeout(timer);
+        enableScroll();
+      };
+    } else {
+      setShowContent(true);
+      enableScroll();
+    }
+    // eslint-disable-next-line
+  }, [isPageRefresh, disableScroll, enableScroll]);
 
-  return () => {
-    enableScroll();
-    clearTimeout(timer);
-  };
-}, [isPageRefresh, location.pathname]); // <--- добавьте сюда location.pathname
+  // Переходы между страницами
+  useEffect(() => {
+    if (!isPageRefresh) {
+      setShowContent(false);
+      disableScroll();
+      const timer = setTimeout(() => {
+        enableScroll();
+        setShowContent(true);
+        setTimeout(() => window.scrollTo(0, 0), 10);
+      }, 200);
+      return () => {
+        clearTimeout(timer);
+        enableScroll();
+      };
+    }
+    // eslint-disable-next-line
+  }, [location.pathname]);
 
-  // Сбросить флаг при реальной перезагрузке (чтобы при следующей загрузке снова была анимация)
+  // Сбросить флаг при реальной перезагрузке
   useEffect(() => {
     const handleBeforeUnload = () => {
       sessionStorage.removeItem('pageLoaded');
@@ -180,43 +201,47 @@ const Curve: FC<CurveProps> = ({ children, backgroundColor }) => {
   };
 
   return (
-    <motion.section
-      className="SectionPage"
-      style={{ backgroundColor }}
-      key={location.pathname}
-    >
-      {isPageRefresh && (
-        <>
-          <motion.p {...anim(text)} className="loadingText">
-            Starflow Design<span className="labelc">©</span>
-          </motion.p>
-          <section
-            style={{ opacity: dimensions.width > 0 ? 0 : 1 }}
-            className="background"
-          ></section>
-          {dimensions.width > 0 && (
-            <motion.svg {...anim(svgSlide)}>
-              <motion.path {...anim(svgCurve)} fill="#0f0f0f" />
-            </motion.svg>
-          )}
-        </>
-      )}
     <PageRefreshContext.Provider value={isPageRefresh}>
-      <div 
-        style={{ 
-          opacity: showContent ? 1 : 0, 
-          visibility: showContent ? 'visible' : 'hidden',
-          transition: 'opacity 0.3s ease'
-        }}
-      >
-        {children}
-      </div>
+        <motion.section
+            className="SectionPage"
+            style={{ backgroundColor }}
+            key={location.pathname}
+        >
+        {isPageRefresh && (
+            <>
+            <motion.p {...anim(text)} className="loadingText">
+                Starflow Design<span className="labelc">©</span>
+            </motion.p>
+            <section
+                style={{ opacity: dimensions.width > 0 ? 0 : 1 }}
+                className="background"
+            >
+            </section>
+            {dimensions.width > 0 && (
+                <motion.svg {...anim(svgSlide)}>
+                <motion.path {...anim(svgCurve)} fill="#0f0f0f" />
+                </motion.svg>
+            )}
+            </>
+        )}
+            <div 
+            style={{ 
+                opacity: showContent ? 1 : 0, 
+                visibility: showContent ? 'visible' : 'hidden',
+                transition: 'opacity 0.3s ease'
+            }}
+            >
+            {children}
+            </div>
+        </motion.section>
     </PageRefreshContext.Provider>
-    </motion.section>
   );
 };
 
 export default Curve;
+
+
+
 
 // 3 более менее рабочий вариант
 // import { motion } from 'framer-motion'

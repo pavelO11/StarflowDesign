@@ -6,6 +6,7 @@ import './404.scss'
 import arrowLeft from '/arrowLeft.svg'
 import arrowRight from '/arrowRight.svg'
 
+
 function Undefpage() {
 
 	useSplittingOnLoad('.slide-vertical');
