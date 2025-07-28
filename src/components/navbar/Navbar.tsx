@@ -260,30 +260,31 @@ const Navbar = ({ isAboutPage }: NavbarProps) => {
     const pagesWithoutMixBlendMode = [''];
 
     // --- 1. Скрытие при открытии drawer (PopupBrif) ---
-    useEffect(() => {
-        const checkVisibility = () => {
-            const isDrawerVisible = document.querySelector('.drawer, .drawerSecond, .drawerThird');
-            const isBurgerMenuOpen = document.querySelector('.openBurger');
-            const screenWidth = window.innerWidth;
+    // ...existing code...
+useEffect(() => {
+    const checkVisibility = () => {
+        const isDrawerVisible = document.querySelector('.drawer, .drawerSecond, .drawerThird');
+        const screenWidth = window.innerWidth;
 
-            // Скрываем только если открыт drawer и НЕ открыт openBurger
-            if (screenWidth <= 1024 && isDrawerVisible && !isBurgerMenuOpen) {
-                setShouldHideNavbar(true);
-            } else {
-                setShouldHideNavbar(false);
-            }
-        };
+        // Используем состояние isBurgerOpen!
+        if (screenWidth <= 1024 && isDrawerVisible && !isBurgerOpen) {
+            setShouldHideNavbar(true);
+        } else {
+            setShouldHideNavbar(false);
+        }
+    };
 
-        checkVisibility();
-        const observer = new MutationObserver(checkVisibility);
-        observer.observe(document.body, { childList: true, subtree: true });
-        window.addEventListener('resize', checkVisibility);
+    checkVisibility();
+    const observer = new MutationObserver(checkVisibility);
+    observer.observe(document.body, { childList: true, subtree: true });
+    window.addEventListener('resize', checkVisibility);
 
-        return () => {
-            observer.disconnect();
-            window.removeEventListener('resize', checkVisibility);
-        };
-    }, []);
+    return () => {
+        observer.disconnect();
+        window.removeEventListener('resize', checkVisibility);
+    };
+}, [isBurgerOpen]);
+// ...existing code...
 
     // --- 2. Анимация вращения логотипа при скролле ---
     useEffect(() => {
