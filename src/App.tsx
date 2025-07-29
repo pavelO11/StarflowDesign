@@ -4,6 +4,7 @@ import 'lenis/dist/lenis.css'
 import { FC, useEffect } from 'react'
 import { Route, BrowserRouter as Router, Routes, useLocation } from 'react-router-dom'
 import { Footer, Navbar } from './components'
+import { PageRefreshProvider } from './components/context/PageRefreshContext'
 import CursorTrail from './components/cursorTrail/CursorTrail'
 import CustomCursor from './components/customCursor/CustomCursor'
 import { NextPageProvider } from './components/footer/nextPage/NextPageContextType'
@@ -19,7 +20,9 @@ import './styles/variables.scss'
 const App: FC = () => {
     return (
         <Router>
-            <AppContent />
+            <PageRefreshProvider>
+                <AppContent />
+            </PageRefreshProvider>
         </Router>
     );
 };

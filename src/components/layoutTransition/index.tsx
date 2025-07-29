@@ -2,7 +2,6 @@
 import { motion } from 'framer-motion'
 import React, { FC, useCallback, useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
-import { PageRefreshContext } from '../context/PageRefreshContext'
 import './layout.scss'
 
 interface CurveProps {
@@ -86,23 +85,23 @@ const Curve: FC<CurveProps> = ({ children, backgroundColor }) => {
     // eslint-disable-next-line
   }, [isPageRefresh, disableScroll, enableScroll]);
 
-  // Переходы между страницами
-  useEffect(() => {
-    if (!isPageRefresh) {
-      setShowContent(false);
-      disableScroll();
-      const timer = setTimeout(() => {
-        enableScroll();
-        setShowContent(true);
-        setTimeout(() => window.scrollTo(0, 0), 10);
-      }, 200);
-      return () => {
-        clearTimeout(timer);
-        enableScroll();
-      };
-    }
-    // eslint-disable-next-line
-  }, [location.pathname]);
+//   // Переходы между страницами
+//   useEffect(() => {
+//     if (!isPageRefresh) {
+//       setShowContent(false);
+//       disableScroll();
+//       const timer = setTimeout(() => {
+//         enableScroll();
+//         setShowContent(true);
+//         setTimeout(() => window.scrollTo(0, 0), 10);
+//       }, 200);
+//       return () => {
+//         clearTimeout(timer);
+//         enableScroll();
+//       };
+//     }
+//     // eslint-disable-next-line
+//   }, [location.pathname]);
 
   // Сбросить флаг при реальной перезагрузке
   useEffect(() => {
@@ -201,7 +200,6 @@ const Curve: FC<CurveProps> = ({ children, backgroundColor }) => {
   };
 
   return (
-    <PageRefreshContext.Provider value={isPageRefresh}>
         <motion.section
             className="SectionPage"
             style={{ backgroundColor }}
@@ -234,7 +232,6 @@ const Curve: FC<CurveProps> = ({ children, backgroundColor }) => {
             {children}
             </div>
         </motion.section>
-    </PageRefreshContext.Provider>
   );
 };
 

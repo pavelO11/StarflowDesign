@@ -60,36 +60,130 @@
 // export default useSplittingOnLoad;
 
 
-//вроде збс
+//вроде збс тут не ворк при перезагрузке а при переходе норм
+// import { useEffect } from 'react'
+// import Splitting from 'splitting'
+// import { usePageRefresh } from '../context/PageRefreshContext'
+
+// /**
+//  * Хук для анимации текста с использованием Splitting.js
+//  * - При перезагрузке страницы: задержка defaultSplash (3800ms)
+//  * - При навигации между страницами: задержка defaultNav (200ms)
+//  * @param className - CSS-селектор для элементов Splitting
+//  * @param delay - опциональная пользовательская задержка (ms)
+//  */
+// const useSplittingOnLoad = (className: string, delay?: number) => {
+//     const isPageRefresh = usePageRefresh();
+
+//     useEffect(() => {
+//         const defaultSplash = 3800;
+//         const defaultNav = 200;
+//         const actualDelay = isPageRefresh
+//             ? (delay ?? defaultSplash)
+//             : (delay ?? defaultNav);
+            
+//         Splitting();
+//         const timeoutId = setTimeout(() => {
+//             document.querySelectorAll(className).forEach((el) => {
+//                 el.classList.add('animate-on-load');
+//             });
+//         }, actualDelay);
+//         return () => clearTimeout(timeoutId);
+//     }, [className, delay, isPageRefresh]);
+// };
+
+// export default useSplittingOnLoad;
+
 import { useEffect } from 'react'
 import Splitting from 'splitting'
-import { usePageRefresh } from '../context/PageRefreshContext'
+import { usePageRefresh, usePageRefreshing } from '../context/PageRefreshContext'
 
-/**
- * Хук для анимации текста с использованием Splitting.js
- * - При перезагрузке страницы: задержка defaultSplash (3800ms)
- * - При навигации между страницами: задержка defaultNav (200ms)
- * @param className - CSS-селектор для элементов Splitting
- * @param delay - опциональная пользовательская задержка (ms)
- */
-const useSplittingOnLoad = (className: string, delay?: number) => {
+const useSplittingOnLoad = (className?: string, delay?: number) => {
     const isPageRefresh = usePageRefresh();
+    const isPageRefreshing = usePageRefreshing();
 
     useEffect(() => {
-        const defaultSplash = 3800;
-        const defaultNav = 200;
-        const actualDelay = isPageRefresh
-            ? (delay ?? defaultSplash)
-            : (delay ?? defaultNav);
+        // Не запускаем Splitting пока идет прелоадер
+        if (isPageRefreshing) {
+            console.log('Splitting waiting for page refresh to complete...');
+            return;
+        }
+
+        console.log('Splitting init started', { isPageRefresh, isPageRefreshing });
+
+        const initSplitting = () => {
+            const selector = className || '[data-splitting]';
+            const elements = document.querySelectorAll(selector);
             
-        Splitting();
-        const timeoutId = setTimeout(() => {
-            document.querySelectorAll(className).forEach((el) => {
-                el.classList.add('animate-on-load');
+            console.log('Found elements for splitting:', elements.length);
+            
+            if (elements.length > 0) {
+                try {
+                    Splitting();
+                    console.log('Splitting initialized successfully');
+                    
+                    // Применяем анимационный класс с задержкой
+                    const defaultDelay = 10;
+                    const actualDelay = delay ?? defaultDelay;
+
+                    const timeoutId = setTimeout(() => {
+                        elements.forEach((el) => {
+                            el.classList.add('animate-on-load');
+                        });
+                        console.log('Added animate-on-load class to', elements.length, 'elements');
+                    }, actualDelay);
+
+                    return () => clearTimeout(timeoutId);
+                } catch (error) {
+                    console.warn('Splitting initialization failed:', error);
+                }
+            }
+        };
+
+        // Задержка для уверенности в отрисовке элементов
+        const timer = setTimeout(() => {
+            initSplitting();
+        }, 10);
+
+        return () => clearTimeout(timer);
+    }, [className, delay, isPageRefresh, isPageRefreshing]);
+
+    // MutationObserver для динамически добавляемых элементов
+    useEffect(() => {
+        if (isPageRefreshing) return;
+
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.type === 'childList') {
+                    mutation.addedNodes.forEach((node) => {
+                        if (node.nodeType === 1) {
+                            const element = node as Element;
+                            const selector = className || '[data-splitting]';
+                            
+                            if (element.matches?.(selector) || 
+                                element.querySelector?.(selector)) {
+                                setTimeout(() => {
+                                    try {
+                                        Splitting();
+                                        console.log('Splitting reinitialized for new elements');
+                                    } catch (error) {
+                                        console.warn('Splitting reinitialization failed:', error);
+                                    }
+                                }, 50);
+                            }
+                        }
+                    });
+                }
             });
-        }, actualDelay);
-        return () => clearTimeout(timeoutId);
-    }, [className, delay, isPageRefresh]);
+        });
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+
+        return () => observer.disconnect();
+    }, [className, isPageRefreshing]);
 };
 
 export default useSplittingOnLoad;
