@@ -8,11 +8,14 @@ import useSplittingOnLoad from '../../components/hooks/useSplittingOnLoad.tsx'
 import Curve from '../../components/layoutTransition/index.tsx'
 import NavigationButtons from '../../components/navigation/Navigation.tsx'
 import PopupBrif from '../../components/popupbrif/PopupBrif.tsx'
+import { usePageRefresh, usePageRefreshing } from '../../components/context/PageRefreshContext'
 import './contacts.scss'
 
 function Contacts() {
 	const [brifOpened, setBrifOpened] = useState(false);
 	const [visibleLines, setVisibleLines] = useState<number[]>([]);
+	const isPageRefresh = usePageRefresh();
+	const isPageRefreshing = usePageRefreshing();
 	
 	const handleOpenPopup = () => {
 		setBrifOpened(true);
@@ -22,18 +25,22 @@ function Contacts() {
 	useSplittingHover();
 
 	useEffect(() => {
-    Splitting({ target: '.contactButtons' });
-    
-    const descriptions = document.querySelectorAll('.discription');
-    descriptions.forEach(description => {
-    	description.outerHTML = `<span class="discription">${description.textContent}</span>`;
-    });
+		// Не запускаем анимацию пока идет прелоадер
+		if (isPageRefreshing) return;
 
-    const initialDelay = 3800; // delay
-    setTimeout(() => {
-    	setVisibleLines([0, 1]);
-    }, initialDelay);
-  	}, []);
+		Splitting({ target: '.contactButtons' });
+		
+		const descriptions = document.querySelectorAll('.discription');
+		descriptions.forEach(description => {
+			description.outerHTML = `<span class="discription">${description.textContent}</span>`;
+		});
+
+		// Динамические задержки в зависимости от типа загрузки
+		const initialDelay = isPageRefresh ? 500 : 200;
+		setTimeout(() => {
+			setVisibleLines([0, 1]);
+		}, initialDelay);
+	}, [isPageRefresh, isPageRefreshing]);
 	
 	return (
 		<Curve>

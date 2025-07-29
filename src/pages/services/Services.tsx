@@ -14,11 +14,14 @@ import useSplittingOnLoad from '../../components/hooks/useSplittingOnLoad'
 import Curve from '../../components/layoutTransition'
 import NavigationButtons from '../../components/navigation/Navigation'
 import PopupBrif from '../../components/popupbrif/PopupBrif'
+import { usePageRefresh, usePageRefreshing } from '../../components/context/PageRefreshContext'
 
 const Services = () => {
   const [brifOpened, setBrifOpened] = useState(false);
   const [selectedService, setSelectedService] = useState<string | null>(null);
   const [isMobileView, setIsMobileView] = useState(false);
+  const isPageRefresh = usePageRefresh();
+  const isPageRefreshing = usePageRefreshing();
 
     useEffect(() => {
     const handleResize = () => {
@@ -78,9 +81,13 @@ const Services = () => {
 
   const [visibleLines, setVisibleLines] = useState<number[]>([]);
   useEffect(() => {
+    // Не запускаем анимацию пока идет прелоадер
+    if (isPageRefreshing) return;
+
     Splitting({ target: '.homeText p' });
 
-    const initialDelay = 3800; // delay for first string
+    // Динамические задержки в зависимости от типа загрузки
+    const initialDelay = isPageRefresh ? 500 : 200; // delay for first string
     const subsequentDelay = 100; // delay beetween strings
 
     const lines = document.querySelectorAll('.servicesText p , .mobileText p');
@@ -90,7 +97,7 @@ const Services = () => {
         setVisibleLines(prev => [...prev, index]);
       }, delay);
     });
-  }, []);
+  }, [isPageRefresh, isPageRefreshing]);
 
   return (
     <Curve>

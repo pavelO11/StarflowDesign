@@ -4,17 +4,24 @@ import Splitting from 'splitting'
 import useSplittingOnLoad from '../../components/hooks/useSplittingOnLoad.tsx'
 import Curve from '../../components/layoutTransition/index.tsx'
 import Navigation from '../../components/navigation/Navigation.tsx'
+import { usePageRefresh, usePageRefreshing } from '../../components/context/PageRefreshContext'
 import './home.scss'
 
 function Home() {
     const [visibleLines, setVisibleLines] = useState<number[]>([]);
+    const isPageRefresh = usePageRefresh();
+    const isPageRefreshing = usePageRefreshing();
 
     useSplittingOnLoad('.slide-vertical');
 
     useEffect(() => {
+        // Не запускаем анимацию текста пока идет прелоадер
+        if (isPageRefreshing) return;
+
         Splitting({ target: '.homeText p' });
         
-        const initialDelay = 3800; // delay for first string
+        // Динамические задержки в зависимости от типа загрузки
+        const initialDelay = isPageRefresh ? 500 : 200; // Уменьшенные задержки после прелоадера
         const subsequentDelay = 100; // delay beetween strings
 
         const lines = document.querySelectorAll('.homeText p');
@@ -24,7 +31,7 @@ function Home() {
                 setVisibleLines(prev => [...prev, index]);
             }, delay);
         });
-    }, []);
+    }, [isPageRefresh, isPageRefreshing]);
 
     return (
         <Curve>

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import useSplittingOnLoad from '../../components/hooks/useSplittingOnLoad'
 import Curve from '../../components/layoutTransition'
 import Navigation from '../../components/navigation/Navigation'
+import { usePageRefresh, usePageRefreshing } from '../../components/context/PageRefreshContext'
 import './projects.scss'
 
 import { useEffect, useState } from 'react'
@@ -11,12 +12,19 @@ import arrowRight from '/arrowRight.svg'
 
 const Projects: React.FC = () => {
     const [isVisible, setIsVisible] = useState(false); // fade first loading
+    const isPageRefresh = usePageRefresh();
+    const isPageRefreshing = usePageRefreshing();
 
     useEffect(() => {
+        // Не запускаем анимацию пока идет прелоадер
+        if (isPageRefreshing) return;
+
+        // Динамические задержки в зависимости от типа загрузки
+        const delay = isPageRefresh ? 500 : 200;
         setTimeout(() => {
             setIsVisible(true);
-        }, 4800); // delay
-    }, []);
+        }, delay);
+    }, [isPageRefresh, isPageRefreshing]);
 
     useSplittingOnLoad('.slide-vertical');
 

@@ -8,12 +8,15 @@ import useSplittingOnLoad from '../../components/hooks/useSplittingOnLoad'
 import Curve from '../../components/layoutTransition'
 import NavigationButtons from '../../components/navigation/Navigation'
 import Principles from '../../components/principles/Principles'
+import { usePageRefresh, usePageRefreshing } from '../../components/context/PageRefreshContext'
 import './about.scss'
 
 const About = () => {
     const [visibleLines, setVisibleLines] = useState<number[]>([]);
     const [principlesShow, setPrinciplesShow] = React.useState(false);
     const imageRef = useRef<HTMLDivElement>(null);
+    const isPageRefresh = usePageRefresh();
+    const isPageRefreshing = usePageRefreshing();
 
     const handlePrinciplesShow = () => {
         setPrinciplesShow(!principlesShow);
@@ -66,9 +69,13 @@ const About = () => {
     useSplittingHover();
 
     useEffect(() => {
+        // Не запускаем анимацию пока идет прелоадер
+        if (isPageRefreshing) return;
+
         Splitting({ target: '.homeText p' });
 
-        const initialDelay = 3800; // delay for first string
+        // Динамические задержки в зависимости от типа загрузки
+        const initialDelay = isPageRefresh ? 500 : 200; // delay for first string
         const subsequentDelay = 100; // delay between strings
         const lines = document.querySelectorAll('.homeText p');
         lines.forEach((_line, index) => {
@@ -77,7 +84,7 @@ const About = () => {
                 setVisibleLines(prev => [...prev, index]);
             }, delay);
         });
-    }, []);
+    }, [isPageRefresh, isPageRefreshing]);
 
     return (
         <Curve>
