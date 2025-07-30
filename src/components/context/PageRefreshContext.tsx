@@ -34,7 +34,7 @@ export const PageRefreshProvider = ({ children }: { children: ReactNode }) => {
         setIsPageRefreshing(false);
         setShowContent(true);
         setIsPageRefresh(false);
-      }, 3300);
+      }, 3800);
       
       return () => clearTimeout(timer);
     }
