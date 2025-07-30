@@ -54,6 +54,20 @@ const Curve: FC<CurveProps> = ({ children, backgroundColor }) => {
   }, []);
 
   const [showContent, setShowContent] = useState(false);
+
+    useEffect(() => {
+    if (showContent) {
+      // Снимаем блокировку скролла
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.body.style.width = '';
+      document.body.classList.remove('hide-cursor');
+      if ((window as any).lenis) (window as any).lenis.start();
+      window.scrollTo(0, 0);
+    }
+  }, [showContent]);
   
   // Проверяем, первая ли это загрузка страницы
   const [isPageRefresh, setIsPageRefresh] = useState(() => {
