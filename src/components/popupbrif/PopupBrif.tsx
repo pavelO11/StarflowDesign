@@ -55,7 +55,6 @@ function PopupBrif(props: Props) {
     }, [remainingTime]);
 
     useBodyScrollLock(props.opened);
-
     
     const form = useForm({
         mode: 'uncontrolled',

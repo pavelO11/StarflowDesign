@@ -9,12 +9,12 @@ import './services.scss'
 import { AnimatePresence } from 'framer-motion'
 import Splitting from 'splitting'
 import AboutMe from '../../components/aboutMe/AboutMe'
+import { usePageRefresh, usePageRefreshing } from '../../components/context/PageRefreshContext'
 import useSplittingHover from '../../components/hooks/useSplittingHover'
 import useSplittingOnLoad from '../../components/hooks/useSplittingOnLoad'
 import Curve from '../../components/layoutTransition'
 import NavigationButtons from '../../components/navigation/Navigation'
 import PopupBrif from '../../components/popupbrif/PopupBrif'
-import { usePageRefresh, usePageRefreshing } from '../../components/context/PageRefreshContext'
 
 const Services = () => {
   const [brifOpened, setBrifOpened] = useState(false);
@@ -43,7 +43,6 @@ const Services = () => {
 	  prevState.map((isOpen, i) => (i === index ? !isOpen : false))
 	);
   };
-  
 
   const myServices = [
     { id: '1', number: '01', title: 'Одностраничный сайт', description: 'Сайт для компаний, которым нужно протестировать гипотезу, продукт или создать сайт-визитку. ', price: '70 000', deadlines: '5' },
@@ -99,6 +98,44 @@ const Services = () => {
     });
   }, [isPageRefresh, isPageRefreshing]);
 
+  // 1. Создаём ref для первой секции с белым фоном (как в about)
+  const imageRef = useRef<HTMLDivElement>(null);
+
+  // 2. Точно такая же логика, как в About.tsx
+  useEffect(() => {
+    const navbar = document.querySelector('.navbarSection') as HTMLElement;
+    if (navbar) {
+      navbar.style.mixBlendMode = 'normal'; // Сброс при маунте
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const navbar = document.querySelector('.navbarSection') as HTMLElement;
+        if (navbar) {
+          if (entry.isIntersecting) {
+            navbar.style.mixBlendMode = 'normal';
+          } else {
+            navbar.style.mixBlendMode = 'difference';
+          }
+        }
+      },
+      { threshold: 0.06 } // Тот же порог
+    );
+
+    if (imageRef.current) {
+      observer.observe(imageRef.current);
+    }
+
+    return () => {
+      if (imageRef.current) {
+        observer.unobserve(imageRef.current);
+      }
+      if (navbar) {
+        navbar.style.mixBlendMode = 'normal'; // Сброс при размонтировании
+      }
+    };
+  }, []);
+
   return (
     <Curve>
     <>
@@ -109,7 +146,7 @@ const Services = () => {
         <AnimatePresence mode='wait'>
             {brifOpened && <PopupBrif selectedService={selectedService} opened={brifOpened} onClose={() => setBrifOpened(false)} />}
         </AnimatePresence>
-      <section className='servicesSection'>
+      <section className='servicesSection' ref={imageRef}>
         <section className='servicesText'>
           <section>
             <p className={visibleLines.includes(0) ? 'visible' : ''} data-splitting>
