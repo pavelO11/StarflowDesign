@@ -327,24 +327,24 @@
 					font-weight: 500;
 				}
 				.submitButton{
-						background: vars.$black-text;
+						background: vars.$black-text !important;
 						.char {
 							&:before,
 							&:after {
-								color: #ffffff;
+								color: #ffffff !important;
 							}
 							&:before {
-								color: vars.$black-text;
+								color: vars.$black-text !important;
 							}
 						}
 						&:hover .char:before { 
-							color: vars.$black-text;
+							color: vars.$black-text !important;
 						}
 						&:hover .char:after {
-							color: vars.$black-text;
+							color: vars.$black-text !important;
 						}
 					}
 					.submitButton:hover{
-						background: #ffff;
+						background: #ffff !important;
 					}
 			}
