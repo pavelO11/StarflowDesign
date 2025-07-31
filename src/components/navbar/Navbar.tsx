@@ -12,44 +12,11 @@ export const BurgerContext = createContext<React.Dispatch<React.SetStateAction<b
 const Navbar = () => {
     const [isBurgerOpen, setIsBurgerOpen] = useState(false);
     const logoRef = useRef<HTMLImageElement>(null);
-    // const [shouldHideNavbar, setShouldHideNavbar] = useState(false);
     const [shouldHideNavbar] = useState(false);
 
     const location = useLocation();
-    const pagesWithoutMixBlendMode = [''];
-    
-    useEffect(() => {
-    const navbar = document.querySelector('.navbar') as HTMLElement;
-    const burger = document.querySelector('.burger') as HTMLElement;
 
-    if (navbar && burger) {
-        const isServicesPage = location.pathname === '/services';
-        const shouldDisableMixBlendMode = pagesWithoutMixBlendMode.includes(location.pathname);
-
-        if (isBurgerOpen || shouldDisableMixBlendMode) {
-            // Обычный режим при открытом бургере или на указанных страницах
-            navbar.style.mixBlendMode = 'normal';
-            navbar.classList.add('mix-blend-normal');
-            navbar.classList.remove('mix-blend-difference');
-        } else if (isServicesPage) {
-            // На страницах services и about при закрытом бургере используем difference с задержкой
-            setTimeout(() => {
-                if (!isBurgerOpen && (isServicesPage)) {
-                    navbar.style.mixBlendMode = 'difference';
-                    navbar.classList.add('mix-blend-difference');
-                    navbar.classList.remove('mix-blend-normal');
-                }
-            }, 350);
-        } else {
-            // На других страницах используем normal
-            navbar.style.mixBlendMode = 'normal';
-            navbar.classList.add('mix-blend-normal');
-            navbar.classList.remove('mix-blend-difference');
-        }
-    }
-}, [isBurgerOpen, location.pathname]);
-
-    // --- 2. Анимация вращения логотипа при скролле ---
+    // --- Анимация вращения логотипа при скролле ---
     useEffect(() => {
         const handleScroll = () => {
             const rotationSpeed = 0.1;
@@ -63,27 +30,12 @@ const Navbar = () => {
         };
     }, []);
 
-    // --- 3. Mix-blend-mode логика ---
-    // useEffect(() => {
-    //     const navbar = document.querySelector('.navbar') as HTMLElement;
-    //     const burger = document.querySelector('.burger') as HTMLElement;
-
-    //     if (navbar && burger) {
-    //         const shouldDisableMixBlendMode = pagesWithoutMixBlendMode.includes(location.pathname);
-
-    //         if (isAboutPage || burger.classList.contains('burgerActive') || shouldDisableMixBlendMode) {
-    //             navbar.style.mixBlendMode = 'normal';
-    //         } else {
-    //             navbar.style.mixBlendMode = 'normal'; // Можно вернуть difference если нужно
-    //         }
-    //     }
-    // }, [isAboutPage, isBurgerOpen, location.pathname]);
-
     useSplittingHover();
 
 
+    // shouldHidenav это для курсора на проектах
     return (
-        <nav className={`navbarSection${location.pathname === '/projects' ? ' projects-navbar' : ''}${shouldHideNavbar ? ' hidden' : ''}`}>
+        <nav className={`navbarSection${location.pathname === '/projects' ? ' projects-navbar' : ''}${shouldHideNavbar ? ' hidden' : ''}`}> 
             <Link
                 data-splitting
                 className='navbarBtn'
