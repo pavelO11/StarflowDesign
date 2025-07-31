@@ -88,7 +88,7 @@ const Navbar = () => {
                             onClick={e => e.stopPropagation()}
                         >
                             <BurgerContext.Provider value={setIsBurgerOpen}>
-                                <OpenBurger />
+                                <OpenBurger isOpen={isBurgerOpen}/>
                             </BurgerContext.Provider>
                         </motion.section>
                     </motion.section>

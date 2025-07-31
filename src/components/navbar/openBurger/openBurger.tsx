@@ -9,7 +9,7 @@ import { AnimatePresence } from 'framer-motion'
 import useScrollLock from '../../hooks/useScrollLock'
 import PopupBrif from '../../popupbrif/PopupBrif'
 
-const OpenBurger = () => {
+const OpenBurger = ({ isOpen }: { isOpen: boolean }) => {
     const setIsBurgerOpen = useContext(BurgerContext);
     const [brifOpened, setBrifOpened] = useState(false);
     const location = useLocation();
@@ -33,7 +33,7 @@ const OpenBurger = () => {
         '/contacts': 'Контакты',
     };
 
-    useScrollLock(true);
+    useScrollLock(isOpen);
     
     return (
         <>
