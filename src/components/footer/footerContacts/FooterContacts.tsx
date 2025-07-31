@@ -1,3 +1,4 @@
+import { AnimatePresence } from 'framer-motion'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Splitting from 'splitting'
@@ -33,7 +34,15 @@ function FooterContacts() {
 
 	return (
         <>
-        {brifOpened && <PopupBrif opened={brifOpened} onClose={() => setBrifOpened(false)} selectedService={null} /> }
+        <AnimatePresence mode="wait">
+                {brifOpened && (
+                    <PopupBrif 
+                        opened={brifOpened} 
+                        onClose={() => setBrifOpened(false)} 
+                        selectedService={null} 
+                    />
+                )}
+            </AnimatePresence>
         <footer className='underFooterContacts'>
             <section className='underFooterBottomContacts'>
                 <Link data-splitting className='underLinkFirst' to='mailto:starflowdesign@gmail.com' target="_blank" rel="noopener noreferrer">Рабочая почта<br />starflowdesign@gmail.com</Link>
