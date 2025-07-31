@@ -16,7 +16,7 @@ const Navbar = () => {
 
     const location = useLocation();
 
-    // --- Анимация вращения логотипа при скролле ---
+    // Анимация вращения логотипа при скролле
     useEffect(() => {
         const handleScroll = () => {
             const rotationSpeed = 0.1;
