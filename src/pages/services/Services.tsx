@@ -98,21 +98,21 @@ const Services = () => {
     });
   }, [isPageRefresh, isPageRefreshing]);
 
-    useEffect(() => {
-    const navbar = document.querySelector('.navbar') as HTMLElement;
-    if (navbar) {
-        navbar.style.mixBlendMode = 'difference';
-        navbar.classList.add('mix-blend-difference');
-        navbar.classList.remove('mix-blend-normal');
-    }
-    return () => {
-        if (navbar) {
-        navbar.style.mixBlendMode = 'normal';
-        navbar.classList.remove('mix-blend-difference');
-        navbar.classList.add('mix-blend-normal');
-        }
-    };
-    }, []);
+    // useEffect(() => {
+      // const navbar = document.querySelector('.navbar') as HTMLElement;
+      // if (navbar) {
+      //     navbar.style.mixBlendMode = 'difference';
+      //     navbar.classList.add('mix-blend-difference');
+      //     navbar.classList.remove('mix-blend-normal');
+      // }
+      // return () => {
+      //     if (navbar) {
+      //     navbar.style.mixBlendMode = 'normal';
+      //     navbar.classList.remove('mix-blend-difference');
+      //     navbar.classList.add('mix-blend-normal');
+      //     }
+      // };
+    // }, []);
 
   return (
     <Curve>
@@ -219,7 +219,7 @@ const Services = () => {
                     name='accordion'
                     id={stage.id}
                     checked={accordionStates[index]}
-				    onClick={() => handleToggleAccordion(index)}
+            onClick={() => handleToggleAccordion(index)}
                 />
                 <label htmlFor={stage.id}>
                   <p>({stage.number})</p>

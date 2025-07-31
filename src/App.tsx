@@ -61,7 +61,7 @@ const AppContent: FC = () => {
     const isVideoPage = !pagesWithoutVideo.includes(location.pathname);
 
     // Determine if the current page is the about page
-    const isAboutPage = location.pathname === '/about';
+    // const isAboutPage = location.pathname === '/about';
 
     const projects = ['/projects'];
 
@@ -79,7 +79,7 @@ const AppContent: FC = () => {
                     </video>
                 )}
                 <section className="navbar">
-                    <Navbar isAboutPage={isAboutPage} />
+                    <Navbar/>
                 </section>
                 <section className="content">
                     <AnimatePresence mode="wait">
@@ -96,7 +96,6 @@ const AppContent: FC = () => {
                 </section>
                 <section className="footer">
                     <NextPageProvider>
-                        {/* ваш layout, например: */}
                         <Footer />
                     </NextPageProvider>
                 </section>
