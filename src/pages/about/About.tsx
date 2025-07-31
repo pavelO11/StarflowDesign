@@ -34,37 +34,6 @@ const About = () => {
         };
     }, [principlesShow]);
 
-    // useEffect(() => {
-    //     const navbar = document.querySelector('.navbar') as HTMLElement;
-    //     if (navbar) {
-    //         navbar.style.mixBlendMode = 'normal'; // Initial mode for about page
-    //     }
-
-    //     const observer = new IntersectionObserver(
-    //         ([entry]) => {
-    //             const navbar = document.querySelector('.navbar') as HTMLElement;
-    //             if (navbar) {
-    //                 if (entry.isIntersecting) {
-    //                     navbar.style.mixBlendMode = 'normal';
-    //                 } else {
-    //                     navbar.style.mixBlendMode = 'difference';
-    //                 }
-    //             }
-    //         },
-    //         { threshold: 0.06 }
-    //     );
-
-    //     if (imageRef.current) {
-    //         observer.observe(imageRef.current);
-    //     }
-
-    //     return () => {
-    //         if (imageRef.current) {
-    //             observer.unobserve(imageRef.current);
-    //         }
-    //     };
-    // }, []);
-
     useSplittingOnLoad('.slide-vertical');
     useSplittingHover();
 
