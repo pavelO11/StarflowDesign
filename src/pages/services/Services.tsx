@@ -101,40 +101,42 @@ const Services = () => {
   // 1. Создаём ref для первой секции с белым фоном (как в about)
   const imageRef = useRef<HTMLDivElement>(null);
 
-  // 2. Точно такая же логика, как в About.tsx
-  useEffect(() => {
-    const navbar = document.querySelector('.navbarSection') as HTMLElement;
-    if (navbar) {
-      navbar.style.mixBlendMode = 'normal'; // Сброс при маунте
-    }
+  // ...existing code...
+useEffect(() => {
+  const navbar = document.querySelector('.navbar') as HTMLElement;
+  if (navbar) {
+    navbar.style.mixBlendMode = 'normal'; // Initial mode
+  }
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        const navbar = document.querySelector('.navbarSection') as HTMLElement;
-        if (navbar) {
-          if (entry.isIntersecting) {
-            navbar.style.mixBlendMode = 'normal';
-          } else {
-            navbar.style.mixBlendMode = 'difference';
-          }
-        }
-      },
-      { threshold: 0.06 } // Тот же порог
-    );
-
-    if (imageRef.current) {
-      observer.observe(imageRef.current);
-    }
-
-    return () => {
-      if (imageRef.current) {
-        observer.unobserve(imageRef.current);
-      }
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      const navbar = document.querySelector('.navbar') as HTMLElement;
       if (navbar) {
-        navbar.style.mixBlendMode = 'normal'; // Сброс при размонтировании
+        if (entry.isIntersecting) {
+          navbar.style.mixBlendMode = 'normal';
+        } else {
+          navbar.style.mixBlendMode = 'difference';
+        }
       }
-    };
-  }, []);
+    },
+    { threshold: 0.06 } // Same threshold as About page
+  );
+
+  if (imageRef.current) {
+    observer.observe(imageRef.current);
+  }
+
+  return () => {
+    if (imageRef.current) {
+      observer.unobserve(imageRef.current);
+    }
+    // Reset when component unmounts
+    if (navbar) {
+      navbar.style.mixBlendMode = 'normal';
+    }
+  };
+}, []);
+// ...existing code...
 
   return (
     <Curve>
@@ -146,8 +148,8 @@ const Services = () => {
         <AnimatePresence mode='wait'>
             {brifOpened && <PopupBrif selectedService={selectedService} opened={brifOpened} onClose={() => setBrifOpened(false)} />}
         </AnimatePresence>
-      <section className='servicesSection' ref={imageRef}>
-        <section className='servicesText'>
+      <section className='servicesSection'>
+        <section className='servicesText' ref={imageRef}>
           <section>
             <p className={visibleLines.includes(0) ? 'visible' : ''} data-splitting>
               <span className='char'>создаю продуманный дизайн,</span>
