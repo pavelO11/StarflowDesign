@@ -98,45 +98,21 @@ const Services = () => {
     });
   }, [isPageRefresh, isPageRefreshing]);
 
-  // 1. Создаём ref для первой секции с белым фоном (как в about)
-  const imageRef = useRef<HTMLDivElement>(null);
-
-  // ...existing code...
-useEffect(() => {
-  const navbar = document.querySelector('.navbar') as HTMLElement;
-  if (navbar) {
-    navbar.style.mixBlendMode = 'normal'; // Initial mode
-  }
-
-  const observer = new IntersectionObserver(
-    ([entry]) => {
-      const navbar = document.querySelector('.navbar') as HTMLElement;
-      if (navbar) {
-        if (entry.isIntersecting) {
-          navbar.style.mixBlendMode = 'normal';
-        } else {
-          navbar.style.mixBlendMode = 'difference';
-        }
-      }
-    },
-    { threshold: 0.06 } // Same threshold as About page
-  );
-
-  if (imageRef.current) {
-    observer.observe(imageRef.current);
-  }
-
-  return () => {
-    if (imageRef.current) {
-      observer.unobserve(imageRef.current);
-    }
-    // Reset when component unmounts
+    useEffect(() => {
+    const navbar = document.querySelector('.navbar') as HTMLElement;
     if (navbar) {
-      navbar.style.mixBlendMode = 'normal';
+        navbar.style.mixBlendMode = 'difference';
+        navbar.classList.add('mix-blend-difference');
+        navbar.classList.remove('mix-blend-normal');
     }
-  };
-}, []);
-// ...existing code...
+    return () => {
+        if (navbar) {
+        navbar.style.mixBlendMode = 'normal';
+        navbar.classList.remove('mix-blend-difference');
+        navbar.classList.add('mix-blend-normal');
+        }
+    };
+    }, []);
 
   return (
     <Curve>
@@ -149,7 +125,7 @@ useEffect(() => {
             {brifOpened && <PopupBrif selectedService={selectedService} opened={brifOpened} onClose={() => setBrifOpened(false)} />}
         </AnimatePresence>
       <section className='servicesSection'>
-        <section className='servicesText' ref={imageRef}>
+        <section className='servicesText'>
           <section>
             <p className={visibleLines.includes(0) ? 'visible' : ''} data-splitting>
               <span className='char'>создаю продуманный дизайн,</span>
