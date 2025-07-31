@@ -259,32 +259,39 @@ const Navbar = ({ isAboutPage }: NavbarProps) => {
     const location = useLocation();
     const pagesWithoutMixBlendMode = [''];
 
-    // --- 1. Скрытие при открытии drawer (PopupBrif) ---
-    // ...existing code...
-useEffect(() => {
-    const checkVisibility = () => {
-        const isDrawerVisible = document.querySelector('.drawer, .drawerSecond, .drawerThird');
-        const screenWidth = window.innerWidth;
+    // --- 1 убираем миксбледн когда открыт бургер и снова включаем = при открытие все збс ---
+    useEffect(() => {
+        const navbar = document.querySelector('.navbar') as HTMLElement;
+        const burger = document.querySelector('.burger') as HTMLElement;
 
-        // Используем состояние isBurgerOpen!
-        if (screenWidth <= 1024 && isDrawerVisible && !isBurgerOpen) {
-            setShouldHideNavbar(true);
-        } else {
-            setShouldHideNavbar(false);
+        if (navbar && burger) {
+            const isServicesPage = location.pathname === '/services';
+            const shouldDisableMixBlendMode = pagesWithoutMixBlendMode.includes(location.pathname);
+
+            if (isBurgerOpen || isAboutPage || shouldDisableMixBlendMode) {
+                // Всегда нормальный режим при открытом бургере или на указанных страницах
+                navbar.style.mixBlendMode = 'normal';
+                navbar.classList.add('mix-blend-normal');
+                navbar.classList.remove('mix-blend-difference');
+            } else if (isServicesPage) {
+                // На странице services при закрытом бургере используем difference с задержкой
+                setTimeout(() => {
+                    // Проверяем, не изменилось ли состояние за время задержки
+                    if (!isBurgerOpen && isServicesPage) {
+                        navbar.style.mixBlendMode = 'difference';
+                        navbar.classList.add('mix-blend-difference');
+                        navbar.classList.remove('mix-blend-normal');
+                    }
+                }, 350);
+            } else {
+                // На других страницах используем normal
+                navbar.style.mixBlendMode = 'normal';
+                navbar.classList.add('mix-blend-normal');
+                navbar.classList.remove('mix-blend-difference');
+            }
         }
-    };
+    }, [isAboutPage, isBurgerOpen, location.pathname]);
 
-    checkVisibility();
-    const observer = new MutationObserver(checkVisibility);
-    observer.observe(document.body, { childList: true, subtree: true });
-    window.addEventListener('resize', checkVisibility);
-
-    return () => {
-        observer.disconnect();
-        window.removeEventListener('resize', checkVisibility);
-    };
-}, [isBurgerOpen]);
-// ...existing code...
 
     // --- 2. Анимация вращения логотипа при скролле ---
     useEffect(() => {
@@ -318,63 +325,48 @@ useEffect(() => {
 
     useSplittingHover();
 
-    // --- 4. IntersectionObserver для плавного скрытия (только для drawer, не для openBurger) ---
     useEffect(() => {
-        let hideTimer: NodeJS.Timeout;
+    let hideTimer: NodeJS.Timeout;
 
-        const checkVisibility = () => {
-            const drawerElement = document.querySelector('.drawer, .drawerSecond, .drawerThird');
-            const isBurgerMenuOpen = document.querySelector('.openBurger');
-            const screenWidth = window.innerWidth;
-            const burger = document.querySelector('.burger') as HTMLElement;
-            const logo = document.querySelector('.navbarBtn') as HTMLElement;
+    const checkVisibility = () => {
+        const popupBrifDrawer = document.querySelector('.drawer, .drawerSecond, .drawerThird');
+        const openBurger = document.querySelector('.openBurger');
+        const screenWidth = window.innerWidth;
+        const burger = document.querySelector('.burger') as HTMLElement;
+        const logo = document.querySelector('.navbarBtn') as HTMLElement;
 
-            // Только если открыт drawer и НЕ открыт openBurger
-            if (screenWidth <= 1024 && drawerElement && !isBurgerMenuOpen) {
-                const observer = new IntersectionObserver((entries) => {
-                    const visibilityPercentage = entries[0].intersectionRatio;
-
-                    if (visibilityPercentage > 0.8) {
-                        setShouldHideNavbar(true);
-                        clearTimeout(hideTimer);
-                        hideTimer = setTimeout(() => {
-                            if (burger) burger.style.display = 'none';
-                            if (logo) logo.style.display = 'none';
-                        }, 300);
-                    } else {
-                        setShouldHideNavbar(false);
-                        clearTimeout(hideTimer);
-                        if (burger) burger.style.display = '';
-                        if (logo) logo.style.display = '';
-                    }
-                }, {
-                    threshold: [0, 0.3, 0.5, 0.7, 1],
-                    root: null
-                });
-
-                observer.observe(drawerElement);
-
-                return () => {
-                    observer.disconnect();
-                };
-            } else {
-                setShouldHideNavbar(false);
-                clearTimeout(hideTimer);
-                if (burger) burger.style.display = '';
-                if (logo) logo.style.display = '';
-            }
-        };
-
-        const mutationObserver = new MutationObserver(checkVisibility);
-        mutationObserver.observe(document.body, { childList: true, subtree: true });
-        window.addEventListener('resize', checkVisibility);
-
-        return () => {
-            mutationObserver.disconnect();
-            window.removeEventListener('resize', checkVisibility);
+        // Скрываем navbar ТОЛЬКО если открыт popupBrif (drawer) на мобилке
+        if (
+            screenWidth <= 1024 &&
+            popupBrifDrawer &&
+            !openBurger // НЕ скрывать если открыт openBurger
+        ) {
+            setShouldHideNavbar(true);
             clearTimeout(hideTimer);
-        };
-    }, []);
+            hideTimer = setTimeout(() => {
+                if (burger) burger.style.display = 'none';
+                if (logo) logo.style.display = 'none';
+            }, 300);
+        } else {
+            setShouldHideNavbar(false);
+            clearTimeout(hideTimer);
+            if (burger) burger.style.display = '';
+            if (logo) logo.style.display = '';
+        }
+    };
+
+    const mutationObserver = new MutationObserver(checkVisibility);
+    mutationObserver.observe(document.body, { childList: true, subtree: true });
+    window.addEventListener('resize', checkVisibility);
+
+    checkVisibility();
+
+    return () => {
+        mutationObserver.disconnect();
+        window.removeEventListener('resize', checkVisibility);
+        clearTimeout(hideTimer);
+    };
+}, []);
 
     return (
         <nav className={`navbarSection${location.pathname === '/projects' ? ' projects-navbar' : ''}${shouldHideNavbar ? ' hidden' : ''}`}>
