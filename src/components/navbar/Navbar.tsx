@@ -435,3 +435,4 @@ const Navbar = ({ isAboutPage }: NavbarProps) => {
 };
 
 export default Navbar;
+
