@@ -3,18 +3,18 @@ import { Helmet } from 'react-helmet'
 import { Link } from 'react-router-dom'
 import Splitting from 'splitting'
 import AboutMe from '../../components/aboutMe/AboutMe'
+import { usePageRefresh, usePageRefreshing } from '../../components/context/PageRefreshContext'
 import useSplittingHover from '../../components/hooks/useSplittingHover'
 import useSplittingOnLoad from '../../components/hooks/useSplittingOnLoad'
 import Curve from '../../components/layoutTransition'
 import NavigationButtons from '../../components/navigation/Navigation'
 import Principles from '../../components/principles/Principles'
-import { usePageRefresh, usePageRefreshing } from '../../components/context/PageRefreshContext'
 import './about.scss'
 
 const About = () => {
     const [visibleLines, setVisibleLines] = useState<number[]>([]);
     const [principlesShow, setPrinciplesShow] = React.useState(false);
-    const imageRef = useRef<HTMLDivElement>(null);
+    // const imageRef = useRef<HTMLDivElement>(null);
     const isPageRefresh = usePageRefresh();
     const isPageRefreshing = usePageRefreshing();
 
@@ -34,36 +34,36 @@ const About = () => {
         };
     }, [principlesShow]);
 
-    useEffect(() => {
-        const navbar = document.querySelector('.navbar') as HTMLElement;
-        if (navbar) {
-            navbar.style.mixBlendMode = 'normal'; // Initial mode for about page
-        }
+    // useEffect(() => {
+    //     const navbar = document.querySelector('.navbar') as HTMLElement;
+    //     if (navbar) {
+    //         navbar.style.mixBlendMode = 'normal'; // Initial mode for about page
+    //     }
 
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                const navbar = document.querySelector('.navbar') as HTMLElement;
-                if (navbar) {
-                    if (entry.isIntersecting) {
-                        navbar.style.mixBlendMode = 'normal';
-                    } else {
-                        navbar.style.mixBlendMode = 'difference';
-                    }
-                }
-            },
-            { threshold: 0.06 }
-        );
+    //     const observer = new IntersectionObserver(
+    //         ([entry]) => {
+    //             const navbar = document.querySelector('.navbar') as HTMLElement;
+    //             if (navbar) {
+    //                 if (entry.isIntersecting) {
+    //                     navbar.style.mixBlendMode = 'normal';
+    //                 } else {
+    //                     navbar.style.mixBlendMode = 'difference';
+    //                 }
+    //             }
+    //         },
+    //         { threshold: 0.06 }
+    //     );
 
-        if (imageRef.current) {
-            observer.observe(imageRef.current);
-        }
+    //     if (imageRef.current) {
+    //         observer.observe(imageRef.current);
+    //     }
 
-        return () => {
-            if (imageRef.current) {
-                observer.unobserve(imageRef.current);
-            }
-        };
-    }, []);
+    //     return () => {
+    //         if (imageRef.current) {
+    //             observer.unobserve(imageRef.current);
+    //         }
+    //     };
+    // }, []);
 
     useSplittingOnLoad('.slide-vertical');
     useSplittingHover();
@@ -86,6 +86,43 @@ const About = () => {
         });
     }, [isPageRefresh, isPageRefreshing]);
 
+    const aboutIntroRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const navbar = document.querySelector('.navbar') as HTMLElement;
+        if (!navbar) return;
+
+        // Сначала всегда normal
+        navbar.style.mixBlendMode = 'normal';
+        navbar.classList.add('mix-blend-normal');
+        navbar.classList.remove('mix-blend-difference');
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    navbar.style.mixBlendMode = 'normal';
+                    navbar.classList.add('mix-blend-normal');
+                    navbar.classList.remove('mix-blend-difference');
+                } else {
+                    navbar.style.mixBlendMode = 'difference';
+                    navbar.classList.add('mix-blend-difference');
+                    navbar.classList.remove('mix-blend-normal');
+                }
+            },
+            { threshold: 0.06 }
+        );
+
+        if (aboutIntroRef.current) {
+            observer.observe(aboutIntroRef.current);
+        }
+
+        return () => {
+            if (aboutIntroRef.current) {
+                observer.unobserve(aboutIntroRef.current);
+            }
+        };
+    }, []);
+
     return (
         <Curve>
         <>
@@ -95,7 +132,7 @@ const About = () => {
             </Helmet>
             {principlesShow && <Principles handlePrinciplesShow={handlePrinciplesShow} />}
             <section className='aboutSection'>
-                <section className='aboutIntro' ref={imageRef}>
+                <section className='aboutIntro' ref={aboutIntroRef}>
                     <h1 data-splitting className='slide-vertical w-full'>
                         <span className='firText'>Привет,</span>
                         <span className='secText'>Я Игорь</span>

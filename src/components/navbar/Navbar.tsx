@@ -260,38 +260,67 @@ const Navbar = ({ isAboutPage }: NavbarProps) => {
     const pagesWithoutMixBlendMode = [''];
 
     // --- 1 убираем миксбледн когда открыт бургер и снова включаем = при открытие все збс ---
+    // useEffect(() => {
+    //     const navbar = document.querySelector('.navbar') as HTMLElement;
+    //     const burger = document.querySelector('.burger') as HTMLElement;
+
+    //     if (navbar && burger) {
+    //         const isServicesPage = location.pathname === '/services';
+    //         const shouldDisableMixBlendMode = pagesWithoutMixBlendMode.includes(location.pathname);
+
+    //         if (isBurgerOpen || isAboutPage || shouldDisableMixBlendMode) {
+    //             // Всегда нормальный режим при открытом бургере или на указанных страницах
+    //             navbar.style.mixBlendMode = 'normal';
+    //             navbar.classList.add('mix-blend-normal');
+    //             navbar.classList.remove('mix-blend-difference');
+    //         } else if (isServicesPage) {
+    //             // На странице services при закрытом бургере используем difference с задержкой
+    //             setTimeout(() => {
+    //                 // Проверяем, не изменилось ли состояние за время задержки
+    //                 if (!isBurgerOpen && isServicesPage) {
+    //                     navbar.style.mixBlendMode = 'difference';
+    //                     navbar.classList.add('mix-blend-difference');
+    //                     navbar.classList.remove('mix-blend-normal');
+    //                 }
+    //             }, 350);
+    //         } else {
+    //             // На других страницах используем normal
+    //             navbar.style.mixBlendMode = 'normal';
+    //             navbar.classList.add('mix-blend-normal');
+    //             navbar.classList.remove('mix-blend-difference');
+    //         }
+    //     }
+    // }, [isAboutPage, isBurgerOpen, location.pathname]);
     useEffect(() => {
-        const navbar = document.querySelector('.navbar') as HTMLElement;
-        const burger = document.querySelector('.burger') as HTMLElement;
+    const navbar = document.querySelector('.navbar') as HTMLElement;
+    const burger = document.querySelector('.burger') as HTMLElement;
 
-        if (navbar && burger) {
-            const isServicesPage = location.pathname === '/services';
-            const shouldDisableMixBlendMode = pagesWithoutMixBlendMode.includes(location.pathname);
+    if (navbar && burger) {
+        const isServicesPage = location.pathname === '/services';
+        const shouldDisableMixBlendMode = pagesWithoutMixBlendMode.includes(location.pathname);
 
-            if (isBurgerOpen || isAboutPage || shouldDisableMixBlendMode) {
-                // Всегда нормальный режим при открытом бургере или на указанных страницах
-                navbar.style.mixBlendMode = 'normal';
-                navbar.classList.add('mix-blend-normal');
-                navbar.classList.remove('mix-blend-difference');
-            } else if (isServicesPage) {
-                // На странице services при закрытом бургере используем difference с задержкой
-                setTimeout(() => {
-                    // Проверяем, не изменилось ли состояние за время задержки
-                    if (!isBurgerOpen && isServicesPage) {
-                        navbar.style.mixBlendMode = 'difference';
-                        navbar.classList.add('mix-blend-difference');
-                        navbar.classList.remove('mix-blend-normal');
-                    }
-                }, 350);
-            } else {
-                // На других страницах используем normal
-                navbar.style.mixBlendMode = 'normal';
-                navbar.classList.add('mix-blend-normal');
-                navbar.classList.remove('mix-blend-difference');
-            }
+        if (isBurgerOpen || shouldDisableMixBlendMode) {
+            // Обычный режим при открытом бургере или на указанных страницах
+            navbar.style.mixBlendMode = 'normal';
+            navbar.classList.add('mix-blend-normal');
+            navbar.classList.remove('mix-blend-difference');
+        } else if (isServicesPage) {
+            // На страницах services и about при закрытом бургере используем difference с задержкой
+            setTimeout(() => {
+                if (!isBurgerOpen && (isServicesPage)) {
+                    navbar.style.mixBlendMode = 'difference';
+                    navbar.classList.add('mix-blend-difference');
+                    navbar.classList.remove('mix-blend-normal');
+                }
+            }, 350);
+        } else {
+            // На других страницах используем normal
+            navbar.style.mixBlendMode = 'normal';
+            navbar.classList.add('mix-blend-normal');
+            navbar.classList.remove('mix-blend-difference');
         }
-    }, [isAboutPage, isBurgerOpen, location.pathname]);
-
+    }
+}, [isBurgerOpen, location.pathname]);
 
     // --- 2. Анимация вращения логотипа при скролле ---
     useEffect(() => {
