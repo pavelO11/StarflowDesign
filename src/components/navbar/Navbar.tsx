@@ -32,6 +32,18 @@ const Navbar = () => {
 
     useSplittingHover();
 
+    useEffect(() => {
+        const navbar = document.querySelector('.navbar') as HTMLElement;
+        if (!navbar) return;
+        if (location.pathname === '/' || location.pathname === '/services' || location.pathname === '/projects' || location.pathname === '/contacts') {
+            navbar.classList.add('mix-blend-normal');
+            navbar.classList.remove('mix-blend-difference');
+            navbar.style.mixBlendMode = 'normal';
+        } else {
+            navbar.classList.remove('mix-blend-normal');
+            navbar.style.mixBlendMode = '';
+        }
+    }, [location.pathname]);
 
     // shouldHidenav это для курсора на проектах
     return (
