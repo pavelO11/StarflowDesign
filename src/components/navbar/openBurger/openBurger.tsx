@@ -6,7 +6,6 @@ import { useContext } from 'react'
 import { BurgerContext } from '../Navbar'
 
 import { AnimatePresence } from 'framer-motion'
-import useScrollLock from '../../hooks/useScrollLock'
 import PopupBrif from '../../popupbrif/PopupBrif'
 
 const OpenBurger = () => {
@@ -33,7 +32,7 @@ const OpenBurger = () => {
         '/contacts': 'Контакты',
     };
 
-    useScrollLock(true);
+    // useScrollLock(true);
     
     return (
         <>

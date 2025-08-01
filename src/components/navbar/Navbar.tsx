@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { createContext, useEffect, useRef, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { overlayAnimation, popupAnimation } from '../animations/modals'
+import useScrollLock from '../hooks/useScrollLock'
 import useSplittingHover from '../hooks/useSplittingHover'
 import './navbar.scss'
 import OpenBurger from './openBurger/openBurger'
@@ -45,6 +46,8 @@ const Navbar = () => {
         }
     }, [location.pathname]);
 
+    useScrollLock(isBurgerOpen);
+    
     // shouldHidenav это для курсора на проектах
     return (
         <nav className={`navbarSection${location.pathname === '/projects' ? ' projects-navbar' : ''}${shouldHideNavbar ? ' hidden' : ''}`}> 
