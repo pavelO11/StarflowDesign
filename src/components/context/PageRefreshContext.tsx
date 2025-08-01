@@ -57,11 +57,20 @@ export const PageRefreshProvider = ({ children }: { children: ReactNode }) => {
 
   // Сброс флага при реальной перезагрузке
   useEffect(() => {
-    const handleBeforeUnload = () => {
-      sessionStorage.removeItem('pageLoaded');
-    };
-    window.addEventListener('beforeunload', handleBeforeUnload);
-    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
+    // const handleBeforeUnload = () => {
+    //   sessionStorage.removeItem('pageLoaded');
+    // };
+    // window.addEventListener('beforeunload', handleBeforeUnload);
+    // return () => window.removeEventListener('beforeunload', handleBeforeUnload);
+    const handleUnload = () => {
+    sessionStorage.removeItem('pageLoaded');
+  };
+  window.addEventListener('beforeunload', handleUnload);
+  window.addEventListener('pagehide', handleUnload); // для мобильных браузеров
+  return () => {
+    window.removeEventListener('beforeunload', handleUnload);
+    window.removeEventListener('pagehide', handleUnload);
+  };
   }, []);
 
   return (
