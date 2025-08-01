@@ -47,6 +47,67 @@ const Navbar = () => {
     }, [location.pathname]);
 
     useScrollLock(isBurgerOpen);
+
+    // const prevBlendMode = useRef<string | null>(null);
+
+    // useEffect(() => {
+    //     const navbar = document.querySelector('.navbar') as HTMLElement;
+    //     if (!navbar) return;
+
+    //     if (isBurgerOpen) {
+    //         // Сохраняем текущее значение mix-blend-mode
+    //         prevBlendMode.current = navbar.style.mixBlendMode;
+    //         navbar.style.mixBlendMode = 'normal';
+    //         navbar.classList.add('mix-blend-normal');
+    //         navbar.classList.remove('mix-blend-difference');
+    //     } else {
+    //         // Восстанавливаем предыдущее значение
+    //         if (prevBlendMode.current !== null) {
+    //             navbar.style.mixBlendMode = prevBlendMode.current;
+    //             prevBlendMode.current = null;
+    //         }
+    //     }
+    // }, [isBurgerOpen]);
+
+    const prevBlendMode = useRef<{
+    style: string;
+    class: 'mix-blend-normal' | 'mix-blend-difference' | null;
+} | null>(null);
+
+useEffect(() => {
+    const navbar = document.querySelector('.navbar') as HTMLElement;
+    if (!navbar) return;
+
+    if (isBurgerOpen) {
+        // Сохраняем текущее значение mix-blend-mode и класс
+        prevBlendMode.current = {
+            style: navbar.style.mixBlendMode,
+            class: navbar.classList.contains('mix-blend-difference')
+                ? 'mix-blend-difference'
+                : navbar.classList.contains('mix-blend-normal')
+                ? 'mix-blend-normal'
+                : null
+        };
+        navbar.style.mixBlendMode = 'normal';
+        navbar.classList.add('mix-blend-normal');
+        navbar.classList.remove('mix-blend-difference');
+    } else {
+        // Восстанавливаем предыдущее значение с задержкой 0.3 сек
+        if (prevBlendMode.current) {
+            setTimeout(() => {
+                navbar.style.mixBlendMode = prevBlendMode.current!.style;
+                if (prevBlendMode.current!.class === 'mix-blend-difference') {
+                    navbar.classList.add('mix-blend-difference');
+                    navbar.classList.remove('mix-blend-normal');
+                } else if (prevBlendMode.current!.class === 'mix-blend-normal') {
+                    navbar.classList.add('mix-blend-normal');
+                    navbar.classList.remove('mix-blend-difference');
+                }
+                prevBlendMode.current = null;
+            }, 500);
+        }
+    }
+}, [isBurgerOpen]);
     
     // shouldHidenav это для курсора на проектах
     return (

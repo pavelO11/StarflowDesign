@@ -10,6 +10,7 @@ import { AnimatePresence } from 'framer-motion'
 import Splitting from 'splitting'
 import AboutMe from '../../components/aboutMe/AboutMe'
 import { usePageRefresh, usePageRefreshing } from '../../components/context/PageRefreshContext'
+import useBodyScrollLock from '../../components/hooks/useScrollLock'
 import useSplittingHover from '../../components/hooks/useSplittingHover'
 import useSplittingOnLoad from '../../components/hooks/useSplittingOnLoad'
 import Curve from '../../components/layoutTransition'
@@ -98,21 +99,69 @@ const Services = () => {
     });
   }, [isPageRefresh, isPageRefreshing]);
 
-    // useEffect(() => {
-      // const navbar = document.querySelector('.navbar') as HTMLElement;
-      // if (navbar) {
-      //     navbar.style.mixBlendMode = 'difference';
-      //     navbar.classList.add('mix-blend-difference');
-      //     navbar.classList.remove('mix-blend-normal');
-      // }
-      // return () => {
-      //     if (navbar) {
-      //     navbar.style.mixBlendMode = 'normal';
-      //     navbar.classList.remove('mix-blend-difference');
-      //     navbar.classList.add('mix-blend-normal');
-      //     }
-      // };
-    // }, []);
+  const aboutMeRef = useRef<HTMLDivElement>(null);
+  const footerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const navbar = document.querySelector('.navbar') as HTMLElement;
+    if (!navbar) return;
+    
+    // Начальная настройка navbar
+    navbar.style.mixBlendMode = 'normal';
+    navbar.classList.add('mix-blend-normal');
+    navbar.classList.remove('mix-blend-difference');
+    
+    // Создаем Intersection Observer для AboutMe
+    const aboutMeObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Когда AboutMe в поле зрения - включаем difference
+          navbar.style.mixBlendMode = 'difference';
+          navbar.classList.add('mix-blend-difference');
+          navbar.classList.remove('mix-blend-normal');
+        } else {
+          // Когда AboutMe уходит из поля зрения - возвращаем normal
+          navbar.style.mixBlendMode = 'normal';
+          navbar.classList.add('mix-blend-normal');
+          navbar.classList.remove('mix-blend-difference');
+        }
+      });
+    }, { threshold: 0.1 }); // Реагировать, когда видно 10% элемента
+    
+    // Создаем Intersection Observer для Footer
+    const footerObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+          // Когда Footer виден на 50% - включаем normal
+          navbar.style.mixBlendMode = 'normal';
+          navbar.classList.add('mix-blend-normal');
+          navbar.classList.remove('mix-blend-difference');
+        }
+      });
+    }, { threshold: 0.5 }); // Реагировать, когда видно 50% элемента
+    
+    // Начинаем отслеживание элементов
+    if (aboutMeRef.current) {
+      aboutMeObserver.observe(aboutMeRef.current);
+    }
+    
+    if (footerRef.current) {
+      footerObserver.observe(footerRef.current);
+    }
+    
+    // Очистка при размонтировании
+    return () => {
+      if (aboutMeRef.current) aboutMeObserver.unobserve(aboutMeRef.current);
+      if (footerRef.current) footerObserver.unobserve(footerRef.current);
+      
+      // Возвращаем navbar в нормальное состояние
+      navbar.style.mixBlendMode = 'normal';
+      navbar.classList.remove('mix-blend-difference');
+      navbar.classList.add('mix-blend-normal');
+    };
+  }, []);
+
+    useBodyScrollLock(brifOpened);
 
   return (
     <Curve>
@@ -207,7 +256,9 @@ const Services = () => {
             </section>
           ))}
         </main>
-        <AboutMe />
+        <div ref={aboutMeRef}>
+          <AboutMe/>
+        </div>
         <section className='serviceStages'>
           <p>( Этапы сотрудничества )</p>
           <ul className='accordion'>
