@@ -2,6 +2,7 @@ import { AnimatePresence } from 'framer-motion'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Splitting from 'splitting'
+import { usePageRefresh, usePageRefreshing } from '../../context/PageRefreshContext'
 import useSplittingHover from '../../hooks/useSplittingHover'
 import useSplittingOnLoad from '../../hooks/useSplittingOnLoad'
 import PopupBrif from '../../popupbrif/PopupBrif'
@@ -10,6 +11,8 @@ import './footerContacts.scss'
 function FooterContacts() {
     const [brifOpened, setBrifOpened] = React.useState(false);
     const [visibleLines, setVisibleLines] = useState<number[]>([]);
+    const isPageRefresh = usePageRefresh();
+    const isPageRefreshing = usePageRefreshing();
 
     const handleOpenPopup = () => {
         setBrifOpened(true);
@@ -19,6 +22,9 @@ function FooterContacts() {
     useSplittingHover();
 
     useEffect(() => {
+            // Не запускаем анимацию пока идет прелоадер
+            if (isPageRefreshing) return;
+    
             Splitting({ target: '.contactButtons' });
             
             const descriptions = document.querySelectorAll('.discription');
@@ -26,11 +32,12 @@ function FooterContacts() {
                 description.outerHTML = `<span class="discription">${description.textContent}</span>`;
             });
     
-            const initialDelay = 3800; // delay
+            // Динамические задержки в зависимости от типа загрузки
+            const initialDelay = isPageRefresh ? 500 : 200;
             setTimeout(() => {
                 setVisibleLines([0, 1]);
             }, initialDelay);
-        }, []);
+        }, [isPageRefresh, isPageRefreshing]);
 
 	return (
         <>

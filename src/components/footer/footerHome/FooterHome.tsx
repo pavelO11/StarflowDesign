@@ -5,29 +5,36 @@ import arrowRight from '/arrowRight.svg'
 
 import { useEffect, useState } from 'react'
 import Splitting from 'splitting'
+import { usePageRefresh, usePageRefreshing } from '../../context/PageRefreshContext'
 import useSplittingHover from '../../hooks/useSplittingHover'
 import useSplittingOnLoad from '../../hooks/useSplittingOnLoad'
 
 
 function FooterHome() {
     const [visibleLines, setVisibleLines] = useState<number[]>([]);
+    const isPageRefresh = usePageRefresh();
+    const isPageRefreshing = usePageRefreshing();
 
     useSplittingOnLoad('.slide-vertical');
 
     useEffect(() => {
-        Splitting({ target: '.homeText p' });
-        
-        const initialDelay = 3800; // delay for first string
-        const subsequentDelay = 100; // delay beetween strings
-
-        const lines = document.querySelectorAll('.homeText p');
-        lines.forEach((_line, index) => {
-            const delay = initialDelay + subsequentDelay * index;
-            setTimeout(() => {
-                setVisibleLines(prev => [...prev, index]);
-            }, delay);
-        });
-    }, []);
+            // Не запускаем анимацию текста пока идет прелоадер
+            if (isPageRefreshing) return;
+    
+            Splitting({ target: '.homeText p' });
+            
+            // Динамические задержки в зависимости от типа загрузки
+            const initialDelay = isPageRefresh ? 500 : 200; // Уменьшенные задержки после прелоадера
+            const subsequentDelay = 100; // delay beetween strings
+    
+            const lines = document.querySelectorAll('.homeText p');
+            lines.forEach((_line, index) => {
+                const delay = initialDelay + subsequentDelay * index;
+                setTimeout(() => {
+                    setVisibleLines(prev => [...prev, index]);
+                }, delay);
+            });
+        }, [isPageRefresh, isPageRefreshing]);
 
     useSplittingHover();
 
