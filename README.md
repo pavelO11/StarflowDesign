@@ -27,4 +27,4 @@
 
 [Игорь](https://t.me/StarflowDesign)<br/>
 [DPROFILE](https://dprofile.ru/starflowdesign)<br/>
-[PRE-DEPLOY](https://buddatest3.vercel.app/)
+[STARFLOWDESIGN.SPACE](https://starflowdesign.space/)
