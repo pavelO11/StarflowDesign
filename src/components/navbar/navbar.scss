@@ -185,4 +185,10 @@
 	.navbarSection{
 		padding: 24px 24px 0 24px;
 	}
+	.navbarSection.popupbrif-open {
+		.navbarBtn,
+		.burger {
+			display: none !important;
+		}
+	}
 }

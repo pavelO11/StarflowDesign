@@ -334,5 +334,11 @@
 		.lowerSection article .contactButtons {
 			height: 68.5px;
 		}
+		.navbarSection.popupbrif-open {
+        .navbarBtn,
+        .burger {
+            display: none !important;
+        }
+    }
 	}
 }

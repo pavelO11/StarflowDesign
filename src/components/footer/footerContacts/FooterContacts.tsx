@@ -17,6 +17,45 @@ function FooterContacts() {
     const handleOpenPopup = () => {
         setBrifOpened(true);
     };
+
+    useEffect(() => {
+        const navbar = document.querySelector('.navbarSection') as HTMLElement;
+        if (!navbar) return;
+
+        if (brifOpened) {
+            // Добавляем класс с задержкой при открытии
+            const timer = setTimeout(() => {
+                navbar.classList.add('popupbrif-open');
+            }, 500);
+            
+            return () => clearTimeout(timer);
+        } else {
+            // Убираем класс сразу при закрытии
+            navbar.classList.remove('popupbrif-open');
+        }
+
+        // Cleanup при размонтировании компонента
+        return () => {
+            navbar.classList.remove('popupbrif-open');
+        };
+    }, [brifOpened]);
+
+    // // Добавляем/убираем класс для скрытия navbar
+    // useEffect(() => {
+    //     const navbar = document.querySelector('.navbarSection') as HTMLElement;
+    //     if (!navbar) return;
+
+    //     if (brifOpened) {
+    //         navbar.classList.add('popupbrif-open');
+    //     } else {
+    //         navbar.classList.remove('popupbrif-open');
+    //     }
+
+    //     // Cleanup при размонтировании компонента
+    //     return () => {
+    //         navbar.classList.remove('popupbrif-open');
+    //     };
+    // }, [brifOpened]);
     
     useSplittingOnLoad('.slide-vertical');
     useSplittingHover();

@@ -286,13 +286,13 @@
 					color: vars.$black-text !important;
 				}
 				.drawer {
-					padding: 48px 24px 32px 24px !important;
+					padding: 48px 24px 0 24px !important; // убираем нижний padding
 					box-sizing: border-box;
 				}
 				.drawer form {
-					height: calc(100% - 64px) !important;
+					height: auto !important; // убираем фиксированную высоту
 					min-height: 0 !important;
-					padding-bottom: 32px; /* Добавьте отступ снизу */
+					padding-bottom: 48px; // увеличиваем отступ снизу
 				}
 				.drawer header .startText{
 					display: block;

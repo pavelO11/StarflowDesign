@@ -3,14 +3,12 @@ import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { sendMessage } from '../../api/telegram'
 import { overlayAnimation, popupAnimation } from '../animations/modals'
-import useBodyScrollLock from '../hooks/useScrollLock'
 import useSplittingHover from '../hooks/useSplittingHover'
 import useTimer from '../hooks/useTimer'
 import { useOutsideClick } from '../popupbrif/outsideClick/useOutsideClick'
 import './popupbrif.scss'
 import SuccessContent from './successContent/SuccessContent'
 import TimerContent from './timerContent/TimerContent'
-
 
 interface Props {
     onClose: () => void;
@@ -54,7 +52,7 @@ function PopupBrif(props: Props) {
         }
     }, [remainingTime]);
 
-    useBodyScrollLock(props.opened);
+    // useBodyScrollLock(props.opened);
     
     const form = useForm({
         mode: 'uncontrolled',
