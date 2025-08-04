@@ -93,13 +93,51 @@ function Navigation() {
         };
     }, []);
 
+    const is404 = location.pathname === '/404';
+
+    useEffect(() => {
+        if (is404) {
+            setIsVisible(true); // сразу показываем без задержки
+            setIsTransitioning(false);
+            return;
+        }
+        const timeout = setTimeout(() => {
+            setIsVisible(true);
+        }, isPageRefresh ? 4800 : 0.1);
+
+        return () => clearTimeout(timeout);
+    }, [isPageRefresh, is404]);
+
     return (
-        <section className={`navigationSection ${isVisible ? (isHidden ? 'fadeOut' : 'fadeIn') : ''} ${isTransitioning ? 'fadeOut' : ''}`}>
+        // <section className={`navigationSection ${isVisible ? (isHidden ? 'fadeOut' : 'fadeIn') : ''} ${isTransitioning ? 'fadeOut' : ''}`}>
+        //     {linksMain.map((link) => (
+        //         <Link
+        //             // data-splitting
+        //             to={link.link}
+        //             onClick={() => handleLinkClick(link.link)} // cheking links before going
+        //             key={link.id}
+        //         >
+        //             <p className='upperText'>{link.number}</p>
+        //             <p data-splitting className='navigationLink'>{link.title}</p>
+        //         </Link>
+        //     ))}
+        //     <p className='navigationText'>©2025</p>
+        // </section>
+        <section
+            className={
+                `navigationSection` +
+                (is404
+                    ? ''
+                    : (isVisible ? (isHidden ? ' fadeOut' : ' fadeIn') : '') +
+                    (isTransitioning ? ' fadeOut' : '')
+                )
+            }
+            style={is404 ? { transition: 'none', opacity: 1 } : {}}
+        >
             {linksMain.map((link) => (
                 <Link
-                    // data-splitting
                     to={link.link}
-                    onClick={() => handleLinkClick(link.link)} // cheking links before going
+                    onClick={() => handleLinkClick(link.link)}
                     key={link.id}
                 >
                     <p className='upperText'>{link.number}</p>

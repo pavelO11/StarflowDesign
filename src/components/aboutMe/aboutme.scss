@@ -67,7 +67,7 @@
         line-height: 100%;
     }
   }
-@media screen and (max-width: 390px), (max-width: 375px), (max-width: 428px) {
+@media screen and (max-width: 390px), (max-width: 375px), (max-width: 428px){
     .aboutMeSection .textMain h3 , .aboutMeSection .textMain h4{
         font-size: 32px;
     }
@@ -77,4 +77,15 @@
     h3:nth-of-type(3), h4:nth-of-type(3){
         display: block !important;
     }
+  }
+@media screen and (max-width: 490px) {
+    .aboutMeSection .textMain h3 , .aboutMeSection .textMain h4{
+        font-size: 32px;
+    }
+    h3:nth-of-type(1), h3:nth-of-type(2) , h4:nth-of-type(1), h4:nth-of-type(2)  {
+        display: none !important;
+    }
+    // h3:nth-of-type(3), h4:nth-of-type(3){
+    //     display: block !important;
+    // }
   }

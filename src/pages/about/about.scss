@@ -314,7 +314,13 @@
             height: 96px !important;
         }
     }
-    @media screen and (max-width: 390px), (max-width: 375px), (max-width: 428px) {
+    @media screen and (max-width: 490px) {
+        .trump .textMain h2 {
+            padding: 0 70px;
+            line-height: 52px;
+        }
+    }
+    @media screen and (max-width: 390px), (max-width: 375px), (max-width: 428px), (max-width: 490px){
         .trump .textBottomMobile .textBsecond {
             text-align: start;
         }
@@ -384,9 +390,30 @@
             z-index: 1;
         }
     }
-    @media screen and (max-width: 390px), (max-width: 375px), (max-width: 428px) {
+    @media screen and (max-width: 390px), (max-width: 375px), (max-width: 428px), (max-width: 490px) {
+        .aboutIntro h1{
+            font-size: 48px;
+            line-height: 40px;
+            top: 45%;
+        }
+        .aboutIntro .firText {
+            letter-spacing: -4.48px;
+        }
+        .aboutIntro .secText {
+            letter-spacing: -4px;
+            line-height: 100%;
+            font-weight: 300;
+        }
+        .aboutIntro .sm h1:first-child{
+            top: 43.5%;
+            width: 90%;
+        }
+        .aboutIntro .sm h1:last-child{
+            top: 52%;
+            width: 88%;
+        }
+    }
     .aboutIntro .secText {
         -webkit-text-stroke: 1px #FAFAFA;
     }
-}
 }
