@@ -248,6 +248,9 @@
 					letter-spacing: -0.5px;
 					overflow: hidden;
 					line-height: 10px;
+					word-wrap: break-word !important; /* Для переноса слов */
+  					overflow-wrap: break-word !important; /* Для переноса слов */
+  					white-space: normal !important; /* Убедиться, что текст переносится */
 					.word{
 						line-height: 48px;
 					}
@@ -556,6 +559,13 @@
 			}
 		}
 	}
+
+	@media screen and (min-width: 2000px) {
+		.mainServices .service {
+			width: -moz-available !important;
+			width: -webkit-fill-available !important;
+		}
+	}
 	
 	@media screen and (max-width: 1440px) {
 		.servicesText h1{
@@ -638,6 +648,28 @@
 		.serviceStages .accordion .content {
 			padding: 24px 0 0 0;
 		}
+		.mainServices .service .top .title .char {
+			height: 34px;
+		}
+		.mainServices .service .top .title .word {
+			line-height: 36px;
+		}
+		.mainServices .service .top, .servicesSection .mainServices .service .bottom {
+			gap: 16px;
+		}
+		.servicesText .linesss{
+			display: flex;
+			flex-direction: column;
+			gap: 8px;
+		}
+		.servicesText h1 .char {
+			display: inline-block;
+			height: 112px;
+		}
+		.servicesText .secText .char[data-char="и"] {
+			width: 55px;
+		}
+
 	}
 	@media screen and (max-width: 1024px) {
 		.servicesText , .navigationSection{

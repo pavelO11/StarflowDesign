@@ -48,7 +48,7 @@ const Services = () => {
   const myServices = [
     { id: '1', number: '01', title: 'Одностраничный сайт', description: 'Сайт для компаний, которым нужно протестировать гипотезу, продукт или создать сайт-визитку. ', price: '70 000', deadlines: '5' },
     { id: '2', number: '02', title: 'Корпоративный сайт', description: 'Сайт для бизнесов, которым нужно более подробно рассказать о себе, продукте, услугах, команде.', price: '100 000', deadlines: '14' },
-    { id: '3', number: '03', title: 'Интернет-магазин', description: 'Сайт для продажи товаров с онлайн-оплатой, доставкой и управлением каталогами.', price: '120 000', deadlines: '14' },
+    { id: '3', number: '03', title: 'Интернет- магазин', description: 'Сайт для продажи товаров с онлайн-оплатой, доставкой и управлением каталогами.', price: '120 000', deadlines: '14' },
     { id: '4', number: '04', title: 'Дизайн в Figma', description: 'Полноценный дизайн-макет сайта, подготовленный к верстке + дизайнерский контроль.', price: '50 000', deadlines: '5' }
   ];
 
@@ -175,7 +175,7 @@ const Services = () => {
         </AnimatePresence>
       <section className='servicesSection'>
         <section className='servicesText'>
-          <section>
+          <section className='linesss'>
             <p className={visibleLines.includes(0) ? 'visible' : ''} data-splitting>
               <span className='char'>создаю продуманный дизайн,</span>
             </p>
@@ -187,7 +187,7 @@ const Services = () => {
             </p>
           </section>
           <h1 data-splitting className='slide-vertical'><span className='firText'>Мои</span><span className='secText'> Услуги</span></h1>
-          <section>
+          <section className='linesss'>
             <p className={visibleLines.includes(0) ? 'visible' : ''} data-splitting>
               <span className='char'>к каждому проекту подхожу</span>
             </p>

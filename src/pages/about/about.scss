@@ -249,6 +249,20 @@
             font-size: 88px;
         }
     }
+    @media screen and (max-width: 1280px) {
+        .aboutIntro .firText {
+            letter-spacing: -12px;
+        }
+        .aboutIntro .secText {
+            letter-spacing: -18px;
+        }
+        .aboutIntro h1 .char {
+            height: 120px;
+        }
+        .trump .textMain h2 {
+            letter-spacing: -5px;
+        }
+    }
     @media screen and (max-width: 1024px) {
         .navigationSection{
 			display: none;

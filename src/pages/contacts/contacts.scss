@@ -161,8 +161,11 @@
 			letter-spacing: -8px;
 		}
 		.secText{
-			letter-spacing: -3px;
+			letter-spacing: -18px;
 		}
+        h1 .char {
+            height: 120px;
+        }
 		.contactText {
 			padding: 0 190px;
 		}
@@ -172,7 +175,10 @@
 			line-height: 34px;
 		}
 		.contactText .contactButtons p .char {
-			height: 37.8px;
+			height: 35.8px;
+		}
+		.contactText .contactButtons p .word {
+  			line-height: 47px;
 		}
 		.contactText .contactButtons .discription {
 			padding-top: 0;

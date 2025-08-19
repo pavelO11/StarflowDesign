@@ -50,6 +50,11 @@
         font-size: 56px;
     }
   }
+  @media screen and (max-width: 1280px) {
+    .aboutMeSection .textMain h3, .aboutMeSection .textMain h4{
+        letter-spacing: -3px;
+    }
+  }
 @media screen and (max-width: 1024px) {
     .aboutMeSection .textMain h3, .aboutMeSection .textMain h4{
         font-size: 48px;
